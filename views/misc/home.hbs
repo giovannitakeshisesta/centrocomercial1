@@ -1,0 +1,31 @@
+  
+<div class="home">
+
+  <div class="homeTitle">
+    <h1>Welcome to centro commercial!</h1>
+    <h5>Cosas</h5>
+    <p>mas cosas</p>
+  </div>
+
+  <div class="homeTiendas">
+  
+    <div class="homeBtnsTiendas">
+
+      {{!-- cada tienda button --}}
+      {{#each tiendas as |tienda|}}
+      <div id="btnHomeTienda">
+          <a href="/tienda/{{tienda.id}}">
+          <img class="logoCircle" src="{{tienda.image}}" alt="logoCircle">
+        </a>
+      </div>
+      {{/each}}
+
+    </div>
+  
+  </div>
+
+</div>
+  {{!-- {{#each tiendas as |tienda|}}
+  <h1>{{tienda.name}}</h1>
+  <h1>{{tienda.id}}</h1>
+  {{/each}} --}}

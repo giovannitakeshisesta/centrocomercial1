@@ -1,0 +1,42 @@
+.home{
+    height: 80vh;
+    background-image: url(https://images.ctfassets.net/hrltx12pl8hq/5KiKmVEsCQPMNrbOE6w0Ot/341c573752bf35cb969e21fcd279d3f9/hero-img_copy.jpg?fit=fill&w=800&h=300);
+    background-size: cover;
+
+}
+
+.homeTitle{
+    padding-top: 30px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.homeTiendas{
+    border: 3px dotted blue;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeBtnsTiendas{
+    border: 3px dotted green;
+    height:400px;
+    width: 400px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.logoCircle{
+    height: 60px;
+    width: 60px;
+    margin: 40px;
+}
+
