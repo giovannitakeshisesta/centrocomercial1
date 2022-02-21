@@ -1,23 +1,47 @@
-.home{
-    height: 80vh;
-    background-image: url(https://images.ctfassets.net/hrltx12pl8hq/5KiKmVEsCQPMNrbOE6w0Ot/341c573752bf35cb969e21fcd279d3f9/hero-img_copy.jpg?fit=fill&w=800&h=300);
-    background-size: cover;
+nav {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    color: #fff !important;
+}
 
+/* .nav-link {
+    color: #fff !important;
+} */
+
+
+
+/* ----------------- */
+/* BASIC */
+/* ----------------- */
+
+h1 {
+    text-transform: uppercase;
+}
+
+
+/* ----------------- */
+/* HOME */
+/* ----------------- */
+
+.home{
+    height: 100vh;
+    background-image: url('../images/home-northface.jpeg');
+    background-size: cover;
+    padding-top: 200px;
 }
 
 .homeTitle{
-    padding-top: 30px;
+    width: 100%;
     color: white;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .homeTiendas{
-    border: 3px dotted blue;
     height: 500px;
     display: flex;
     align-items: center;
@@ -25,10 +49,8 @@
 }
 
 .homeBtnsTiendas{
-    border: 3px dotted green;
     height:400px;
     width: 400px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
