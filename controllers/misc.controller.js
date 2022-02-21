@@ -152,3 +152,47 @@ module.exports.producto = (req, res, next) => {
   .catch(next)
   
 };
+
+// EDIT
+
+module.exports.productoEdit = (req, res, next) => {
+  Producto.findById(req.params.id)
+    .then( producto => {
+      res.render('misc/productoEdit', { producto })
+    })
+    .catch(next)
+}
+
+module.exports.productoDoEdit = (req, res, next) => {
+  const productId = req.params.id
+
+  Producto.findByIdAndUpdate(productId, req.body, { runValidators: true, new: true } )
+    .then(producto => {
+      res.redirect(`/producto/${producto.id}`)
+    })
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.status(400).redirect(`/producto/${productId}/edit`);
+      } else {
+        next(error);
+      }
+    });
+}
+
+
+// DELETE
+
+module.exports.productoDelete = (req, res, next) => {
+
+  Producto.findByIdAndDelete(req.params.id)
+    .then((producto) => {
+      console.log('Eliminar producto', producto)
+      res.redirect('/')
+    })
+    .catch(next)
+}
+
+
+
+
+

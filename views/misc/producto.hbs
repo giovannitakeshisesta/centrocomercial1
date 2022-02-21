@@ -6,3 +6,7 @@
 <p>Precio : {{prod.precio}} €</p>
 <img src="{{prod.image1}}" alt="">
 <img src="{{prod.image2}}" alt="">
+
+<form method="POST" action="/producto/{{prod.id}}/productoDelete">
+    <button type="submit">Delete</button>
+</form>
