@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const misc = require('../controllers/misc.controller')
+const auth = require('../controllers/auth.controller')
+
 
 
 
@@ -26,5 +28,15 @@ router.post('/producto/:id/productoDelete', misc.productoDelete)
 router.get('/', misc.home)
 router.get('/tienda/:id', misc.tienda)
 router.get('/producto/:id', misc.producto)
+
+
+// AUTH ROUTES
+router.get ('/register', auth.register)
+router.post('/register', auth.doRegister)
+router.get ('/login', auth.login)
+router.post('/login', auth.doLogin)
+
+
+
 
 module.exports = router 
