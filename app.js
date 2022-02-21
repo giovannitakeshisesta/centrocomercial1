@@ -5,6 +5,10 @@ const createError = require('http-errors');
 const logger = require('morgan');
 const path = require('path');
 
+const passport = require('passport');
+require('./config/passport.config');
+
+
 const router = require('./config/routes.config')
 require('./config/db.config')
 require('./config/hbs.config')
@@ -15,6 +19,14 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'))
+
+/** 
+ * Passport
+*/
+app.use(passport.initialize());
+//app.use(passport.session());
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs') //the rendering engine for the views is: HBS
@@ -37,6 +49,9 @@ app.use((error, req, res, next) => {
     error: req.app.get('env') === 'development' ? error : {}
   })
 })
+
+
+
 
 /**
  * Port settings

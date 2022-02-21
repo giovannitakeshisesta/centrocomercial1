@@ -29,7 +29,11 @@ router.get('/tienda/:id', misc.tienda)
 
 // AUTH ROUTES
 router.get ('/register', auth.register)
-router.post ('/register', auth.doRegister)
+router.post('/register', auth.doRegister)
+router.get ('/login', auth.login)
+router.post('/login', auth.doLogin)
+
+
 
 
 module.exports = router 
