@@ -1,10 +1,9 @@
-<h1>create tienda</h1>
+<div class="container">
+  <div class="row mx-auto justify-content-center">
+    <div class="col-6">
+      <h1>Create tienda</h1>
 
-<form action="/tienda/create" method="POST">
-  <label> Name: <input name="name" /> </label>
-  <br>
-  <label> Image: <input name="image" /> </label>
-  <br>
-
-  <button type="submit"> Crea tienda </button>
-</form>
+      {{>tiendaForm edit=false }}
+    </div>
+  </div>
+</div>

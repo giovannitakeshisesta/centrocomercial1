@@ -1,32 +1,6 @@
-{{#with tienda}}
-<form action="/tienda/{{this.id}}/edit" method="POST">
-    <div>
-        <label for="name">Name</label>
-        <input name="name"  value="{{ this.name }}">
-    </div>
-        
-    <div>
-        <label for="Image">Image</label>
-        <input name="image"  value="{{ this.image }}">
-    </div>
+<div class="container">
+  <h1>Edit Tienda</h1>
 
-    <button type="submit" class="btn btn-primary">/tienda/{{this.id}}/edit</button>
-</form>
-<form action="/tienda/{{this.id}}/delete" method="POST">
-    <button type="submit" class="btn btn-warning">/tienda/{{this.id}}/delete</button>
-</form>
-
-<div>
-    <h1>PRODUCTOS</h1>
-
-    <form action="/tienda/{{this.id}}/product/create" method="POST">
-        <div>
-            <label for="name">Name</label>
-            <input name="name"  value="">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">/tienda/{{this.id}}/product/create</button>
-    </form>
+  {{>tiendaForm edit=true }}
 </div>
-{{/with}}
 

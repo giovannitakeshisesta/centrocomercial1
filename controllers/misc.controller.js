@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Tienda = require('../models/tienda.model');
+const Producto = require('../models/producto.model');
 
-// SHOW TIENDAS AT THE HOME PAGE
+//  SHOW TIENDAS AT THE HOME PAGE ----------------------------------------------------
   module.exports.home = (req, res, next) => {
     Tienda.find()
       .sort({ createdAt: 'desc' })
@@ -11,12 +12,19 @@ const Tienda = require('../models/tienda.model');
   };
 
 
-  //  SHOW TIENDA PAGE
+//  SHOW TIENDA PAGE
 module.exports.tienda = (req, res, next) => {
   Tienda.findById(req.params.id)
     .then((tienda) => {
       if (tienda) {
-        res.render('misc/tienda', { tienda });
+        Producto.find({tienda:req.params.id})
+        .then((pro)=> {
+          console.log(pro)
+          res.render('misc/tienda', {tienda,pro})
+        })
+        .catch(next)
+
+        
       } else {
         res.redirect('/');
       }
@@ -24,20 +32,22 @@ module.exports.tienda = (req, res, next) => {
     .catch(error => next(error));
 };
 
-
-//  TIENDA CREATE SHOW FORM
+// -------------------------------------------------------------------------------
+//  TIENDA CREATE - SHOW FORM ----------------------------------------------------
 module.exports.tiendaCreate = (req, res, next) => {
   res.render('misc/tiendaCreate')
 };
 
-
-
+//  TIENDA CREATE - POST FORM
 module.exports.tiendaDoCreate = (req, res, next) => {
   const tienda = new Tienda({
     name: req.body.name,
-    image: req.body.image || undefined,
     description: req.body.description,
-    categories: req.body.categories
+    categories: req.body.categories,
+    officialWeb: req.body.officialWeb,
+    logo: req.body.logo || undefined,
+    image1: req.body.image1 || undefined,
+    image2: req.body.image2|| undefined,
   });
 
   tienda
@@ -45,7 +55,8 @@ module.exports.tiendaDoCreate = (req, res, next) => {
     .then(() => res.redirect('/'))
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(400).render('/tienda/create', {
+        console.log(error)
+        res.status(400).render('misc/tiendaCreate', {
           errors: error.errors,
           tienda
         });
@@ -56,19 +67,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
 };
 
 
-
-// module.exports.tiendaDoCreate = (req, res, next) => {
-//   console.log("ADDING :",req.body)
-//   console.log("image :",req.body.image)
- 
-//   Tienda.create(req.body)
-//   .then(() =>  res.redirect('/'))
-//   .catch((err) => console.log(`Error while creating a new tienda: ${err}`));
-// };
-
-
-
-// TIENDA EDIT  SHOW FORM
+// TIENDA EDIT - SHOW FORM
 module.exports.tiendaEdit = (req, res, next) => {
   Tienda.findById(req.params.id)
     .then((tienda) => {
@@ -77,7 +76,8 @@ module.exports.tiendaEdit = (req, res, next) => {
     .catch(next)
 };
 
-// TIENDA EDIT POST FORM
+
+// TIENDA EDIT - POST FORM
 module.exports.tiendaDoEdit = (req, res, next) => {
   let tiendaId = req.params.id;
   Tienda.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true })
@@ -91,6 +91,7 @@ module.exports.tiendaDoEdit = (req, res, next) => {
     });
 };
 
+
 // DELETE TIENDA
 module.exports.tiendaDelete = (req, res, next) => {
   Tienda.findByIdAndDelete(req.params.id)
@@ -99,3 +100,55 @@ module.exports.tiendaDelete = (req, res, next) => {
 }
 
 
+// -------------------------------------------------------------------------------
+//  PRODUCTO CREATE - SHOW FORM ----------------------------------------------------
+module.exports.productoCreate = (req, res, next) => {
+  let tiendaId = req.params.tiendaId
+  res.render('misc/productoCreate', {tiendaId})
+};
+
+
+//  PRODUCTO CREATE - POST FORM
+module.exports.productoDoCreate = (req, res, next) => {
+  let tiendaId = req.params.tiendaId
+  console.log(tiendaId, req.body)
+
+
+  const producto = new Producto({
+    tienda : tiendaId,
+    name: req.body.name,
+    description: req.body.description,
+    precio: req.body.precio,
+    image1: req.body.image1 || undefined,
+    image2: req.body.image2|| undefined
+  });
+
+  producto
+    .save()
+    .then(() => res.redirect('/'))
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        console.log(error)
+        res.status(400).render(`misc/productoCreate`, {
+          errors: error.errors,
+          producto,
+          tiendaId
+        });
+      } else {
+        next(error);
+      }
+    });
+
+};
+
+
+
+//  PRODUCTO SHOW DETAILS
+
+module.exports.producto = (req, res, next) => {
+  let productoId = req.params.id
+  Producto.findById(productoId)
+  .then((prod)=> res.render('misc/producto', {prod}))
+  .catch(next)
+  
+};

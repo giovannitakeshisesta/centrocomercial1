@@ -1,0 +1,115 @@
+
+{{#if edit }}
+  <form action="/tienda/{{tienda.id}}/edit" method="POST">
+{{else}}
+  <form action="/tienda/create" method="POST">
+{{/if}}
+
+  {{!-- NAME --}}
+  <div class="form-group mb-1">
+    <label for="name">Name</label>
+    <input name="name" type="text" id="name" placeholder="Enter name"
+      class="form-control {{#if errors.name}}is-invalid{{/if}}" 
+      value="{{ tienda.name }}"
+    >
+    {{#if errors.name}}
+      <div class="invalid-feedback">
+        {{errors.name.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- DESCRIPTION --}}
+  <div class="form-group mb-1">
+    <label for="description">description</label>
+    <input name="description" type="text" id="description" placeholder="Enter description"
+      class="form-control {{#if errors.description}}is-invalid{{/if}}" 
+      value="{{ tienda.description }}"
+    >
+    {{#if errors.description}}
+      <div class="invalid-feedback">
+        {{errors.description.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- CATEGORIES --}}
+  <div class="form-group mb-1">
+    <label for="categories">categories</label>
+    <input name="categories" type="text" id="categories" placeholder="Enter categories"
+      class="form-control {{#if errors.categories}}is-invalid{{/if}}" 
+      value="{{ tienda.categories }}"
+    >
+    {{#if errors.categories}}
+      <div class="invalid-feedback">
+        {{errors.categories.message}}
+      </div>
+    {{/if}}
+  </div>
+
+
+  {{!-- OFFICIAL WEB --}}
+  <div class="form-group mb-1">
+    <label for="officialWeb">officialWeb</label>
+    <input name="officialWeb" type="text" id="officialWeb" placeholder="Enter officialWeb"
+      class="form-control {{#if errors.officialWeb}}is-invalid{{/if}}" 
+      value="{{ tienda.officialWeb }}"
+    >
+    {{#if errors.officialWeb}}
+      <div class="invalid-feedback">
+        {{errors.officialWeb.message}}
+      </div>
+    {{/if}}
+  </div>
+
+
+  {{!--  LOGO  --}}
+  <div class="form-group mb-1">
+    <label for="logo">logo</label>
+    <input name="logo" type="text" id="logo" placeholder="Enter logo"
+      class="form-control {{#if errors.logo}}is-invalid{{/if}}" 
+      value="{{ tienda.logo }}"
+    >
+    {{#if errors.logo}}
+      <div class="invalid-feedback">
+        {{errors.logo.message}}
+      </div>
+    {{/if}}
+  </div>
+
+
+  {{!--  IMAGE 1   --}}
+  <div class="form-group mb-1">
+    <label for="image1">image1</label>
+    <input name="image1" type="text" id="image1" placeholder="Enter image1"
+      class="form-control {{#if errors.image1}}is-invalid{{/if}}" 
+      value="{{ tienda.image1 }}"
+    >
+    {{#if errors.image1}}
+      <div class="invalid-feedback">
+        {{errors.image1.message}}
+      </div>
+    {{/if}}
+  </div>
+
+
+  {{!--  IMAGE 2   --}}
+  <div class="form-group mb-2">
+    <label for="image2">image2</label>
+    <input name="image2" type="text" id="image2" placeholder="Enter image2"
+      class="form-control {{#if errors.image2}}is-invalid{{/if}}" 
+      value="{{ tienda.image2 }}"
+    >
+    {{#if errors.image2}}
+      <div class="invalid-feedback">
+        {{errors.image2.message}}
+      </div>
+    {{/if}}
+  </div>
+
+
+
+
+  <button type="submit" class="btn btn-primary">Send</button>
+
+</form>

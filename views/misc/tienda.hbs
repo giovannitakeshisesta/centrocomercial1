@@ -1,14 +1,45 @@
-{{#with tienda}}
-<h1>Name :{{this.name}}</h1>
-<p>Categories:{{this.categories}}</p>
-<p>Id tienda: {{this.id}}</p>
-<img class="logoCircle" src="{{this.image}}" alt="">
-<div><a href="/tienda/{{this.id}}/edit" class="btn btn-success mt-1">/tienda/{{this.id}}/edit</a></div>
+<div class="container">
 
+    <div class="d-flex flex-rox justify-content-between">
+        <div>
+            <h1>Name :       {{tienda.name}}</h1>
+            <p>Categories:   {{tienda.categories}}</p>
+            <p>Id tienda:    {{tienda.id}}</p>
+            <a href="        {{tienda.officialWeb}}">Official WebPage </a>
+            <p>Description : {{tienda.description}}</p>
+            <img class="logoCircle" src="{{tienda.logo}}" alt="logo tienda">
+        </div>
+        <div>
+            <img src="{{tienda.image1}}" alt="img1 tienda">
+        </div>
+        <div>
+            <img src="{{tienda.image2}}" alt="img 2 tienda">
+        </div>
+    </div>
 
+    <a href="/tienda/{{tienda.id}}/edit" class="btn btn-success mt-1"> /tienda/{{tienda.id}}/edit </a>
 
-<div>
-    <h1>PRODUCTOS</h1>
+    <br>
+    <br>
+    <div>
+        <h1>PRODUCTOS</h1>
+        <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1"> /producto/{{tienda.id}}/create </a>
+        <div class="d-flex flex-row">
+            {{#each pro}}
+            <div class="d-flex flex-column">
+                <p>{{this.name}}</p> 
+                <a href='/producto/{{this.id}}'>
+                    <img class="logoCircle" src="{{this.image2}}" alt="">
+                </a>
+            </div>
+            
+                
+            {{/each}}
+        </div>
+        
+
+    </div>
+    
 </div>
-{{/with}}
+
 

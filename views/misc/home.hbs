@@ -1,4 +1,3 @@
-  
 <div class="home">
 
   <div class="homeTitle">
@@ -15,7 +14,7 @@
       {{#each tiendas as |tienda|}}
       <div id="btnHomeTienda">
           <a href="/tienda/{{tienda.id}}">
-          <img class="logoCircle" src="{{tienda.image}}" alt="logoCircle">
+          <img class="logoCircle" src="{{tienda.logo}}" alt="logoCircle">
         </a>
       </div>
       {{/each}}
@@ -25,7 +24,4 @@
   </div>
 
 </div>
-  {{!-- {{#each tiendas as |tienda|}}
-  <h1>{{tienda.name}}</h1>
-  <h1>{{tienda.id}}</h1>
-  {{/each}} --}}
+

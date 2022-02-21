@@ -4,29 +4,25 @@ const Schema = mongoose.Schema;
 const productoSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Name is required']
+    required: [true, 'Name is required'],
+    minlength: [3, 'Enter at least 3 characters ']
   },
-  // ,
-  // description: {
-  //   type: String,
-  //   minlength: [10, 'Enter at least 10 characters ']
-  // },
-  // precio: {
-  //   type: Number,
-  //   required: true
-  // }
-  // image1: {
-  //   type: String,
-  //   default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644856628/ironhack/multer-example/q4a4ney5aqmwuziylmdh.png',
-  // },
-  // image2: {
-  //   type: String,
-  //   default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644856628/ironhack/multer-example/q4a4ney5aqmwuziylmdh.png',
-  // },
-  // image3: {
-  //   type: String,
-  //   default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644856628/ironhack/multer-example/q4a4ney5aqmwuziylmdh.png',
-  // },
+  description: {
+    type: String,
+    minlength: [10, 'Enter at least 10 characters ']
+  },
+  precio: {
+    type: Number,
+    required: true
+  },
+  image1: {
+    type: String,
+    default: 'https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg'
+  },
+  image2: {
+    type: String,
+    default: 'https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg'
+  },
   tienda: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tienda',
