@@ -25,14 +25,14 @@
         <h1>PRODUCTOS</h1>
         <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1"> /producto/{{tienda.id}}/create </a>
         <div class="d-flex flex-row">
-            {{#each pro}}
+            {{#each pro as |product|}}
             <div class="d-flex flex-column">
                 <p>{{this.name}}</p> 
                 <a href='/producto/{{this.id}}'>
                     <img class="logoCircle" src="{{this.image2}}" alt="">
                 </a>
             </div>
-            
+            <a href="/producto/{{product.id}}/edit" class="btn btn-success mt-1"> /producto/{{product.id}}/edit </a>
                 
             {{/each}}
         </div>
