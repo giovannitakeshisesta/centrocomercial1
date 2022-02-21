@@ -21,14 +21,14 @@
 
   {{!-- DESCRIPCION --}}
   <div class="form-group mb-1">
-    <label for="descripcion">descripcion</label>
-    <input name="descripcion" type="text" id="descripcion" placeholder="Enter descripcion"
-      class="form-control {{#if errors.descripcion}}is-invalid{{/if}}" 
-      value="{{ producto.descripcion }}"
+    <label for="description">description</label>
+    <input name="description" type="text" id="description" placeholder="Enter description"
+      class="form-control {{#if errors.description}}is-invalid{{/if}}" 
+      value="{{ producto.description }}"
     >
-    {{#if errors.descripcion}}
+    {{#if errors.description}}
       <div class="invalid-feedback">
-        {{errors.descripcion.message}}
+        {{errors.description.message}}
       </div>
     {{/if}}
   </div>
