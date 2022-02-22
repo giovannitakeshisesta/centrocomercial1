@@ -12,18 +12,27 @@
     </button>
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="navbar-nav">
+        
+        {{#if currentUser}}
         <li class="nav-item">
-          <a class="nav-link" href="/">Tiendas</a>
+          <a class="nav-link" href="/logout">Log out</a>
         </li>
+        {{else}}
         <li class="nav-item">
           <a class="nav-link" href="/register">Register</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        {{/if}}
+
+        <li class="nav-item">
           <a class="nav-link" href="/tienda/create">Create Tienda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Otra cosa</a>
+          <a class="nav-link" href="/prueba">Prueba</a>
         </li>
+
       </ul>
     </div>
   </div>
