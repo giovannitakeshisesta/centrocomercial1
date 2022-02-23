@@ -17,23 +17,38 @@
         </div>
     </div>
 
-    <a href="/tienda/{{tienda.id}}/edit" class="btn btn-success mt-1"> /tienda/{{tienda.id}}/edit </a>
+    
+    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+        <a href="/tienda/{{tienda.id}}/edit"   class="btn btn-success mt-1"> edit tienda</a>
+        <a href="/tienda/{{tienda.id}}/delete" class="btn btn-success mt-1"> delete tienda</a>
+    {{/ifIsDueño}}
+
 
     <br>
     <br>
     <div>
         <h1>PRODUCTOS</h1>
-        <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1"> /producto/{{tienda.id}}/create </a>
+
+        {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+            <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1">create producto </a>
+        {{/ifIsDueño}}
+
+        
         <div class="d-flex flex-row">
+
             {{#each pro as |product|}}
             <div class="d-flex flex-column">
                 <p>{{this.name}}</p> 
                 <a href='/producto/{{this.id}}'>
                     <img class="logoCircle" src="{{this.image2}}" alt="">
                 </a>
+                <div>
+                    {{#ifIsDueño dueñoId=../currentUser.id tiendaOwnerId=../tienda.ownerId}}
+                        <a href="/producto/{{product.id}}/edit" class="btn btn-success mt-1"> edit </a>
+                    {{/ifIsDueño}}
+                </div>
             </div>
-            <a href="/producto/{{product.id}}/edit" class="btn btn-success mt-1"> /producto/{{product.id}}/edit </a>
-                
+
             {{/each}}
         </div>
         

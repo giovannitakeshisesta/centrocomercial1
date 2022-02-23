@@ -13,3 +13,13 @@ module.exports.isAuthenticated = (req, res, next) => {
       res.redirect('/prueba')
     }
   }
+
+  // ---------- is Dueño ----------
+  module.exports.isDueño = (req, res, next) => {
+    if (req.user && req.user.dueño) {
+      next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+

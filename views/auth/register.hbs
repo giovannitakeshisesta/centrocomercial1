@@ -5,6 +5,7 @@
 
     <form method="POST" action="/register">
 
+      {{! ------ NAME ------ }}
       <div class="form-group mb-3">
         <label for="name">Name</label>
         <input
@@ -21,6 +22,7 @@
         {{/if}}
       </div>
 
+      {{! ------ MAIL ------ }}
       <div class="form-group mb-3">
         <label for="email">Email</label>
         <input
@@ -37,6 +39,7 @@
         {{/if}}
       </div>
 
+      {{! ------ PASSWORD ------ }}
       <div class="form-group mb-3">
         <label for="password">Password</label>
         <input
@@ -51,6 +54,18 @@
           <div class="invalid-feedback">{{errors.password}}</div>
         {{/if}}
       </div>
+
+      {{! ------ DUEÑO ------ }}
+      <div class="form-group mb-3">
+        <label for="dueño">Vas a abrir una tienda?</label>
+        <input
+          id="dueño"
+          name="dueño"
+          type="checkbox"
+          class=""
+        >
+      </div>
+
 
       <button type="submit" class="btn btn-primary">Submit</button>
 

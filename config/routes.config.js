@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const misc = require('../controllers/misc.controller')
 const auth = require('../controllers/auth.controller')
-const authMiddleware = require('../middlewares/auth.middleware');
+const myMw = require('../middlewares/myMw');
 
 // ------- AUTH ROUTES -------
 router.get ('/register', auth.register)
@@ -12,14 +12,14 @@ router.post('/login',    auth.doLogin)
 router.get ('/logout',   auth.logout)
 
 
-
 // ------- OWNER ROUTES -------
 // Tienda 
 router.get ('/tienda/create',     misc.tiendaCreate)
 router.post('/tienda/create',     misc.tiendaDoCreate)
 router.get ('/tienda/:id/edit',   misc.tiendaEdit)
 router.post('/tienda/:id/edit',   misc.tiendaDoEdit)
-router.post('/tienda/:id/delete', misc.tiendaDelete)
+router.post('/tienda/:id/delete',  (req, res, next) => {console.log("DELETE")} )
+
 
 // Productos 
 router.get ('/producto/:tiendaId/create',   misc.productoCreate)
@@ -36,6 +36,6 @@ router.get('/tienda/:id',   misc.tienda)
 router.get('/producto/:id', misc.producto)
 
 
-router.get ('/prueba', authMiddleware.isAuthenticated, (req, res, next) => {  res.render('prueba')})
+router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
 
 module.exports = router 

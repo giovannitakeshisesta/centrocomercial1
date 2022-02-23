@@ -1,8 +1,10 @@
 [
   {
-    "name": "producto 1"
+    "name": "producto 1",
+    "precio": 123
   },
   {
-    "name": "producto 2 "
+    "name": "producto 2 ",
+    "precio": 456
   }
 ]
