@@ -16,7 +16,7 @@ router.get ('/logout',   auth.logout)
 // Tienda 
 router.get ('/tienda/create',     misc.tiendaCreate)
 router.post('/tienda/create',     misc.tiendaDoCreate)
-router.get ('/tienda/:id/edit',   misc.tiendaEdit)
+router.get ('/tienda/:id/edit',   myMw.isDueño, misc.tiendaEdit)
 router.post('/tienda/:id/edit',   misc.tiendaDoEdit)
 router.post('/tienda/:id/delete', misc.tiendaDelete)
 
