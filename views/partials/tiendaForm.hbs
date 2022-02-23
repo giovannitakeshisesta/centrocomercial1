@@ -6,7 +6,7 @@
   <form action="/tienda/{{tienda.id}}/edit" method="POST">
   {{/ifIsDueño}}
 {{else}}
-  <form action="/tienda/create" method="POST">
+  <form action="/tienda/create" method="POST" enctype="multipart/form-data">
 {{/if}}
 
 
@@ -111,6 +111,13 @@
       </div>
     {{/if}}
   </div>
+
+ {{!--  arrastra   --}}
+  <div class="form-group mb-2">
+    <label for="image" class="form-label">User image</label>
+    <input class="form-control" name="image" type="file" id="image">
+  </div>
+
 
   <button type="submit" class="btn btn-primary">Send</button>
   
