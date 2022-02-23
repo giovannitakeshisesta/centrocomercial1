@@ -41,7 +41,8 @@ module.exports.tiendaCreate = (req, res, next) => {
 //  TIENDA CREATE - POST FORM
 module.exports.tiendaDoCreate = (req, res, next) => {
 
-
+  console.log("body", req.body)
+  console.log("muulter", req.file)
   const tienda = new Tienda({
     ownerId: req.user.id,
     name: req.body.name,
@@ -51,6 +52,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
     logo: req.body.logo || undefined,
     image1: req.body.image1 || undefined,
     image2: req.body.image2|| undefined,
+    image:  req.file.path|| undefined
   });
 
   tienda
