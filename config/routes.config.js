@@ -18,7 +18,7 @@ router.get ('/tienda/create',     misc.tiendaCreate)
 router.post('/tienda/create',     misc.tiendaDoCreate)
 router.get ('/tienda/:id/edit',   misc.tiendaEdit)
 router.post('/tienda/:id/edit',   misc.tiendaDoEdit)
-router.post('/tienda/:id/delete',  (req, res, next) => {console.log("DELETE")} )
+router.post('/tienda/:id/delete', misc.tiendaDelete)
 
 
 // Productos 

@@ -16,14 +16,15 @@
             <img src="{{tienda.image2}}" alt="img 2 tienda">
         </div>
     </div>
-
     
     {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
         <a href="/tienda/{{tienda.id}}/edit"   class="btn btn-success mt-1"> edit tienda</a>
-        <a href="/tienda/{{tienda.id}}/delete" class="btn btn-success mt-1"> delete tienda</a>
+
+        <form method="POST" action="/tienda/{{tienda.id}}/delete">
+            <button type="submit">Delete</button>
+        </form> 
     {{/ifIsDueño}}
-
-
+        
     <br>
     <br>
     <div>
@@ -33,7 +34,6 @@
             <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1">create producto </a>
         {{/ifIsDueño}}
 
-        
         <div class="d-flex flex-row">
 
             {{#each pro as |product|}}

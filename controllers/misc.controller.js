@@ -95,13 +95,13 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 };
 
 
-// // DELETE TIENDA
-// module.exports.tiendaDelete = (req, res, next) => {
-//   console.log("DELETE")
-//   // Tienda.findByIdAndDelete(req.params.id)
-//   // .then(()=> res.redirect('/'))
-//   // .catch(next)
-// }
+// DELETE TIENDA
+module.exports.tiendaDelete = (req, res, next) => {
+  console.log("DELETE")
+  Tienda.findByIdAndDelete(req.params.id)
+  .then(()=> res.redirect('/'))
+  .catch(next)
+}
 
 
 // -------------------------------------------------------------------------------
