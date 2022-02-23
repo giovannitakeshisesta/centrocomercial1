@@ -28,7 +28,7 @@ mongoose.connection.once('open', () => {
             ...pRoD
           
           }).save()
-            .then(prod => console.log(`${prod.name} has been created!`))
+            .then(prod => console.log(`${prod} has been created!`))
             .catch(err =>  console.error(err))
         })
       })

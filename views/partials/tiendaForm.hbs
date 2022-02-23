@@ -1,9 +1,14 @@
 
+
+
 {{#if edit }}
+  {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
   <form action="/tienda/{{tienda.id}}/edit" method="POST">
+  {{/ifIsDueño}}
 {{else}}
   <form action="/tienda/create" method="POST">
 {{/if}}
+
 
   {{!-- NAME --}}
   <div class="form-group mb-1">
@@ -107,9 +112,8 @@
     {{/if}}
   </div>
 
-
-
-
   <button type="submit" class="btn btn-primary">Send</button>
-
+  
 </form>
+
+

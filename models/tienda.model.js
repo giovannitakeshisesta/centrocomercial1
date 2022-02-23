@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tiendaSchema = new Schema({
+  ownerId: {
+    type: String
+  },
   name: {
     type: String,
     required: [true, 'Name is required'],

@@ -40,7 +40,10 @@ module.exports.tiendaCreate = (req, res, next) => {
 
 //  TIENDA CREATE - POST FORM
 module.exports.tiendaDoCreate = (req, res, next) => {
+
+
   const tienda = new Tienda({
+    ownerId: req.user.id,
     name: req.body.name,
     description: req.body.description,
     categories: req.body.categories,
@@ -94,6 +97,7 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 
 // DELETE TIENDA
 module.exports.tiendaDelete = (req, res, next) => {
+  console.log("DELETE")
   Tienda.findByIdAndDelete(req.params.id)
   .then(()=> res.redirect('/'))
   .catch(next)
@@ -115,6 +119,7 @@ module.exports.productoDoCreate = (req, res, next) => {
 
 
   const producto = new Producto({
+    ownerId: req.user.id,
     tienda : tiendaId,
     name: req.body.name,
     description: req.body.description,

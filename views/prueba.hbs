@@ -1,0 +1,15 @@
+    
+<div style="margin-top: 100px">
+    
+    {{#if currentUser.dueño}}
+        <h2>eres el amo!</h2>
+        <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
+        <p>{{currentUser.id}} </p>
+    {{else if currentUser}}
+        <h2>eres un User!</h2>
+        <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
+    {{else}}
+        <h1>no eres ni dueño ni user, solo eres una mierda</h1>
+    {{/if}}
+
+</div>
