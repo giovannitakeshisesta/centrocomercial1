@@ -1,13 +1,17 @@
 <div class="container">
-  <div class="row mx-auto justify-content-center">
-    <div class="col-6">
-      <h1>Create tienda</h1>
+      {{#if currentUser}}
+      {{!-- si eres dueño --}}
+        {{#ifDueñoisOn dueño=currentUser.dueño}}  
+          {{>tiendaForm edit=false }}
+        {{/ifDueñoisOn}}
 
-      {{#if currentUser.dueño}}
-      {{>tiendaForm edit=false }}
-      {{else}}
+      {{!-- si no eres dueño --}}
+        {{#ifDueñoisOff dueño=currentUser.dueño}}
+          <h1>tienes que logearte como dueño para crear una tienda</h1>
+        {{/ifDueñoisOff}}
+
+      {{!-- si no estas logueado --}}
+      {{else}}                                
         <h1>tienes que logearte como dueño para crear una tienda</h1>
       {{/if}}
-    </div>
-  </div>
 </div>

@@ -39,7 +39,7 @@ const tiendaSchema = new Schema({
   },
   image: {
     type : String,
-    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644841363/ironhack/multer-example/avatar_i8pt1k.png'
+    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645721993/ironhack/multer-example/Screenshot_2022-02-24_at_17.58.02_on3sp3.png'
   }
 }, { timestamps: true })
 

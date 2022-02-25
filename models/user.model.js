@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
     match: [PASSWORD_PATTERN, 'password needs at least 8 chars'],
   },
   dueño: {
-    type: String
+    type: String,
+    default: "off"
   }
 });
 
