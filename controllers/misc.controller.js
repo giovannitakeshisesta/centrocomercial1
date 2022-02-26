@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Tienda = require('../models/tienda.model');
 const Producto = require('../models/producto.model');
+const User = require('../models/user.model');
+
 
 // -------------------------------------------------------------------------------
 //  SHOW TIENDAS AT THE HOME PAGE 

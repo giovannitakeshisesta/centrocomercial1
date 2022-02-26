@@ -15,7 +15,10 @@ module.exports.isDueño = (req, res, next) => {
           res.render('misc/stop')
         }
     })
-    .catch(error => next(error));
+    .catch(error => { //si user es dueño per no ha abierto tiendas
+      console.log(error)
+      res.render('misc/stop')
+    });
   } 
   else {
     res.render('misc/stop')

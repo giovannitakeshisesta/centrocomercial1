@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 //passport lo usamo para el log in 
 const passport = require('passport'); 
 
-
+// -------------------------------------------------------------------------------
 // REGISTER
 module.exports.register = (req,res,next) => {
   res.render('auth/register')
@@ -39,33 +39,13 @@ module.exports.doRegister = (req, res, next) => {
     })
 }
 
-
+// -------------------------------------------------------------------------------
 // LOGIN
 module.exports.login = (req,res,next) => {
   res.render('auth/login')
 }
 
-
-// LOGIN - POST
-// module.exports.doLogin = (req, res, next) => {
-  
-//   passport.authenticate('local-strategy', (err, user, validations) => {
-//     if (err) {
-//       next(err)
-//     } else if(!user) {
-//       res.status(404).render('auth/login', { errorMessage: validations.error })
-//     } else {
-//       req.login(user, (loginError) => {
-//         if (loginError) {
-//           next(loginError)
-//         } else {
-//           res.redirect('/')
-//         }
-//       })
-//     }
-//   })(req, res, next)
-// }
-
+// LOGIN POST
 const doLogin = (req, res, next,estrategia = 'local-strategy') => {
   passport.authenticate(estrategia, (err, user, validations) => {
     if (err) {
@@ -94,8 +74,11 @@ module.exports.doLoginGoogle = (req, res, next) => {
   doLogin(req, res, next, 'google-auth')
 }
 
+// -------------------------------------------------------------------------------
 // LOGOUT 
 module.exports.logout = (req, res, next) => {
   req.logout();
   res.redirect('/');
 }
+
+// -------------------------------------------------------------------------------

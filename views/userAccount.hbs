@@ -1,0 +1,75 @@
+<h1>user account</h1>
+<div class="d-flex">
+    <p>Name : {{currentUser.name}}</p>
+    <form method="POST" action="/userAccount/{{currentUser.id}}/editName" class="d-flex">
+        <button type="submit">modifica</button>
+        <div class="form-group mb-1">
+            <input name="name" type="text" id="name" placeholder="Enter name"
+            class="form-control {{#if errors.name}}is-invalid{{/if}}" 
+            value=""
+            >
+            {{#if errors.name}}
+            <div class="invalid-feedback">
+                {{errors.name.message}}
+            </div>
+            {{/if}} 
+        </div>  
+    </form> 
+</div>
+
+
+
+<div class="d-flex">
+    <p>email: {{currentUser.email}}</p>
+    <form method="POST" action="/userAccount/{{currentUser.id}}/editemail" class="d-flex">
+        <button type="submit">hacer ante lo del correo</button>
+        <div class="form-group mb-1">
+            <input name="email" type="email" id="email" placeholder="Enter email"
+            class="form-control {{#if errors.email}}is-invalid{{/if}}" 
+            value=""
+            >
+            {{#if errors.email}}
+            <div class="invalid-feedback">
+                {{errors.email.message}}
+            </div>
+            {{/if}} 
+        </div>  
+    </form> 
+</div>
+
+
+<div class="d-flex">
+    <p>Password : {{currentUser.password}}</p>
+    <form method="POST" action="/userAccount/{{currentUser.id}}/editPw" class="d-flex">
+        <button type="submit">edit password</button>
+        <div class="form-group mb-1">
+            <input name="password" type="password" id="password" placeholder="Enter password"
+            class="form-control {{#if errors.password}}is-invalid{{/if}}" 
+            value=""
+            >
+            {{#if errors.password}}
+            <div class="invalid-feedback">
+                {{errors.password.message}}
+            </div>
+            {{/if}} 
+        </div>  
+    </form> 
+</div>
+
+
+<p>Dueño :{{currentUser.dueño}}</p>
+
+
+
+{{#ifDueñoisOff dueño = currentUser.dueño}}
+<form method="POST" action="/userAccount/{{currentUser.id}}/abreTienda">
+    <label for="abretienda"> Quieres abrir una tienda?</label>
+    <button type="submit">abre una tienda</button>
+</form> 
+{{/ifDueñoisOff}}
+
+<form method="POST" action="/userAccount/{{currentUser.id}}/delete">
+    <button type="submit">Delete account</button>
+</form> 
+
+

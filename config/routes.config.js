@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const misc   = require('../controllers/misc.controller')
 const auth   = require('../controllers/auth.controller')
+const user   = require('../controllers/user.controller')
 const myMw   = require('../middlewares/myMw');
 const upload = require('../config/storage.config');
 const passport = require('passport');
@@ -11,7 +12,7 @@ const GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/userinfo.email"
   ]
 
-
+//----------------------------------------------------------------------
 // ------- AUTH ROUTES -------
 router.get ('/register', auth.register)
 router.post('/register', auth.doRegister)
@@ -19,12 +20,10 @@ router.get ('/login',    auth.login)
 router.post('/login',    auth.doLogin)
 router.get ('/logout',   auth.logout)
 
-//-------------------------------------------------------
+
 // ------- LOGIN GOOGLE -------
 router.get('/login/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
 router.get('/auth/google/callback', auth.doLoginGoogle)
-
-
 
 
 
@@ -53,6 +52,13 @@ router.get('/producto/:productoId', misc.producto)
 router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
 
 
+// ------- USER ROUTES -------
+router.get ('/userAccount',                    user.renderUserAccount)
+router.post('/userAccount/:userId/editName',   user.editUserName)
+router.post('/userAccount/:userId/abreTienda', user.abretienda)
+router.post('/userAccount/:userId/delete',     user.userDelete)
+
+//router.post('/userAccount/:userId/editPw',     user.editPw)
 
 
 
