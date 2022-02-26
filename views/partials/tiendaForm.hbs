@@ -1,12 +1,7 @@
-
-
-
 {{#if edit }}
-  {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-  <form action="/tienda/{{tienda.id}}/edit" method="POST">
-  {{/ifIsDueño}}
+  <form action="/tienda/{{tienda.id}}/edit" method="POST" enctype="multipart/form-data">
 {{else}}
-  <form action="/tienda/create" method="POST" enctype="multipart/form-data">
+  <form action="/tienda/create"             method="POST" enctype="multipart/form-data">
 {{/if}}
 
 
@@ -112,10 +107,14 @@
     {{/if}}
   </div>
 
- {{!--  arrastra   --}}
+  {{!--  DRAG IMG   --}}
   <div class="form-group mb-2">
-    <label for="image" class="form-label">User image</label>
-    <input class="form-control" name="image" type="file" id="image">
+    <label for="image" class="form-label">Image {{ tienda.image }}</label>
+    <input name="image" type="file" id="image"
+    accept=".jpg, .png"
+    class="form-control" 
+    {{!-- required --}}
+    >
   </div>
 
 

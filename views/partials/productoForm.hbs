@@ -2,7 +2,7 @@
 {{#if edit }}
   <form action="/producto/{{producto.id}}/edit" method="POST">
 {{else}}
-  <form action="/producto/{{tiendaId}}/create" method="POST">
+  <form action="/producto/{{tiendaId}}/create"  method="POST">
 {{/if}}
 
   {{!-- NAME --}}
@@ -74,10 +74,6 @@
       </div>
     {{/if}}
   </div>
-
-
-
-
 
   <button type="submit" class="btn btn-primary">Send</button>
 
