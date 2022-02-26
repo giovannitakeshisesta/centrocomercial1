@@ -1,8 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
 
 const User = require('../models/user.model');
 
+//-------------- passport -------------- 
 passport.serializeUser((user, next) => {
   next(null, user.id)
 })
@@ -15,7 +18,8 @@ passport.deserializeUser((id, next) => {
     .catch(err => next(err))
 })
 
-passport.use('local-auth', new LocalStrategy(
+//-------------- local strategy -------------- 
+passport.use('local-strategy', new LocalStrategy(
   {
     usernameField: 'email',
     passwordField: 'password'
@@ -40,19 +44,48 @@ passport.use('local-auth', new LocalStrategy(
   }
 ))
 
-// in passport.config
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
-// passport.serializeUser((user, next) => {})
-// passport.deserializeUser((id, next) => {})
-// passport.use()
+//-------------- google strategy -------------- 
+passport.use('google-auth', new GoogleStrategy(
+  {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/auth/google/callback'
+  },
+  (accessToken, refreshToken, profile, next) => {
+    
+    console.log("Google account details:", profile); // to see the structure of the data in received response:
 
+    const googleID = profile.id;
+    const name = profile.displayName;
+    const email = profile.emails && profile.emails[0].value || undefined
+    const image = profile.photos && profile.photos[0].value || undefined
 
+    if (googleID && email) {
+      User.findOne({ $or: [            // check if the user email or google Id exists in the db
+        { email },
+        { googleID }
+      ]})
+        .then(user => {  
+          if (user) {                 // if match : next
+            next(null, user)
+          } else {                    // if not match : create one and next
+            // Crear uno nuevo
+            return User.create({
+              name,
+              email,
+              password: mongoose.Types.ObjectId(),// invents a random pw
+              googleID,
+              image
+            })
+              .then(userCreated => {
+                next(null, userCreated) // return the data to the function => const doLogin = (req, res, next, provider = 'local-auth') => {....
 
-// in app.js 
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-
-// "passport": "^0.5.2",         npm i passport
-// "passport-local": "^1.0.0"    npm i passport-local
+              })
+          }
+        })
+        .catch(err => next(err))
+    } else {
+      next(null, false, { error: 'Error connecting with Google Auth' })
+    }
+  }
+))
