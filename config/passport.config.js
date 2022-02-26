@@ -1,7 +1,7 @@
 const passport = require('passport');
+const mongoose = require('mongoose');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose');
 
 const User = require('../models/user.model');
 
@@ -56,29 +56,29 @@ passport.use('google-auth', new GoogleStrategy(
     console.log("Google account details:", profile); // to see the structure of the data in received response:
 
     const googleID = profile.id;
-    const name = profile.displayName;
+    const name  = profile.displayName;
     const email = profile.emails && profile.emails[0].value || undefined
-    const image = profile.photos && profile.photos[0].value || undefined
+    //const image = profile.photos && profile.photos[0].value || undefined
 
     if (googleID && email) {
-      User.findOne({ $or: [            // check if the user email or google Id exists in the db
+      User.findOne({ $or: [     // check if the user email or google Id exists in the db
         { email },
         { googleID }
       ]})
         .then(user => {  
-          if (user) {                 // if match : next
+          if (user) {           // if match : next
             next(null, user)
-          } else {                    // if not match : create one and next
+          } else {              // if not match : create one and next
             // Crear uno nuevo
             return User.create({
               name,
               email,
               password: mongoose.Types.ObjectId(),// invents a random pw
               googleID,
-              image
+              //image
             })
               .then(userCreated => {
-                next(null, userCreated) // return the data to the function => const doLogin = (req, res, next, provider = 'local-auth') => {....
+                next(null, userCreated) // return the data to the function => const doLogin = (req, res, next, provider = 'local-strategy') => {....
 
               })
           }

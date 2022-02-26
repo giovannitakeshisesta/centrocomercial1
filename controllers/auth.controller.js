@@ -66,8 +66,8 @@ module.exports.login = (req,res,next) => {
 //   })(req, res, next)
 // }
 
-const doLogin = (req, res, next) => {
-  passport.authenticate('local-strategy', (err, user, validations) => {
+const doLogin = (req, res, next,estrategia = 'local-strategy') => {
+  passport.authenticate(estrategia, (err, user, validations) => {
     if (err) {
       next(err)
     } else if(!user) {

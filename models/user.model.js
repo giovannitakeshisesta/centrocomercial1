@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
   dueño: {
     type: String,
     default: "off"
+  },
+  googleID: {
+    type: String
   }
 });
 

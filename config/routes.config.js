@@ -5,6 +5,7 @@ const auth   = require('../controllers/auth.controller')
 const myMw   = require('../middlewares/myMw');
 const upload = require('../config/storage.config');
 const passport = require('passport');
+
 const GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/userinfo.email"
@@ -21,7 +22,7 @@ router.get ('/logout',   auth.logout)
 //-------------------------------------------------------
 // ------- LOGIN GOOGLE -------
 router.get('/login/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
-//router.get('/auth/google/callback', authController.doLoginGoogle)
+router.get('/auth/google/callback', auth.doLoginGoogle)
 
 
 
