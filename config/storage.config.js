@@ -17,7 +17,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'ironhack/multer-example',
+    folder: 'ironhack/centro-comercial',
     allowed_formats: ['jpg', 'png'],
   }
 })

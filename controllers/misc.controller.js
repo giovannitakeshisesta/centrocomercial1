@@ -45,7 +45,7 @@ module.exports.tiendaCreate = (req, res, next) => {
 module.exports.tiendaDoCreate = (req, res, next) => {
   //console.log("body", req.body)
   //console.log("muulter", req.file)
-  req.file? req.body.image = req.file.path : req.body.image = undefined
+  req.file? req.body.image = req.file.path : req.body.image = undefined;
   
   const tienda = new Tienda({
     ownerId: req.user.id,

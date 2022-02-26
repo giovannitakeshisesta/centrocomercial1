@@ -4,6 +4,12 @@ const misc   = require('../controllers/misc.controller')
 const auth   = require('../controllers/auth.controller')
 const myMw   = require('../middlewares/myMw');
 const upload = require('../config/storage.config');
+const passport = require('passport');
+const GOOGLE_SCOPES = [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ]
+
 
 // ------- AUTH ROUTES -------
 router.get ('/register', auth.register)
@@ -11,6 +17,14 @@ router.post('/register', auth.doRegister)
 router.get ('/login',    auth.login)
 router.post('/login',    auth.doLogin)
 router.get ('/logout',   auth.logout)
+
+//-------------------------------------------------------
+// ------- LOGIN GOOGLE -------
+router.get('/login/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
+//router.get('/auth/google/callback', authController.doLoginGoogle)
+
+
+
 
 
 // ------- OWNER ROUTES -------
@@ -36,6 +50,11 @@ router.get('/',  misc.home)
 router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
 router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
+
+
+
+
+
 
 module.exports = router 
 

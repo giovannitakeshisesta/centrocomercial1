@@ -47,9 +47,27 @@ module.exports.login = (req,res,next) => {
 
 
 // LOGIN - POST
-module.exports.doLogin = (req, res, next) => {
+// module.exports.doLogin = (req, res, next) => {
   
-  passport.authenticate('local-auth', (err, user, validations) => {
+//   passport.authenticate('local-strategy', (err, user, validations) => {
+//     if (err) {
+//       next(err)
+//     } else if(!user) {
+//       res.status(404).render('auth/login', { errorMessage: validations.error })
+//     } else {
+//       req.login(user, (loginError) => {
+//         if (loginError) {
+//           next(loginError)
+//         } else {
+//           res.redirect('/')
+//         }
+//       })
+//     }
+//   })(req, res, next)
+// }
+
+const doLogin = (req, res, next) => {
+  passport.authenticate('local-strategy', (err, user, validations) => {
     if (err) {
       next(err)
     } else if(!user) {
@@ -66,6 +84,15 @@ module.exports.doLogin = (req, res, next) => {
   })(req, res, next)
 }
 
+// LOG IN LOCAL STRATEGY
+module.exports.doLogin = (req, res, next) => {
+  doLogin(req, res, next)
+}
+
+// LOG IN GOOGLE STRATEGY
+module.exports.doLoginGoogle = (req, res, next) => {
+  doLogin(req, res, next, 'google-auth')
+}
 
 // LOGOUT 
 module.exports.logout = (req, res, next) => {
