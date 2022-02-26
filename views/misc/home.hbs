@@ -1,16 +1,10 @@
-<div class="home">
-  
+{{!-- <div class="home">
   <div class="homeTitle">
     <h1>Welcome to centro commercial!</h1>
     <h5>Cosas</h5>
-    <p>mas cosas</p>
   </div>
-
   <div class="homeTiendas">
-  
     <div class="homeBtnsTiendas">
-
-      {{!-- cada tienda button --}}
       {{#each tiendas as |tienda|}}
       <div id="btnHomeTienda">
           <a href="/tienda/{{tienda.id}}">
@@ -18,10 +12,49 @@
         </a>
       </div>
       {{/each}}
-
     </div>
-  
+  </div>
+</div>
+ --}}
+
+
+{{!-- Hero --}}
+<div id="hero">
+
+  <div class="container">
+    <h1>Unique Products</h1>
   </div>
 
 </div>
 
+
+<!-- Swiper Tiendas -->
+<div id='section-tiendas' class="pt-5 pb-5">
+  <h3 class="container pb-3">Tiendas</h3>
+    <div class="swiper mySwiper container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide tienda-slide">Slide 1</div>
+        <div class="swiper-slide tienda-slide">Slide 2</div>
+        <div class="swiper-slide tienda-slide">Slide 3</div>
+        <div class="swiper-slide tienda-slide">Slide 4</div>
+        <div class="swiper-slide tienda-slide">Slide 5</div>
+        <div class="swiper-slide tienda-slide">Slide 6</div>
+        <div class="swiper-slide tienda-slide">Slide 7</div>
+        <div class="swiper-slide tienda-slide">Slide 8</div>
+        <div class="swiper-slide tienda-slide">Slide 9</div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3.5,
+    spaceBetween: 15,
+    pagination: {
+      clickable: true,
+    },
+  });
+</script>

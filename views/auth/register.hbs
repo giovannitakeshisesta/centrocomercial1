@@ -1,13 +1,31 @@
 <h1>register</h1>
 <div class="row justify-content-center mt-4">
   <div class="col-sm-4">
-    <h1>Register</h1>
+    <h1 class="mb-4">Register</h1>
 
     <form method="POST" action="/register">
 
       {{! ------ NAME ------ }}
       <div class="form-group mb-3">
-        <label for="name">Name</label>
+
+        <div class="input-contain mt-3 mb-4">
+          <input 
+            type="text" 
+            id="fname" 
+            name="name" 
+            autocomplete="off" 
+            value="{{user.name}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.name}} is-invalid {{/if}} input-material"
+            required
+          >
+          <label class="placeholder-text" for="name" id="placeholder-fname">
+              <div class="text">Nombre</div>
+          </label>
+          <span>*Required</span>
+        </div>
+
+        {{!-- <label for="name">Name</label>
         <input
           id="name"
           value="{{user.name}}"
@@ -16,7 +34,7 @@
           class="form-control {{#if errors.name}}is-invalid{{/if}}"
           placeholder="Name"
           required
-        >
+        > --}}
         {{#if errors.name}}
           <div class="invalid-feedback">{{errors.name}}</div>
         {{/if}}
@@ -73,3 +91,5 @@
 
   </div>
 </div>
+
+

@@ -2,14 +2,16 @@ const mongoose = require('mongoose');
 const Tienda = require('../models/tienda.model');
 const Producto = require('../models/producto.model');
 
+
+
 //  SHOW TIENDAS AT THE HOME PAGE ----------------------------------------------------
-  module.exports.home = (req, res, next) => {
-    Tienda.find()
-      .sort({ createdAt: 'desc' })
-      .limit(6)
-      .then((tiendas) => res.render('misc/home', { tiendas }))
-      .catch((error) => next(error));
-  };
+module.exports.home = (req, res, next) => {
+  Tienda.find()
+    .sort({ createdAt: 'desc' })
+    .limit(6)
+    .then((tiendas) => res.render('misc/home', { tiendas }))
+    .catch((error) => next(error));
+};
 
 
 //  SHOW TIENDA PAGE

@@ -1,23 +1,29 @@
-/* nav {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    color: #fff !important;
-} */
-
-/* .nav-link {
-    color: #fff !important;
-} */
-
-
 
 /* ----------------- */
 /* BASIC */
 /* ----------------- */
 
+body {
+    background: #000;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
 h1 {
+    color: #fff;
+    font-size: 50px;
     text-transform: uppercase;
+    font-family: 'Frank Ruhl Libre', serif;
+}
+
+h3 {
+    color: #fff;
 }
 
 
@@ -61,4 +67,135 @@ h1 {
     width: 60px;
     margin: 40px;
 }
+
+
+/* ------------------------------- */
+/* section TIENDAS */
+/* ------------------------------- */
+
+#section-tiendas {
+    margin-right: 0;
+    padding-right: 0;
+    background-color: #000;
+}
+
+/* SWIPER */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tienda-slide {
+    height: 500px;
+    transition: .5s ease-in-out;
+}
+
+.tienda-slide:hover {
+    width: 500px !important;
+    cursor: pointer;
+
+}
+
+.swiper {
+    overflow: initial;
+}
+
+
+/* ------------------------------- */
+/* INPUTS - Material Desing */
+/* ------------------------------- */
+
+.input-contain{
+    position: relative;
+}
+.input-contain input{
+    height: 3rem;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+input:focus{
+    outline: none;
+    border-color: #0d6efd;
+}
+input:focus + .placeholder-text .text, :not(input[value=""]) + .placeholder-text .text{
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: #6c757d;
+    transform: translate(-15%, -110%);
+    background-color: #fff;
+    padding: 0 6px;
+}
+input:focus + .placeholder-text .text{
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+.placeholder-text{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 3px solid transparent;
+    background-color: transparent;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+.input-contain .text{
+    font-size: 1.1rem;
+    background-color: transparent;
+    transform: translate(0);
+    color: #6c757d;
+    transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+}
+input, .placeholder-text{
+    font-size: 1.1rem;
+    padding: 0 20px;
+}
+
+.input-contain span {
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    color: #6c757d;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+
+@media (max-width: 40rem) {
+    input{
+        width: 70vw;
+    }
+}
+
 
