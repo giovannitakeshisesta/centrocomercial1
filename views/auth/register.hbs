@@ -6,7 +6,6 @@
 
       {{! ------ NAME ------ }}
       <div class="form-group mb-3">
-        <label for="name">Name</label>
         <input
           id="name"
           value="{{user.name}}"
@@ -23,7 +22,6 @@
 
       {{! ------ MAIL ------ }}
       <div class="form-group mb-3">
-        <label for="email">Email</label>
         <input
           id="email"
           value="{{user.email}}"
@@ -39,8 +37,7 @@
       </div>
 
       {{! ------ PASSWORD ------ }}
-      <div class="form-group mb-3">
-        <label for="password">Password</label>
+      <div class="input-group mb-3">
         <input
           id="password"
           name="password"
@@ -49,6 +46,10 @@
           placeholder="Password"
           required
         >
+        <button class="btn btn-outline-secondary password-toggle c-dark" type="button">
+          <i class="fa fa-eye-slash fa-fw"></i>
+        </button>
+
         {{#if errors.password}}
           <div class="invalid-feedback">{{errors.password}}</div>
         {{/if}}
