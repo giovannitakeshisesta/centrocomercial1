@@ -1,7 +1,8 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy  = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 const User = require('../models/user.model');
 
@@ -44,26 +45,19 @@ passport.use('local-strategy', new LocalStrategy(
   }
 ))
 
-//-------------- google strategy -------------- 
-passport.use('google-auth', new GoogleStrategy(
-  {
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/callback'
-  },
-  (accessToken, refreshToken, profile, next) => {
-    
-    console.log("Google account details:", profile); // to see the structure of the data in received response:
 
-    const googleID = profile.id;
+//-------------- social strategy -------------- 
+const loginSocial = (profile, next) => {
+  const providerId = profile.id;
     const name  = profile.displayName;
     const email = profile.emails && profile.emails[0].value || undefined
-    //const image = profile.photos && profile.photos[0].value || undefined
+    const provider = profile.provider
+    console.log(`${provider} account details:`, profile); // to see the structure of the data in received response:
 
-    if (googleID && email) {
+    if (providerId && email) {
       User.findOne({ $or: [     // check if the user email or google Id exists in the db
         { email },
-        { googleID }
+        { providerId }
       ]})
         .then(user => {  
           if (user) {           // if match : next
@@ -74,18 +68,42 @@ passport.use('google-auth', new GoogleStrategy(
               name,
               email,
               password: mongoose.Types.ObjectId(),// invents a random pw
-              googleID,
+              providerId,
+              provider
               //image
             })
               .then(userCreated => {
                 next(null, userCreated) // return the data to the function => const doLogin = (req, res, next, provider = 'local-strategy') => {....
-
               })
           }
         })
         .catch(err => next(err))
     } else {
-      next(null, false, { error: 'Error connecting with Google Auth' })
+      next(null, false, { error: `Error connecting with ${provider} strategy` })
     }
+}
+
+
+//-------------- google strategy -------------- 
+passport.use('google-auth', new GoogleStrategy(
+  {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/auth/google/callback'
+  },
+  (accessToken, refreshToken, profile, next)=> {
+    loginSocial(profile,next)
+  }
+))
+
+
+//-------------- git hub strategy -------------- 
+passport.use('GitHubStrategy', new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "/auth/github/callback"
+  },
+  (accessToken, refreshToken, profile, next)=> {
+    loginSocial(profile,next)
   }
 ))

@@ -74,6 +74,11 @@ module.exports.doLoginGoogle = (req, res, next) => {
   doLogin(req, res, next, 'google-auth')
 }
 
+// LOG IN GIT HUB STRATEGY
+module.exports.doLoginGitHub = (req, res, next) => {
+  doLogin(req, res, next, 'GitHubStrategy')
+}
+
 // -------------------------------------------------------------------------------
 // LOGOUT 
 module.exports.logout = (req, res, next) => {

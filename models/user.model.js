@@ -26,7 +26,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "off"
   },
+  provider: {
+    type: String
+  },
   googleID: {
+    type: String
+  },
+  providerId: {
     type: String
   }
 });

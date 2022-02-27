@@ -25,7 +25,11 @@ router.get ('/logout',   auth.logout)
 router.get('/login/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
 router.get('/auth/google/callback', auth.doLoginGoogle)
 
+// ------- LOGIN GIT HUB -------
+router.get('/login/gitHub', passport.authenticate('GitHubStrategy'))
+router.get('/auth/github/callback' , auth.doLoginGitHub)
 
+//----------------------------------------------------------------------
 
 // ------- OWNER ROUTES -------
 // Tienda 
