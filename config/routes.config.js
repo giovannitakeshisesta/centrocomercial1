@@ -19,14 +19,16 @@ router.post('/register', auth.doRegister)
 router.get ('/login',    auth.login)
 router.post('/login',    auth.doLogin)
 router.get ('/logout',   auth.logout)
+router.get ('/activate/:token', auth.activate)
+//router.get('/activate/:token/:email', auth.activate)
 
 
 // ------- LOGIN GOOGLE -------
-router.get('/login/google', passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
+router.get('/login/google',         passport.authenticate('google-auth', { scope: GOOGLE_SCOPES }))
 router.get('/auth/google/callback', auth.doLoginGoogle)
 
 // ------- LOGIN GIT HUB -------
-router.get('/login/gitHub', passport.authenticate('GitHubStrategy'))
+router.get('/login/gitHub',          passport.authenticate('GitHubStrategy'))
 router.get('/auth/github/callback' , auth.doLoginGitHub)
 
 //----------------------------------------------------------------------
@@ -57,14 +59,15 @@ router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
 
 
 // ------- USER ROUTES -------
-router.get ('/userAccount',                    user.renderUserAccount)
-router.post('/userAccount/:userId/editName',   user.editUserName)
-router.post('/userAccount/:userId/abreTienda', user.abretienda)
-router.post('/userAccount/:userId/delete',     user.userDelete)
+router.get ('/userAccount',                        user.renderUserAccount)
+router.post('/userAccount/:userId/editName',       user.editUserName)
+router.post('/userAccount/:userId/editUserImage',  upload.single('image'), user.editUserImage)
+router.post('/userAccount/:userId/editEmail',      user.sendEmail)
+router.get ('/userAccount/editmail/:token/:email', user.editEmail)
+router.post('/userAccount/:userId/abreTienda',     user.abretienda)
+router.post('/userAccount/:userId/delete',         user.userDelete)
 
 //router.post('/userAccount/:userId/editPw',     user.editPw)
-
-
 
 
 module.exports = router 

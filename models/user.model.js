@@ -31,7 +31,25 @@ const userSchema = new mongoose.Schema({
   },
   providerId: {
     type: String
-  }
+  },
+  image:{
+    type : String,
+    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644841363/ironhack/multer-example/avatar.png'
+  },
+  // node mailer, when mail confirmed the active key switch to active
+  active: {
+    type: Boolean,
+    default: false
+  },// the token will be used only once in the authentication url
+  activationToken: {
+    type: String,
+    default: () => {
+      return Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7)
+    }
+  } 
 });
 
 userSchema.pre('save', function(next) {

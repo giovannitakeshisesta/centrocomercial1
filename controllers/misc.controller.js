@@ -92,8 +92,8 @@ module.exports.tiendaEdit = (req, res, next) => {
 
 module.exports.tiendaDoEdit = (req, res, next) => {
   let tiendaId = req.params.tiendaId;
-  //req.body.image  = req.file.path //
-  Tienda.findById(req.params.tiendaId)
+
+  Tienda.findById(tiendaId)
     .then((tienda) => {
       let oldImage = tienda.image
       //console.log(oldImage,req.file)
@@ -102,7 +102,7 @@ module.exports.tiendaDoEdit = (req, res, next) => {
       } else {
         req.body.image  = oldImage
       }
-      return Tienda.findByIdAndUpdate(req.params.tiendaId, req.body, { runValidators: true, new: true })
+      return Tienda.findByIdAndUpdate(tiendaId, req.body, { runValidators: true, new: true })
       .then((tienda) => res.redirect(`/tienda/${tienda.id}`))
 
     })
@@ -119,9 +119,13 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 // DELETE TIENDA
 
 module.exports.tiendaDelete = (req, res, next) => {
-  console.log("DELETE")
+  console.log("DELETE", req.user.dueño)
   Tienda.findByIdAndDelete(req.params.tiendaId)
-  .then(()=> res.redirect('/'))
+  .then(()=> {
+    return User.findByIdAndUpdate(req.user, {dueño : "off"})
+    .then(()=> res.redirect('/'))
+    
+  })
   .catch(next)
 }
 

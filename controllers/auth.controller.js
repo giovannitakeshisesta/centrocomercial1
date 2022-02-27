@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport'); 
+const mailer = require('../config/mailer.config');
 
-// -------------------------------------------------------------------------------
-// REGISTER
+
+//----------------------- // REGISTER  //  ----------------------- //
+// REGISTER - GET
 module.exports.register = (req,res,next) => {
   res.render('auth/register')
 }
@@ -23,8 +25,9 @@ module.exports.doRegister = (req, res, next) => {
         renderWithErrors({ email: 'Email already in use' })
       } else {
         return User.create(user)
-          .then(() => {
-            req.flash('flashMessage', `Registration done! Now log in!`)
+          .then((createdUser) => {
+            mailer.sendActivationEmail(createdUser.email, createdUser.activationToken)
+            req.flash('flashMessage', `Chek your inbox!`)
             res.redirect('/login')
           })
       }
@@ -39,8 +42,26 @@ module.exports.doRegister = (req, res, next) => {
     })
 }
 
-// -------------------------------------------------------------------------------
-// LOGIN
+
+//----------------------- // ACTIVATE ACCOUNT //  ----------------------- //
+module.exports.activate = (req, res, next) => {
+  console.log(req.params.email)
+  const activationToken = req.params.token;
+
+  User.findOneAndUpdate(
+    { activationToken, active: false },
+    { active: true }
+  )
+    .then(() => {
+      req.flash('flashMessage', 'You have activated your account. Now Log In!')
+      res.redirect('/login')
+    })
+    .catch(err => next(err))
+}
+
+
+//----------------------- // LOGIN  //  ----------------------- //
+// LOGIN GET
 module.exports.login = (req,res,next) => {
   res.render('auth/login')
 }
@@ -48,7 +69,7 @@ module.exports.login = (req,res,next) => {
 // LOGIN POST
 const doLogin = (req, res, next,estrategia = 'local-strategy') => {
   passport.authenticate(estrategia, (err, user, validations) => {
-    console.log(user)
+    //console.log(user)
     if (err) {
       next(err)
     } else if(!user) {
@@ -81,8 +102,9 @@ module.exports.doLoginGitHub = (req, res, next) => {
   doLogin(req, res, next, 'GitHubStrategy')
 }
 
-// -------------------------------------------------------------------------------
-// LOGOUT 
+
+
+//----------------------- // LOGOUT  //  ----------------------- //
 module.exports.logout = (req, res, next) => {
   req.flash('flashMessage', `Logged out!   See you soon!`)
   req.logout();

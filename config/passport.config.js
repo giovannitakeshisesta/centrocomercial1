@@ -35,8 +35,13 @@ passport.use('local-strategy', new LocalStrategy(
             .then((match) => {
               if (!match) {
                 next(null, false, { error: 'Email or password are incorrect es la password shhhh!' })
-              } else {
-                next(null, user)
+              } 
+              else {
+                if (user.active) {
+                  next(null, user)
+                } else {
+                  next(null, false, { error: 'You have to activate your account' })
+                }
               }
             })
         }
@@ -52,7 +57,7 @@ const loginSocial = (profile, next) => {
     const name  = profile.displayName;
     const email = profile.emails && profile.emails[0].value || undefined
     const provider = profile.provider
-    //console.log(`${provider} account details:`, profile); // to see the structure of the data in received response:
+    console.log(`${provider} account details:`, profile.photos[0].value); // to see the structure of the data in received response:
 
     if (providerId && email) {
       User.findOne({ $or: [     // check if the user email or google Id exists in the db
@@ -69,8 +74,8 @@ const loginSocial = (profile, next) => {
               email,
               password: mongoose.Types.ObjectId(),// invents a random pw
               providerId,
-              provider
-              //image
+              provider,
+              image : profile.photos[0].value
             })
               .then(userCreated => {
                 next(null, userCreated) // return the data to the function => const doLogin = (req, res, next, provider = 'local-strategy') => {....
