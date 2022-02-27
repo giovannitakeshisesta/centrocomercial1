@@ -25,12 +25,12 @@ h1 {
 /* HOME */
 /* ----------------- */
 
-.home{
+/* .home{
     height: 100vh;
     background-image: url('../images/home-northface.jpeg');
     background-size: cover;
     padding-top: 200px;
-}
+} */
 
 .homeTitle{
     width: 100%;

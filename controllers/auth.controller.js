@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
-//passport lo usamo para el log in 
 const passport = require('passport'); 
 
 // -------------------------------------------------------------------------------
@@ -25,6 +24,7 @@ module.exports.doRegister = (req, res, next) => {
       } else {
         return User.create(user)
           .then(() => {
+            req.flash('flashMessage', `Registration done! Now log in!`)
             res.redirect('/login')
           })
       }
@@ -48,6 +48,7 @@ module.exports.login = (req,res,next) => {
 // LOGIN POST
 const doLogin = (req, res, next,estrategia = 'local-strategy') => {
   passport.authenticate(estrategia, (err, user, validations) => {
+    console.log(user)
     if (err) {
       next(err)
     } else if(!user) {
@@ -57,6 +58,7 @@ const doLogin = (req, res, next,estrategia = 'local-strategy') => {
         if (loginError) {
           next(loginError)
         } else {
+          req.flash('flashMessage', `Hi ${user.name}! You are logged in!`)
           res.redirect('/')
         }
       })
@@ -82,6 +84,7 @@ module.exports.doLoginGitHub = (req, res, next) => {
 // -------------------------------------------------------------------------------
 // LOGOUT 
 module.exports.logout = (req, res, next) => {
+  req.flash('flashMessage', `Logged out!   See you soon!`)
   req.logout();
   res.redirect('/');
 }

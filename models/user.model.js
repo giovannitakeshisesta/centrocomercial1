@@ -29,9 +29,6 @@ const userSchema = new mongoose.Schema({
   provider: {
     type: String
   },
-  googleID: {
-    type: String
-  },
   providerId: {
     type: String
   }

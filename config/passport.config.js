@@ -52,7 +52,7 @@ const loginSocial = (profile, next) => {
     const name  = profile.displayName;
     const email = profile.emails && profile.emails[0].value || undefined
     const provider = profile.provider
-    console.log(`${provider} account details:`, profile); // to see the structure of the data in received response:
+    //console.log(`${provider} account details:`, profile); // to see the structure of the data in received response:
 
     if (providerId && email) {
       User.findOne({ $or: [     // check if the user email or google Id exists in the db
