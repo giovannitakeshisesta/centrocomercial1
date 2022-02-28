@@ -1,13 +1,12 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-sm-4">
-    <h1 class="mb-4">Register</h1>
+<div id="register" class="d-flex justify-content-center align-items-center">
+  <div class="form-block">
+    <h3 class="mb-4">Register</h3>
 
     <form method="POST" action="/register">
 
-      {{! ------ NAME ------ }}
-      <div class="form-group mb-3">
-
-        <div class="input-contain mt-3 mb-4">
+      {{!-- Name --}}
+      <div class="form-group">
+        <div class="input-contain mt-3 mb-4 mt-0">
           <input 
             type="text" 
             id="fname" 
@@ -16,78 +15,79 @@
             value="{{user.name}}"
             aria-labelledby="placeholder-fname"
             class="form-control {{#if errors.name}} is-invalid {{/if}} input-material"
-            required
           >
           <label class="placeholder-text" for="name" id="placeholder-fname">
               <div class="text">Nombre</div>
           </label>
-          <span>*Required</span>
+          {{#if errors.name }}
+            <span class="invalid-input">*{{errors.name}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
         </div>
-
-        {{!-- <label for="name">Name</label>
-        <input
-          id="name"
-          value="{{user.name}}"
-          name="name"
-          type="text"
-          class="form-control {{#if errors.name}}is-invalid{{/if}}"
-          placeholder="Name"
-          required
-        > --}}
-        {{#if errors.name}}
-          <div class="invalid-feedback">{{errors.name}}</div>
-        {{/if}}
       </div>
 
-      {{! ------ MAIL ------ }}
-      <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          value="{{user.email}}"
-          name="email"
-          type="email"
-          class="form-control {{#if errors.email}}is-invalid{{/if}}"
-          placeholder="example@expample.com"
-          required
-        >
-        {{#if errors.email}}
-          <div class="invalid-feedback">{{errors.email}}</div>
-        {{/if}}
+      {{!-- Email --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4">
+          <input 
+            id="email" 
+            value="{{user.email}}"
+            name="email" 
+            type="email" 
+            autocomplete="off" 
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
+          >
+          <label class="placeholder-text" for="email" id="placeholder-fname">
+            <div class="text">Email</div>
+          </label>
+          {{#if errors.email }}
+            <span class="invalid-input">*{{errors.email}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
 
-      {{! ------ PASSWORD ------ }}
-      <div class="form-group mb-3">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          class="form-control {{#if errors.password}}is-invalid{{/if}}"
-          placeholder="Password"
-          required
-        >
-        {{#if errors.password}}
-          <div class="invalid-feedback">{{errors.password}}</div>
-        {{/if}}
+      {{!-- Password --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4">
+          <input 
+            id="password"
+            value=""
+            name="password"
+            type="password"
+            autocomplete="off" 
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.password}}is-invalid{{/if}} input-material"
+          >
+          <label class="placeholder-text" for="password" id="placeholder-fname">
+            <div class="text">Password</div>
+          </label>
+          {{#if errors.password }}
+            <span class="invalid-input">*{{errors.password}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
 
-      {{! ------ DUEÑO ------ }}
+      {{!-- Dueño --}}
       <div class="form-group mb-3">
-        <label for="dueño">Vas a abrir una tienda?</label>
         <input
           id="dueño"
           name="dueño"
           type="checkbox"
           class=""
         >
+        <label class="open-tienda" for="dueño">Vas a abrir una tienda?</label>
       </div>
 
-
-      <button type="submit" class="btn btn-primary">Submit</button>
+      {{!-- Submit --}}
+      <button type="submit" class="btn-brand-1">Submit</button>
 
     </form>
-
   </div>
 </div>
 

@@ -1,17 +1,15 @@
-<div class="container">
-      {{#if currentUser}}
-      {{!-- si eres dueño --}}
-        {{#ifDueñoisOn dueño=currentUser.dueño}}  
-          {{>tiendaForm edit=false }}
-        {{/ifDueñoisOn}}
+{{#if currentUser}}
+{{!-- si eres dueño --}}
+  {{#ifDueñoisOn dueño=currentUser.dueño}}  
+    {{>tiendaForm edit=false }}
+  {{/ifDueñoisOn}}
 
-      {{!-- si no eres dueño --}}
-        {{#ifDueñoisOff dueño=currentUser.dueño}}
-          <h1>tienes que logearte como dueño para crear una tienda</h1>
-        {{/ifDueñoisOff}}
+{{!-- si no eres dueño --}}
+  {{#ifDueñoisOff dueño=currentUser.dueño}}
+    <h1>tienes que logearte como dueño para crear una tienda</h1>
+  {{/ifDueñoisOff}}
 
-      {{!-- si no estas logueado --}}
-      {{else}}                                
-        <h1>tienes que logearte como dueño para crear una tienda</h1>
-      {{/if}}
-</div>
+{{!-- si no estas logueado --}}
+{{else}}                                
+  <h1>tienes que logearte como dueño para crear una tienda</h1>
+{{/if}}
