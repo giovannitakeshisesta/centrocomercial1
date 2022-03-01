@@ -23,7 +23,7 @@ module.exports.sendActivationEmail = (email,token) => {
 }
 
 //-----------------//    CHANGE EMAIL     //----------------//
-// /userAccount/editmail/${token}/${email}" 
+// /editUser/editmail/${token}/${email}" 
 module.exports.sendChangeEmail = (email, token) => {
   transporter.sendMail({
     from: `Giovanni !!!!! <${process.env.NM_USER}>`,

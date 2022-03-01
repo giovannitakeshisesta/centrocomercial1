@@ -1,14 +1,3 @@
-/* nav {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    color: #fff !important;
-} */
-
-/* .nav-link {
-    color: #fff !important;
-} */
 
 
 
@@ -60,5 +49,45 @@ h1 {
     height: 60px;
     width: 60px;
     margin: 40px;
+}
+
+
+/* EDIT PENCIL ON HOVER */
+.editMainDiv {
+	position: relative;
+	display: inline-block;
+}
+
+.editIcon {
+	color: rgb(48, 197, 3);
+}
+
+/*   edit icon on image*/
+
+.editMainDiv:hover .editImage {
+	display: block;
+}
+
+.editImage {
+	padding-top: 7px;	
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+
+
+/* edit icon on text */
+.editMainDiv:hover .editText {
+	display: block;
+}
+
+.editText {
+	position: absolute;
+    padding-left: 20px;
+	right: -40px;
+	top: 0;
+	display: none;
 }
 

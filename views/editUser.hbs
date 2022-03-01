@@ -1,0 +1,198 @@
+<div class="d-flex justify-content-around ">
+
+    <div style="height: 30vw;">
+        <h1>user account</h1>
+        
+        {{!-- NAME --}}
+        <div class="d-flex">
+            <p>Name : {{currentUser.name}} </p>
+            <form method="POST" action="/editUser/{{currentUser.id}}/editName" class="d-flex">
+                <button type="submit">modifica</button>
+                <div class="form-group mb-1">
+                    <input name="name" type="text" id="name" placeholder="Enter name"
+                    class="form-control {{#if errors.name}}is-invalid{{/if}}" 
+                    value=""
+                    >
+                    {{#if errors.name}}
+                    <div class="invalid-feedback">
+                        {{errors.name.message}}
+                    </div>
+                    {{/if}} 
+                </div>  
+            </form> 
+        </div>
+
+
+        {{!-- EMAIL --}}
+        <div class="d-flex">
+            <p>email: {{currentUser.email}}</p>
+            <form method="POST" action="/editUser/{{currentUser.id}}/editEmail" class="d-flex">
+                <button type="submit">change email</button>
+                <div class="form-group mb-1">
+                    <input name="email" type="email" id="email" placeholder="Enter email"
+                    class="form-control {{#if errors.email}}is-invalid{{/if}}" 
+                    value=""
+                    >
+                    {{#if errors.email}}
+                    <div class="invalid-feedback">
+                        {{errors.email.message}}
+                    </div>
+                    {{/if}} 
+                </div>  
+            </form> 
+        </div>
+
+        {{!-- PASSWORD --}}
+        <div>
+            {{!-- <p>Password : {{currentUser.password}}</p> --}}
+            <form method="POST" action="/editUser/{{currentUser.id}}/editPw" >
+                
+                <div class="form-group mb-1">
+                    <input name="oldPassword" type="password" id="oldPassword" placeholder="Old password"
+                    class="form-control {{#if errors.password}}is-invalid{{/if}}" 
+                    value=""
+                    required
+                    >
+                    <input name="password" type="password" id="newPassword" placeholder="New password"
+                    class="form-control {{#if errors.password}}is-invalid{{/if}}" 
+                    value=""
+                    required
+                    >
+                    {{#if errors.password}}
+                    <div class="invalid-feedback">
+                        {{errors.password}}
+                    </div>
+                    {{/if}} 
+                    
+                    <button type="submit">edit password</button>
+                </div>  
+            </form> 
+        </div>
+
+
+
+        <br><br><br>
+        <p>Dueño :{{currentUser.dueño}}</p>
+
+        {{#ifDueñoisOff dueño = currentUser.dueño}}
+        <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
+            <label for="abretienda"> Quieres abrir una tienda?</label>
+            <button type="submit">abre una tienda</button>
+        </form> 
+        {{/ifDueñoisOff}}
+
+    </div>
+
+    {{!-- IMAGE + DELETE COLUMN --}}
+    <div class="d-flex flex-column justify-content-around">
+        
+        {{!-- IMAGE  --}}
+        <div class="editMainDiv">
+            <img src="{{currentUser.image}}" alt="user image" style="height: 200px; width: 200px">
+            <div class="editImage">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#imgModal">
+                    <i class="fa fa-pencil fa-lg editIcon"></i>
+                </a>
+            </div>
+        </div>
+
+        {{!-- IMAGE  MODAL--}}
+        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="imgModalLabel">edit image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form action="/editUser/{{currentUser.id}}/editUserImage" method="POST" enctype="multipart/form-data">
+                    <input name="image" type="file" id="image"
+                    accept=".jpg, .png"
+                    class="form-control" 
+                    required
+                    >
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+        {{!-- DELETE --}}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete account
+        </button>
+
+        {{!-- DELETE MODAL--}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                Are you Sure? Deleting account {{currentUser.name}}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <form method="POST" action="/editUser/{{currentUser.id}}/delete">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form> 
+            </div>
+
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- NAME --}}   
+{{!-- <div class="editMainDiv">
+<p>Name : {{currentUser.name}} </p>
+<div class="editText">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#nameModal">
+        <i class="fa fa-pencil fa-lg editIcon"></i>
+    </a>
+</div>
+</div>
+
+<div class="modal fade" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+
+<div class="modal-header">
+    <h5 class="modal-title" id="nameModalLabel">Edit Name</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+    <form method="POST" action="/editUser/{{currentUser.id}}/editName" class="d-flex">
+        
+        <div class="form-group mb-1">
+            <input name="name" type="text" id="name" placeholder="Enter name"
+            class="form-control {{#if errors.name}}is-invalid{{/if}}" 
+            value=""
+            >
+            {{#if errors.name}}
+            <div class="invalid-feedback">
+                {{errors.name.message}}
+            </div>
+            {{/if}} 
+        </div>  
+
+        <button type="submit">modifica</button>
+    </form> 
+</div>
+</div>
+</div>
+</div>
+--}}

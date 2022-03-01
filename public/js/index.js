@@ -19,3 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.password-toggle')
     .forEach(button => button.addEventListener('click', onClickPasswordToggle));
 })
+
+
+// ----------------------------------------------

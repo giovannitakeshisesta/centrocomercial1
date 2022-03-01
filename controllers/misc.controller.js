@@ -190,9 +190,10 @@ module.exports.producto = (req, res, next) => {
 // PRODUCTO EDIT . GET FORM
 
 module.exports.productoEdit = (req, res, next) => {
+  let tiendaId = req.params.tiendaId
   Producto.findById(req.params.productoId)
     .then( producto => {
-      res.render('misc/productoEdit', { producto })
+      res.render('misc/productoEdit', { producto ,tiendaId})
     })
     .catch(next)
 }

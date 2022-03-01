@@ -5,14 +5,9 @@ const mailer = require('../config/mailer.config');
 
 //-------------------------------------------------------------------------------
 // SHOW USER ACCOUNT PAGE
-module.exports.renderUserAccount = (req, res, next) => {
-    if (req.user){
-        res.render('userAccount')
-    } else {
-        res.render('misc/stop')
-    }
-    
-  }
+module.exports.rendereditUser = (req, res, next) => {
+        res.render('editUser')  
+}
 
 
 //-------------------------------------------------------------------------------
@@ -21,11 +16,11 @@ module.exports.editUserName = (req, res, next) => {
 let newName = {name : req.body.name}
 User.findByIdAndUpdate(req.params.userId,newName,{ runValidators: true})
     .then((user) => {
-    res.redirect('/userAccount')
+    res.redirect('/editUser')
     })
     .catch((error) => {
     if (error instanceof mongoose.Error.ValidationError) {
-        res.status(400).render('userAccount', { errors: error.errors });
+        res.status(400).render('editUser', { errors: error.errors });
     } else {
         next(error);
     }
@@ -40,11 +35,11 @@ module.exports.editUserImage = (req, res, next) => {
     console.log(newImage)
     User.findByIdAndUpdate(req.params.userId,newImage,{ runValidators: true})
         .then((user) => {
-        res.redirect('/userAccount')
+        res.redirect('/editUser')
         })
         .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
-            res.status(400).render('userAccount', { errors: error.errors });
+            res.status(400).render('editUser', { errors: error.errors });
         } else {
             next(error);
         }
@@ -54,22 +49,47 @@ module.exports.editUserImage = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER EDIT PASSWORD  no hashea la pw....
-// module.exports.editPw = (req, res, next) => {
-// let newPassword = {password : req.body.password}
-// console.log(newPassword)
-// User.findByIdAndUpdate(req.params.userId,newPassword,{ runValidators: true})
-//     .then((user) => {
-//     res.redirect('/userAccount')
-//     })
-//     .catch((error) => {
-//     if (error instanceof mongoose.Error.ValidationError) {
-//         console.log(error)
-//         res.status(400).render('userAccount', { errors: error.errors });
-//     } else {
-//         next(error);
-//     }
-//     });
-// }
+
+module.exports.editPw = (req, res, next) => {
+    let userId = req.params.userId
+    let oldPassword = req.body.oldPassword
+    let password = req.body.password
+    console.log(oldPassword ,password, userId)
+
+    const renderWithErrors = (errors) => {
+        console.log(errors)
+        res.render('editUser', {errors})
+    }
+
+    User.findById(userId)
+    .then((user) => {
+        return user.checkPassword(oldPassword)
+        .then((match) => {
+            if (!match) {
+                renderWithErrors({ password: 'Old password is incorrect' })
+            } 
+            else {
+                if (password.length<8){
+                    renderWithErrors({ password: 'must cntsin 8 char' })
+                }else {
+                    User.findByIdAndUpdate(userId, {password:password}, { runValidators: true, new: true})
+                    .then((user)=> {
+                        res.redirect('/editUser')
+                    })
+                    .catch((error) => {
+                        if (error instanceof mongoose.Error.ValidationError) {
+                            res.status(400).render('editUser', { errors: error.errors });
+                        } else {
+                            next(error);
+                        }
+                    });
+                }
+                
+            }
+        })
+    })
+    .catch(err => next(err))
+}
 
 
 //-------------------------------------------------------------------------------
@@ -80,9 +100,9 @@ module.exports.sendEmail = (req, res, next) => {
     .then((user)=> {
         //console.log(user.activationToken)
         mailer.sendChangeEmail(req.body.email, user.activationToken)
-        req.flash('flashMessage', `Chek your inbox!`)
-        res.redirect('/login')
-
+        req.flash('flashMessage', `Chek your inbox! Logged out!   See you soon!`)
+        req.logout();
+        res.redirect('/');
     })
 }
 
