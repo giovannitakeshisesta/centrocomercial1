@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Tienda = require('../models/tienda.model');
 const Producto = require('../models/producto.model');
 const User = require('../models/user.model');
+const Like = require('../models/like.model');
 
 
 // -------------------------------------------------------------------------------
@@ -24,8 +25,16 @@ module.exports.tienda = (req, res, next) => {
       if (tienda) {
         Producto.find({tienda:req.params.tiendaId})
         .then((pro)=> {
-          //console.log(pro)
-          res.render('misc/tienda', {tienda,pro})
+          if (req.user){
+            Like.find({ user: req.user.id})
+              .then((userlikes)=> {
+                return Like.find()
+                .then((allLikes)=> res.render('misc/tienda', {tienda,pro,userlikes,allLikes}))              
+              }) 
+          }
+          else {
+            res.render('misc/tienda', {tienda,pro})
+          }       
         })
         .catch(next)
       } else {

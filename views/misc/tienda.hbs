@@ -40,12 +40,28 @@
         <div class="d-flex flex-row">
 
             {{#each pro as | producto |}}
-            <div class="d-flex flex-column" style="border :1px solid blue;">
+            <div class="position-relative d-flex flex-column m-3" style="border :1px solid blue;">
+                {{!-- product name --}}
                 <p>{{producto.name}}</p> 
                 
+                {{!-- product image --}}
                 <a href='/producto/{{producto.id}}'>
                     <img class="logoCircle" src="{{producto.image2}}" alt="">
                 </a>
+
+                {{!-- product like --}}
+                {{#if ../currentUser}}  
+                <button class="like-button border-0">
+                <i
+                    data-id="{{producto.id}}"
+                    class="
+                    like-action fa fa-heart
+                    {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}
+                    "></i>
+                </button>
+
+                {{countLikes allLikes=../allLikes producto = producto.id}}
+                {{/if}}
             </div>
             {{/each}}
 
@@ -55,3 +71,5 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/axios.js"></script>

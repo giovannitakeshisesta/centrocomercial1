@@ -146,3 +146,35 @@ module.exports.userDelete = (req, res, next) => {
       .catch(next)
   }
   
+
+//-------------------------------------------------------------------------------
+// USER LIKE
+const Like = require('../models/like.model')
+
+// module.exports.profile = (req, res, next) => {
+//   Like.find({ user: req.user.id })
+//     .then((likes) => {
+//       console.log(likes)
+//       res.render("users/profile", { likes })
+//     })
+//     .catch(next)
+// }
+
+module.exports.doLike = (req, res, next) => {
+  const tiendaId = req.params.tiendaId
+  const prodId = req.params.productId
+  const userId = req.user.id
+    console.log(tiendaId)
+  Like.findOneAndDelete({ producto: prodId, user: userId})
+    .then(like => {
+      if (like) {
+        res.status(200).send({ success : 'Like remove from DDBB'})
+      } else {
+        return Like.create({ producto: prodId, user: userId })
+          .then(() => {
+            res.status(201).send({ success : 'Like added to DDBB' })
+          })
+      }
+    })
+    .catch(next)
+}

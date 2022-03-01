@@ -42,6 +42,9 @@ router.post('/editUser/:userId/editPw',         myMw.isTheUser, user.editPw)
 router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 
+//----------------------------------------------------------------------
+// ------- LIKES ROUTES -------
+router.post('/like/:productId',  user.doLike)
 
 
 //----------------------------------------------------------------------
@@ -69,6 +72,9 @@ router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
 router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
 
-//----------------------------------------------------------------------
+
+
+
+
 module.exports = router 
 
