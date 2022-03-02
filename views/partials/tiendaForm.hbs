@@ -1,125 +1,293 @@
-{{#if edit }}
-  <form action="/tienda/{{tienda.id}}/edit" method="POST" enctype="multipart/form-data">
-{{else}}
-  <form action="/tienda/create"             method="POST" enctype="multipart/form-data">
-{{/if}}
+<div id="tiendaForm" class="d-flex justify-content-center">
+  <div class="form-block">
+    <h3 class="mb-4 small">Create Shop</h3>
 
-
-  {{!-- NAME --}}
-  <div class="form-group mb-1">
-    <label for="name">Name</label>
-    <input name="name" type="text" id="name" placeholder="Enter name"
-      class="form-control {{#if errors.name}}is-invalid{{/if}}" 
-      value="{{ tienda.name }}"
-    >
-    {{#if errors.name}}
-      <div class="invalid-feedback">
-        {{errors.name.message}}
-      </div>
+    {{#if edit }}
+      <form action="/tienda/{{tienda.id}}/edit" method="POST" enctype="multipart/form-data" class="form">
+    {{else}}
+      <form action="/tienda/create"             method="POST" enctype="multipart/form-data" class="form">
     {{/if}}
-  </div>
 
-  {{!-- DESCRIPTION --}}
-  <div class="form-group mb-1">
-    <label for="description">description</label>
-    <input name="description" type="text" id="description" placeholder="Enter description"
-      class="form-control {{#if errors.description}}is-invalid{{/if}}" 
-      value="{{ tienda.description }}"
-    >
-    {{#if errors.description}}
-      <div class="invalid-feedback">
-        {{errors.description.message}}
+  {{!--       
+      <div class="form-group mb-1">
+        <label for="name">Name</label>
+        <input name="name" type="text" id="name" placeholder="Enter name"
+          class="form-control {{#if errors.name}}is-invalid{{/if}}" 
+          value="{{ tienda.name }}"
+        >
+        {{#if errors.name}}
+          <div class="invalid-feedback">
+            {{errors.name.message}}
+          </div>
+        {{/if}}
+      </div> --}}
+
+
+    {{!-- Name --}}
+      <div class="form-group">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="fname" 
+            name="name" 
+            autocomplete="off" 
+            value="{{tienda.name}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.name}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="name" id="placeholder-fname">
+              <div class="text">Nombre</div>
+          </label>
+          {{#if errors.name }}
+            <span class="invalid-input">*{{errors.name.message}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
-  </div>
 
-  {{!-- CATEGORIES --}}
-  <div class="form-group mb-1">
-    <label for="categories">categories</label>
-    <input name="categories" type="text" id="categories" placeholder="Enter categories"
-      class="form-control {{#if errors.categories}}is-invalid{{/if}}" 
-      value="{{ tienda.categories }}"
-    >
-    {{#if errors.categories}}
-      <div class="invalid-feedback">
-        {{errors.categories.message}}
+
+      {{!-- <div class="form-group mb-1">
+        <label for="description">description</label>
+        <input name="description" type="text" id="description" placeholder="Enter description"
+          class="form-control {{#if errors.description}}is-invalid{{/if}}" 
+          value="{{ tienda.description }}"
+        >
+        {{#if errors.description}}
+          <div class="invalid-feedback">
+            {{errors.description.message}}
+          </div>
+        {{/if}}
+      </div>  --}}
+
+
+      {{!-- Description --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="description" 
+            name="description" 
+            autocomplete="off" 
+            value="{{tienda.description}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.description}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="description" id="placeholder-fname">
+              <div class="text">Description</div>
+          </label>
+          {{#if errors.description }}
+            <span class="invalid-input">*{{errors.description.message}}</span>
+          {{else}}
+            {{!-- <span>*Required</span> --}}
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
-  </div>
 
+      
+      {{!-- <div class="form-group mb-1">
+        <label for="categories">categories</label>
+        <input name="categories" type="text" id="categories" placeholder="Enter categories"
+          class="form-control {{#if errors.categories}}is-invalid{{/if}}" 
+          value="{{ tienda.categories }}"
+        >
+        {{#if errors.categories}}
+          <div class="invalid-feedback">
+            {{errors.categories.message}}
+          </div>
+        {{/if}}
+      </div> 
+      --}}
 
-  {{!-- OFFICIAL WEB --}}
-  <div class="form-group mb-1">
-    <label for="officialWeb">officialWeb</label>
-    <input name="officialWeb" type="text" id="officialWeb" placeholder="Enter officialWeb"
-      class="form-control {{#if errors.officialWeb}}is-invalid{{/if}}" 
-      value="{{ tienda.officialWeb }}"
-    >
-    {{#if errors.officialWeb}}
-      <div class="invalid-feedback">
-        {{errors.officialWeb.message}}
+      {{!-- Categories --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="categories" 
+            name="categories" 
+            autocomplete="off" 
+            value="{{tienda.categories}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.categories}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="categories" id="placeholder-fname">
+              <div class="text">Categories</div>
+          </label>
+          {{#if errors.categories }}
+            <span class="invalid-input">*{{errors.categories.message}}</span>
+          {{else}}
+            {{!-- <span>*Required</span> --}}
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
-  </div>
 
 
-  {{!--  LOGO  --}}
-  <div class="form-group mb-1">
-    <label for="logo">logo</label>
-    <input name="logo" type="text" id="logo" placeholder="Enter logo"
-      class="form-control {{#if errors.logo}}is-invalid{{/if}}" 
-      value="{{ tienda.logo }}"
-    >
-    {{#if errors.logo}}
-      <div class="invalid-feedback">
-        {{errors.logo.message}}
+      {{!-- Oficial Web --}}
+      {{!-- <div class="form-group mb-1">
+        <label for="officialWeb">officialWeb</label>
+        <input name="officialWeb" type="text" id="officialWeb" placeholder="Enter officialWeb"
+          class="form-control {{#if errors.officialWeb}}is-invalid{{/if}}" 
+          value="{{ tienda.officialWeb }}"
+        >
+        {{#if errors.officialWeb}}
+          <div class="invalid-feedback">
+            {{errors.officialWeb.message}}
+          </div>
+        {{/if}}
+      </div> --}}
+
+
+      {{!-- Oficial Web --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="officialWeb" 
+            name="officialWeb" 
+            autocomplete="off" 
+            value="{{tienda.officialWeb}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.officialWeb}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="officialWeb" id="placeholder-fname">
+              <div class="text">Official Web</div>
+          </label>
+          {{#if errors.officialWeb }}
+            <span class="invalid-input">*{{errors.officialWeb.message}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
-  </div>
 
+      {{!-- <div class="form-group mb-1">
+        <label for="logo">logo</label>
+        <input name="logo" type="text" id="logo" placeholder="Enter logo"
+          class="form-control {{#if errors.logo}}is-invalid{{/if}}" 
+          value="{{ tienda.logo }}"
+        >
+        {{#if errors.logo}}
+          <div class="invalid-feedback">
+            {{errors.logo.message}}
+          </div>
+        {{/if}}
+      </div> --}}
 
-  {{!--  IMAGE 1   --}}
-  <div class="form-group mb-1">
-    <label for="image1">image1</label>
-    <input name="image1" type="text" id="image1" placeholder="Enter image1"
-      class="form-control {{#if errors.image1}}is-invalid{{/if}}" 
-      value="{{ tienda.image1 }}"
-    >
-    {{#if errors.image1}}
-      <div class="invalid-feedback">
-        {{errors.image1.message}}
+      {{!-- Logo --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="logo" 
+            name="logo" 
+            autocomplete="off" 
+            value="{{tienda.logo}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.logo}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="logo" id="placeholder-fname">
+              <div class="text">Logo</div>
+          </label>
+          {{#if errors.logo }}
+            <span class="invalid-input">*{{errors.logo.message}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
-  </div>
+
+{{!--         
+      <div class="form-group mb-1">
+        <label for="image1">image1</label>
+        <input name="image1" type="text" id="image1" placeholder="Enter image1"
+          class="form-control {{#if errors.image1}}is-invalid{{/if}}" 
+          value="{{ tienda.image1 }}"
+        >
+        {{#if errors.image1}}
+          <div class="invalid-feedback">
+            {{errors.image1.message}}
+          </div>
+        {{/if}}
+      </div> --}}
 
 
-  {{!--  IMAGE 2   --}}
-  <div class="form-group mb-2">
-    <label for="image2">image2</label>
-    <input name="image2" type="text" id="image2" placeholder="Enter image2"
-      class="form-control {{#if errors.image2}}is-invalid{{/if}}" 
-      value="{{ tienda.image2 }}"
-    >
-    {{#if errors.image2}}
-      <div class="invalid-feedback">
-        {{errors.image2.message}}
+      {{!-- Image 1 --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="image1" 
+            name="image1" 
+            autocomplete="off" 
+            value="{{tienda.image1}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.image1}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="image1" id="placeholder-fname">
+              <div class="text">Main Image</div>
+          </label>
+          {{#if errors.image1 }}
+            <span class="invalid-input">*{{errors.image1.message}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
-    {{/if}}
+
+      {{!-- <div class="form-group mb-2">
+        <label for="image2">image2</label>
+        <input name="image2" type="text" id="image2" placeholder="Enter image2"
+          class="form-control {{#if errors.image2}}is-invalid{{/if}}" 
+          value="{{ tienda.image2 }}"
+        >
+        {{#if errors.image2}}
+          <div class="invalid-feedback">
+            {{errors.image2.message}}
+          </div>
+        {{/if}}
+      </div> --}}
+
+      {{!-- Image 2 --}}
+      <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4 mt-0">
+          <input 
+            type="text" 
+            id="image2" 
+            name="image2" 
+            autocomplete="off" 
+            value="{{tienda.image2}}"
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.image2}} is-invalid {{/if}} input-material"
+          >
+          <label class="placeholder-text" for="image2" id="placeholder-fname">
+              <div class="text">Secondary Image</div>
+          </label>
+          {{#if errors.image2 }}
+            <span class="invalid-input">*{{errors.image2.message}}</span>
+          {{else}}
+            {{!-- <span>*Required</span> --}}
+          {{/if}}
+        </div>
+      </div>
+
+
+      {{!-- Drag Img --}}
+      <div class="form-group input-contain input-contain mt-5 mb-4 mt-0">
+        {{!-- <label for="image" class="form-label drag-label">Image {{ tienda.image }}</label> --}}
+        <input name="image" type="file" id="image"
+        accept=".jpg, .png"
+        class="form-control input-material drag-input" 
+        >
+      </div>
+
+      {{!-- Submit --}}
+      <button type="submit" class="btn-brand-1 mt-3">Send</button>
+      
+    </form>
   </div>
-
-  {{!--  DRAG IMG   --}}
-  <div class="form-group mb-2">
-    <label for="image" class="form-label">Image {{ tienda.image }}</label>
-    <input name="image" type="file" id="image"
-    accept=".jpg, .png"
-    class="form-control" 
-    {{!-- required --}}
-    >
-  </div>
+</div>
 
 
-  <button type="submit" class="btn btn-primary">Send</button>
-  
-</form>
 
 

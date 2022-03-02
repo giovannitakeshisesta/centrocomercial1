@@ -1,6 +1,6 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-sm-4">
-    <h1>Register</h1>
+<div id="register" class="d-flex justify-content-center align-items-center">
+  <div class="form-block">
+    <h3 class="mb-4">Register</h3>
 
     <form method="POST" action="/register">
 
@@ -55,21 +55,22 @@
         {{/if}}
       </div>
 
-      {{! ------ DUEÑO ------ }}
+      {{!-- Dueño --}}
       <div class="form-group mb-3">
-        <label for="dueño">Vas a abrir una tienda?</label>
         <input
           id="dueño"
           name="dueño"
           type="checkbox"
           class=""
         >
+        <label class="open-tienda" for="dueño">Vas a abrir una tienda?</label>
       </div>
 
-
-      <button type="submit" class="btn btn-primary">Submit</button>
+      {{!-- Submit --}}
+      <button type="submit" class="btn-brand-1">Submit</button>
 
     </form>
-
   </div>
 </div>
+
+
