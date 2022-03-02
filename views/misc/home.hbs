@@ -56,12 +56,14 @@
       <div class="swiper-wrapper">
 
       {{#each tiendas as |tienda|}}
-        <div class="swiper-slide tienda-slide">
-          <a href="/tienda/{{tienda.id}}">
-          <img class="logoCircle" src="{{tienda.logo}}" alt="logoCircle">
+        <div class="swiper-slide tienda-slide" style="background: url({{tienda.logo}});">
+          <a class="tiendalink-home" href="/tienda/{{tienda.id}}">
+          {{!-- <img class="logoCircle" src="{{tienda.logo}}" alt="logoCircle"> --}}
+          </a>
         </div>
       {{/each}}
         
+        {{!-- style="background: url({{tienda.logo}});" --}}
         {{!-- <div class="swiper-slide tienda-slide">Slide 2</div>
         <div class="swiper-slide tienda-slide">Slide 3</div>
         <div class="swiper-slide tienda-slide">Slide 4</div>
