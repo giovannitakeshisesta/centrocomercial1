@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   // node mailer, when mail confirmed the active key switch to active
   active: {
     type: Boolean,
-    default: false
+    default: true
   },// the token will be used only once in the authentication url
   activationToken: {
     type: String,
@@ -51,6 +51,22 @@ const userSchema = new mongoose.Schema({
     }
   } 
 });
+
+userSchema.virtual('likes', {
+  ref: 'Like',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+})
+
+userSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+})
+
+
 
 userSchema.pre('save', function(next) {
   const user = this;
@@ -64,6 +80,21 @@ userSchema.pre('save', function(next) {
       .catch(err => next(err))
   } else {
     next()
+  }
+})
+
+// edit password
+userSchema.pre('findOneAndUpdate', function (next) {
+  console.log('entro en update', this._update.password)
+  if (this._update.password) {
+      bcrypt
+      .hash(this._update.password, SALT_ROUNDS)
+      .then((hash) => {
+          this._update.password = hash
+          next()
+      })
+  } else {
+      next()
   }
 })
 

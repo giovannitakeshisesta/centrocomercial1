@@ -24,3 +24,32 @@ module.exports.isDueño = (req, res, next) => {
     res.render('misc/stop')
   }
 }
+
+module.exports.isNotAuth = (req, res, next) => {
+  if (!req.user) {
+    next();
+  } 
+}
+
+module.exports.isAuth = (req, res, next) => {
+  if (req.user ) {
+    console.log("IS AUTH the user is :",req.user.name)
+    next();
+  } else {
+    console.log("mw no user logged")
+    res.redirect('/login')
+  }
+}
+
+
+module.exports.isTheUser = (req, res, next) => {
+  console.log("IS THE USER")
+  if (req.user && req.user.id === req.params.userId ) {
+    console.log("IS THE USER :",req.user.name)
+    console.log("IS THE USER :",req.params.userId )
+    next();
+  } else {
+    console.log("mw no user logged")
+    res.redirect('/login')
+  }
+}
