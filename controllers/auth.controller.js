@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
-//passport lo usamo para el log in 
 const passport = require('passport'); 
+const mailer = require('../config/mailer.config');
 
 
-// REGISTER
+//----------------------- // REGISTER  //  ----------------------- //
+// REGISTER - GET
 module.exports.register = (req,res,next) => {
   res.render('auth/register')
 }
@@ -24,7 +25,9 @@ module.exports.doRegister = (req, res, next) => {
         renderWithErrors({ email: 'Email already in use' })
       } else {
         return User.create(user)
-          .then(() => {
+          .then((createdUser) => {
+            mailer.sendActivationEmail(createdUser.email, createdUser.activationToken)
+            req.flash('flashMessage', `Chek your inbox!`)
             res.redirect('/login')
           })
       }
@@ -40,16 +43,33 @@ module.exports.doRegister = (req, res, next) => {
 }
 
 
-// LOGIN
+//----------------------- // ACTIVATE ACCOUNT //  ----------------------- //
+module.exports.activate = (req, res, next) => {
+  console.log(req.params.email)
+  const activationToken = req.params.token;
+
+  User.findOneAndUpdate(
+    { activationToken, active: false },
+    { active: true }
+  )
+    .then(() => {
+      req.flash('flashMessage', 'You have activated your account. Now Log In!')
+      res.redirect('/login')
+    })
+    .catch(err => next(err))
+}
+
+
+//----------------------- // LOGIN  //  ----------------------- //
+// LOGIN GET
 module.exports.login = (req,res,next) => {
   res.render('auth/login')
 }
 
-
-// LOGIN - POST
-module.exports.doLogin = (req, res, next) => {
-  
-  passport.authenticate('local-auth', (err, user, validations) => {
+// LOGIN POST
+const doLogin = (req, res, next,estrategia = 'local-strategy') => {
+  passport.authenticate(estrategia, (err, user, validations) => {
+    //console.log(user)
     if (err) {
       next(err)
     } else if(!user) {
@@ -59,6 +79,7 @@ module.exports.doLogin = (req, res, next) => {
         if (loginError) {
           next(loginError)
         } else {
+          req.flash('flashMessage', `Hi ${user.name}! You are logged in!`)
           res.redirect('/')
         }
       })
@@ -66,9 +87,28 @@ module.exports.doLogin = (req, res, next) => {
   })(req, res, next)
 }
 
+// LOG IN LOCAL STRATEGY
+module.exports.doLogin = (req, res, next) => {
+  doLogin(req, res, next)
+}
 
-// LOGOUT 
+// LOG IN GOOGLE STRATEGY
+module.exports.doLoginGoogle = (req, res, next) => {
+  doLogin(req, res, next, 'google-auth')
+}
+
+// LOG IN GIT HUB STRATEGY
+module.exports.doLoginGitHub = (req, res, next) => {
+  doLogin(req, res, next, 'GitHubStrategy')
+}
+
+
+
+//----------------------- // LOGOUT  //  ----------------------- //
 module.exports.logout = (req, res, next) => {
+  req.flash('flashMessage', `Logged out!   See you soon!`)
   req.logout();
   res.redirect('/');
 }
+
+// -------------------------------------------------------------------------------

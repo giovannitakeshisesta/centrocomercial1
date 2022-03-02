@@ -25,8 +25,48 @@ const userSchema = new mongoose.Schema({
   dueño: {
     type: String,
     default: "off"
-  }
+  },
+  provider: {
+    type: String
+  },
+  providerId: {
+    type: String
+  },
+  image:{
+    type : String,
+    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644841363/ironhack/multer-example/avatar.png'
+  },
+  // node mailer, when mail confirmed the active key switch to active
+  active: {
+    type: Boolean,
+    default: true
+  },// the token will be used only once in the authentication url
+  activationToken: {
+    type: String,
+    default: () => {
+      return Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7) +
+      Math.random().toString(36).substring(7)
+    }
+  } 
 });
+
+userSchema.virtual('likes', {
+  ref: 'Like',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+})
+
+userSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+})
+
+
 
 userSchema.pre('save', function(next) {
   const user = this;
@@ -40,6 +80,21 @@ userSchema.pre('save', function(next) {
       .catch(err => next(err))
   } else {
     next()
+  }
+})
+
+// edit password
+userSchema.pre('findOneAndUpdate', function (next) {
+  console.log('entro en update', this._update.password)
+  if (this._update.password) {
+      bcrypt
+      .hash(this._update.password, SALT_ROUNDS)
+      .then((hash) => {
+          this._update.password = hash
+          next()
+      })
+  } else {
+      next()
   }
 })
 

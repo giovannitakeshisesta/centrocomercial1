@@ -15,3 +15,46 @@
     <button type="submit">Delete</button>
 </form>   
 {{/ifIsDueño}}
+
+
+{{#if currentUser}}  
+
+    {{!-- product comment --}}
+    <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">
+        comment
+    </a>
+
+    {{!-- comment  modal--}}
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="commentModalLabel">Add comment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST">
+                <input name="comment" type="text" id="comment"
+                class="form-control" 
+                required
+                >
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    {{!-- SHOW COMMENTS --}}
+    <div>
+        {{#each prod.comments as | prodItem |}}
+            <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
+            <p style="display: inline;">User : {{prodItem.user.name}}</p>
+            <p style="display: inline;">Comment :{{prodItem.comment}}</p>
+        {{/each}}
+    </div>
+    
+
+{{/if}}
