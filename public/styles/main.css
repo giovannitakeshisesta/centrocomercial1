@@ -197,20 +197,12 @@ footer .container {
 /* HOME */
 /* ----------------- */
 
-/* HERO */
-
-#hero {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-}
-
-.home{
+/* .home{
     height: 100vh;
     background-image: url('../images/home-northface.jpeg');
     background-size: cover;
     padding-top: 200px;
-}
+} */
 
 .homeTitle{
     width: 100%;
@@ -242,80 +234,21 @@ footer .container {
     margin: 40px;
 }
 
-.social-media {
-    width: 400px;
-    position: absolute;
-    text-decoration: none;
-    transform: rotate(90deg);
-    right: -140px;
+
+/* EDIT PENCIL ON HOVER */
+.editMainDiv {
+	position: relative;
+	display: inline-block;
 }
 
-.social-media a {
-    text-decoration: none;
-    color: #939393;
-    font-family: 'Montserrat';
+.editIcon {
+	color: rgb(48, 197, 3);
 }
 
-#hero .imagotipo {
-    position: absolute;
-    bottom: 0;
-}
+/*   edit icon on image*/
 
-.keep-scrolling {
-    position: absolute;
-    right: 350px;
-    bottom: 95px;
-    font-family: 'Montserrat';
-    color: #acff00;
-    letter-spacing: 5px;
-    text-align: center;
-    padding: 20px;
-    /* border: 1px solid #acff00; */
-    border-radius: 100px;
-}
-
-
-/* ------------------------------- */
-/* section TIENDAS */
-/* ------------------------------- */
-
-#section-tiendas {
-    margin-right: 0;
-    padding-right: 0;
-    background-color: #000;
-    overflow: hidden;
-}
-
-/* SWIPER */
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.editMainDiv:hover .editImage {
+	display: block;
 }
 
 .tienda-slide {
@@ -333,15 +266,27 @@ footer .container {
     top: 0;
     left: 0;
 }
-
-.tienda-slide:hover {
-    width: 500px !important;
-    cursor: pointer;
-
+.editImage {
+	padding-top: 7px;	
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
 }
 
-.swiper {
-    overflow: initial;
+
+/* edit icon on text */
+.editMainDiv:hover .editText {
+	display: block;
+}
+
+.editText {
+	position: absolute;
+    padding-left: 20px;
+	right: -40px;
+	top: 0;
+	display: none;
 }
 
 .officialWeb {
@@ -354,126 +299,31 @@ footer .container {
 }
 
 
-/* ------------------------------- */
-/* INPUTS - Material Desing */
-/* ------------------------------- */
-
-.input-contain{
-    position: relative;
-    margin-top: 50px;
-}
-.input-contain input{
-    height: 3rem;
-    width: 100%;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    background: #000;
-    color: #fff !important;
-}
-input:focus{
-    outline: none;
-    border-color: #acff00;
-}
-input:focus + .placeholder-text .text, :not(input[value=""]) + .placeholder-text .text{
-    background-color: transparent;
-    font-size: 0.9rem;
-    color: #6c757d;
-    transform: translate(-15%, -160%);
-    padding: 0 6px;
-}
-input:focus + .placeholder-text .text{
-    border-color: #acff00;
-    color: #acff00;
-}
-.placeholder-text{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: 3px solid transparent;
-    background-color: transparent;
-    pointer-events: none;
+/* LIKE BTN */
+.divLike{
+    background-color: aqua;
     display: flex;
     align-items: center;
+    justify-content: end;
 }
-.input-contain .text{
-    font-size: 1.1rem;
-    background-color: transparent;
-    transform: translate(0);
-    color: #6c757d;
-    transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
-}
-input, .placeholder-text{
-    font-size: 1.1rem;
-    padding: 0 20px;
+.like-button {
+    position: relative; 
+    width: 250px;
+    height: 250px; 
+    background-color: rgba(26, 216, 9, 0.425);
+    border-radius: 100%;
 }
 
-.input-contain span {
-    font-size: 12px;
-    position: absolute;
-    bottom: -20px;
-    left: 20px;
-    color: #6c757d;
+.like-button p{
+    position: absolute;                                 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
 }
 
-.form-control:focus {
-    box-shadow: none !important;
-    background-color: #000;
-}
-
-@media (max-width: 40rem) {
-    input{
-        width: 70vw;
-    }
-}
-
-.open-tienda {
-    color: #6c757d;
-    padding-left: 7px;
-    margin-top: 10px
-}
-
-.invalid-input {
-    color: #dc3545 !important;
-}
-
-/* ------------------------------- */
-/* section Forms */
-/* ------------------------------- */
-
-form {
-    min-width: 400px;
-}
-
-#tiendaForm {
-    padding-top: 150px;
-}
-
-#register, .form-page-block {
-    width: 100vw;
-    padding-top: 200px;
-    /* height: 100vh; */
-}
-
-.form {
-    width: 500px;
-}
-
-.form-block {
-    width: auto;
-    padding: 50px;
-    border: 5px solid;
-    
-}
-
-.form-control:focus {
-    border-color: #acff00;
-}
-
-input.drag-input {
-    height: 100%;
-    color: #6c757d !important;
+.icon-liked {
+    color: red;
 }
 
 input {

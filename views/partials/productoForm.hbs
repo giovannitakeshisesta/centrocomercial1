@@ -1,10 +1,9 @@
 
 {{#if edit }}
-  <form action="/producto/{{producto.id}}/edit" method="POST">
+  <form action="/producto/{{producto.id}}/edit/{{tiendaId}}" method="POST">
 {{else}}
   <form action="/producto/{{tiendaId}}/create"  method="POST">
 {{/if}}
-
   {{!-- NAME --}}
   <div class="form-group mb-1">
     <label for="name">Name</label>

@@ -17,10 +17,12 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'ironhack/multer-example',
+    folder: 'ironhack/centro-comercial',
     allowed_formats: ['jpg', 'png'],
   }
 })
 
+//const maxSize = 10 *  0.1048576
+//module.exports = multer({ storage, limits:{fileSize:maxSize} })
 // esportamos la configuracion del middleware storage
-module.exports = multer({ storage })
+module.exports = multer({ storage})

@@ -35,10 +35,17 @@ const productoSchema = new Schema({
 }, { timestamps: true })
 
 
+productoSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'producto',
+  justOne: false,
+})
+
+
+
 const Producto = mongoose.model('Producto', productoSchema)
 module.exports = Producto
-
-
 
 
 

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const Tienda = require('../models/tienda.model');
 const Producto = require('../models/producto.model');
+const User = require('../models/user.model');
+const Like = require('../models/like.model');
+
+
 
 // -------------------------------------------------------------------------------
 //  SHOW TIENDAS AT THE HOME PAGE 
@@ -22,8 +26,16 @@ module.exports.tienda = (req, res, next) => {
       if (tienda) {
         Producto.find({tienda:req.params.tiendaId})
         .then((pro)=> {
-          //console.log(pro)
-          res.render('misc/tienda', {tienda,pro})
+          if (req.user){
+            Like.find({ user: req.user.id})
+              .then((userlikes)=> {
+                return Like.find()
+                .then((allLikes)=> res.render('misc/tienda', {tienda,pro,userlikes,allLikes}))              
+              }) 
+          }
+          else {
+            res.render('misc/tienda', {tienda,pro})
+          }       
         })
         .catch(next)
       } else {
@@ -45,7 +57,7 @@ module.exports.tiendaCreate = (req, res, next) => {
 module.exports.tiendaDoCreate = (req, res, next) => {
   //console.log("body", req.body)
   //console.log("muulter", req.file)
-  req.file? req.body.image = req.file.path : req.body.image = undefined
+  req.file? req.body.image = req.file.path : req.body.image = undefined;
   
   const tienda = new Tienda({
     ownerId: req.user.id,
@@ -94,8 +106,8 @@ module.exports.tiendaDesing = (req, res, next) => {
 
 module.exports.tiendaDoEdit = (req, res, next) => {
   let tiendaId = req.params.tiendaId;
-  //req.body.image  = req.file.path //
-  Tienda.findById(req.params.tiendaId)
+
+  Tienda.findById(tiendaId)
     .then((tienda) => {
       let oldImage = tienda.image
       //console.log(oldImage,req.file)
@@ -104,7 +116,7 @@ module.exports.tiendaDoEdit = (req, res, next) => {
       } else {
         req.body.image  = oldImage
       }
-      return Tienda.findByIdAndUpdate(req.params.tiendaId, req.body, { runValidators: true, new: true })
+      return Tienda.findByIdAndUpdate(tiendaId, req.body, { runValidators: true, new: true })
       .then((tienda) => res.redirect(`/tienda/${tienda.id}`))
 
     })
@@ -121,9 +133,13 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 // DELETE TIENDA
 
 module.exports.tiendaDelete = (req, res, next) => {
-  console.log("DELETE")
+  console.log("DELETE", req.user.dueño)
   Tienda.findByIdAndDelete(req.params.tiendaId)
-  .then(()=> res.redirect('/'))
+  .then(()=> {
+    return User.findByIdAndUpdate(req.user, {dueño : "off"})
+    .then(()=> res.redirect('/'))
+    
+  })
   .catch(next)
 }
 
@@ -179,6 +195,14 @@ module.exports.productoDoCreate = (req, res, next) => {
 module.exports.producto = (req, res, next) => {
   let productoId = req.params.productoId
   Producto.findById(productoId)
+  //.populate('comments')
+
+  .populate({
+    path: 'comments',
+    populate:{
+        path:'user',
+    }
+  })
   .then((prod)=> res.render('misc/producto', {prod}))
   .catch(next)
   
@@ -188,9 +212,10 @@ module.exports.producto = (req, res, next) => {
 // PRODUCTO EDIT . GET FORM
 
 module.exports.productoEdit = (req, res, next) => {
+  let tiendaId = req.params.tiendaId
   Producto.findById(req.params.productoId)
     .then( producto => {
-      res.render('misc/productoEdit', { producto })
+      res.render('misc/productoEdit', { producto ,tiendaId})
     })
     .catch(next)
 }
