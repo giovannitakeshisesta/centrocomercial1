@@ -13,6 +13,14 @@
   bottom: 100px;
 }
 
+.mouse_scroll_tienda {
+  position: absolute;
+  right: 59%;
+  bottom: 10%;
+  left: auto;
+}
+
+
 
 .m_scroll_arrows
 {
