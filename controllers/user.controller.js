@@ -1,12 +1,40 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const mailer = require('../config/mailer.config');
+const Like = require('../models/like.model')
+const Comment = require('../models/comment.model')
 
 
 //-------------------------------------------------------------------------------
 // SHOW USER ACCOUNT PAGE
-module.exports.rendereditUser = (req, res, next) => {
-        res.render('editUser')  
+module.exports.renderEditUser = (req, res, next) => {
+    // la forma de siempre
+    // Like.find({ user: req.user.id })
+    // .then((likes) => {
+    //   console.log(likes)
+    //   res.render("editUser", { likes })
+    // })
+    // .catch(next)
+
+    // con populate
+    // User.findById(req.user.id)
+    // .populate('likes')
+    // .then((user)=> res.render("editUser",{user}))
+    // .catch(next)
+
+    // con multiple populate
+    User.findById(req.user.id)
+    .populate({
+        path: 'likes',
+        populate:{
+            path:'producto',
+            populate:{
+                path:'tienda'
+            }
+        }
+    })
+    .then((user)=> res.render("editUser",{user}))
+    .catch(next)
 }
 
 
@@ -149,7 +177,6 @@ module.exports.userDelete = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER LIKE
-const Like = require('../models/like.model')
 
 // module.exports.profile = (req, res, next) => {
 //   Like.find({ user: req.user.id })
@@ -164,7 +191,7 @@ module.exports.doLike = (req, res, next) => {
   const tiendaId = req.params.tiendaId
   const prodId = req.params.productId
   const userId = req.user.id
-    console.log(tiendaId)
+
   Like.findOneAndDelete({ producto: prodId, user: userId})
     .then(like => {
       if (like) {
@@ -178,3 +205,26 @@ module.exports.doLike = (req, res, next) => {
     })
     .catch(next)
 }
+
+
+//-------------------------------------------------------------------------------
+// USER COMMENT
+module.exports.comment = (req, res, next) => {
+    const user = req.params.userId
+    const producto = req.params.productId
+    const text = req.body.comment
+
+    const comment = new Comment({
+        user: user,
+        producto: producto,
+        comment: text,
+    });
+    
+    comment.save()
+      .then((comment) => {
+        console.log("Comment added to db : ", comment)
+        res.redirect(`/producto/${producto}`)
+      })
+      .catch(next)
+  }
+  

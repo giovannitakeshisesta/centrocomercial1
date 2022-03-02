@@ -35,7 +35,7 @@ hbs.registerHelper('ifDueñoisOff', function (options) {
 })
 
 
-
+// show in red the likes of the current user
 hbs.registerHelper('userLikedProduct', function (options) {
   const { producto, likes } = options.hash;
   
@@ -46,12 +46,11 @@ hbs.registerHelper('userLikedProduct', function (options) {
   }
 })
 
-
+// count all likes of each product
 hbs.registerHelper('countLikes', function (options) {
   const { producto , allLikes} = options.hash;
   if (producto && allLikes) {
     const sum = allLikes.filter(el=> el.producto==producto).length
     return sum
   }
- 
 })

@@ -5,6 +5,7 @@ const User = require('../models/user.model');
 const Like = require('../models/like.model');
 
 
+
 // -------------------------------------------------------------------------------
 //  SHOW TIENDAS AT THE HOME PAGE 
 
@@ -190,6 +191,14 @@ module.exports.productoDoCreate = (req, res, next) => {
 module.exports.producto = (req, res, next) => {
   let productoId = req.params.productoId
   Producto.findById(productoId)
+  //.populate('comments')
+
+  .populate({
+    path: 'comments',
+    populate:{
+        path:'user',
+    }
+  })
   .then((prod)=> res.render('misc/producto', {prod}))
   .catch(next)
   

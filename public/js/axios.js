@@ -10,8 +10,10 @@ const likeProduct = (id, icon) => httpClient.post(`/like/${id}`)
   .catch(err => console.error(err))
   .finally(() => icon.classList.remove('icon-events-none'))
 
-document.querySelectorAll('.like-action').forEach(btn => {
+document.querySelectorAll('.like-button ')
+.forEach(btn => {
   btn.onclick = (event) => {
+    //console.log(btn)
     btn.classList.add('icon-events-none')
     likeProduct(event.target.dataset.id, event.target)
   }

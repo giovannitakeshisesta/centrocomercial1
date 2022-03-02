@@ -33,7 +33,7 @@ router.get('/auth/github/callback' , myMw.isNotAuth, auth.doLoginGitHub)
 
 //----------------------------------------------------------------------
 // ------- USER ROUTES -------
-router.get ('/editUser',                        myMw.isAuth,    user.rendereditUser)
+router.get ('/editUser',                        myMw.isAuth,    user.renderEditUser)
 router.post('/editUser/:userId/editName',       myMw.isTheUser, user.editUserName)
 router.post('/editUser/:userId/editUserImage',  myMw.isTheUser, upload.single('image'), user.editUserImage)
 router.post('/editUser/:userId/editEmail',      myMw.isTheUser, user.sendEmail)
@@ -45,6 +45,7 @@ router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 //----------------------------------------------------------------------
 // ------- LIKES ROUTES -------
 router.post('/like/:productId',  user.doLike)
+router.post('/comment/:productId/:userId',  user.comment)
 
 
 //----------------------------------------------------------------------

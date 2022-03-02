@@ -12,6 +12,7 @@
                     <input name="name" type="text" id="name" placeholder="Enter name"
                     class="form-control {{#if errors.name}}is-invalid{{/if}}" 
                     value=""
+                    required
                     >
                     {{#if errors.name}}
                     <div class="invalid-feedback">
@@ -32,6 +33,7 @@
                     <input name="email" type="email" id="email" placeholder="Enter email"
                     class="form-control {{#if errors.email}}is-invalid{{/if}}" 
                     value=""
+                    required
                     >
                     {{#if errors.email}}
                     <div class="invalid-feedback">
@@ -154,6 +156,28 @@
     </div>
 </div>
 
+
+<div>
+    <h1>TE GUSTA</h1>
+    
+    {{#each user.likes}}
+
+    <p>tienda: {{this.producto.tienda.name}}, producto : {{this.producto.name}}</p>
+    <a href="/tienda/{{this.producto.tienda.id}}">
+        <img src="{{this.producto.tienda.logo}}" class="logoCircle" alt="">
+    </a>
+    
+    <a href="/producto/{{this.producto.id}}">
+        <img src="{{this.producto.image1}}" alt="">
+    </a>
+   
+    {{/each}}
+
+
+
+
+
+</div>
 
 {{!-- NAME --}}   
 {{!-- <div class="editMainDiv">

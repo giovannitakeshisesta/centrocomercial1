@@ -46,21 +46,24 @@
                 
                 {{!-- product image --}}
                 <a href='/producto/{{producto.id}}'>
-                    <img class="logoCircle" src="{{producto.image2}}" alt="">
+                    <img class="logoCircle" src="{{producto.image1}}" alt="">
                 </a>
 
                 {{!-- product like --}}
                 {{#if ../currentUser}}  
-                <button class="like-button border-0">
-                <i
-                    data-id="{{producto.id}}"
-                    class="
-                    like-action fa fa-heart
-                    {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}
-                    "></i>
-                </button>
+                <div class="divLike">
+                    <button class="
+                        like-button border-0
+                        fa fa-heart fa-2x
+                        {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}"
+                        data-id="{{producto.id}}"
+                        >
+                        
+                        <p class="pe-none">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
+                       
+                    </button>
+                </div>
 
-                {{countLikes allLikes=../allLikes producto = producto.id}}
                 {{/if}}
             </div>
             {{/each}}
