@@ -16,10 +16,10 @@
 </form>   
 {{/ifIsDueño}}
 
-
+ {{!-- -------------------------- COMMENTS --------------------------  --}}
 {{#if currentUser}}  
 
-    {{!-- product comment --}}
+    {{!-- comment button--}}
     <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">
         comment
     </a>
@@ -40,7 +40,7 @@
                 class="form-control" 
                 required
                 >
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
             </form>
         </div>
     </div>
@@ -50,11 +50,81 @@
     {{!-- SHOW COMMENTS --}}
     <div>
         {{#each prod.comments as | prodItem |}}
-            <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
-            <p style="display: inline;">User : {{prodItem.user.name}}</p>
-            <p style="display: inline;">Comment :{{prodItem.comment}}</p>
+        <div class="border col-4 ">
+            <div>
+                <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
+                <p style="display: inline;">User : {{prodItem.user.name}}</p>
+            </div>
+
+            
+            <p class="text-break" >Comment :{{prodItem.comment}}</p>
+            
+            {{!-- EDIT - DELETE COMMENT --}}
+            {{#ifCommentOfTheCurrentUser idUserWhoCommented=prodItem.user.id  currentUserId=../currentUser.id}}
+            <div>
+                {{!-- edit comment button--}}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#editCommentModal">
+                    edit comment
+                </a>
+
+                {{!-- edit comment  modal--}}
+                <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCommentModalLabel">Edit comment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="/comment/edit/{{prodItem.id}}/{{../prod.id}}/{{prodItem.user.id}}" method="POST">            
+                            <textarea name="comment" class="form-control" id="message-text" required>{{prodItem.comment}}</textarea>
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                </div>
+
+                {{!-- delete comment button--}}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
+                    Delete comment
+                </a>
+
+                {{!-- delete comment  modal--}}
+                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteCommentModalLabel">Delete comment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you sure?
+                    </div>
+
+                    <div class="modal-footer">
+
+                    <form method="POST" action="/comment/delete/{{prodItem.id}}/{{../prod.id}}/{{prodItem.user.id}}">
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form> 
+                </div>
+                </div>
+                </div>
+                </div>
+
+            </div>
+            {{/ifCommentOfTheCurrentUser}}
+        </div>
+            
         {{/each}}
     </div>
-    
 
 {{/if}}
+            
+            
+
+            

@@ -122,6 +122,7 @@ module.exports.editPw = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER EDIT EMAIL  send email
+
 module.exports.sendEmail = (req, res, next) => {
     //console.log(req.body.email, req.params.userId)
     User.findById(req.params.userId)
@@ -136,6 +137,7 @@ module.exports.sendEmail = (req, res, next) => {
 
 
 // USER EDIT MAIL from email to  login
+
 module.exports.editEmail = (req, res, next) => {
     //console.log(req.params.email, req.params.token)
     const activationToken = req.params.token;
@@ -154,6 +156,7 @@ module.exports.editEmail = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER ABRE TIENDA
+
 module.exports.abretienda = (req, res, next) => {
 let dueño = {dueño : "on"}
 User.findByIdAndUpdate(req.params.userId,dueño)
@@ -165,6 +168,7 @@ User.findByIdAndUpdate(req.params.userId,dueño)
 
 //-------------------------------------------------------------------------------
 // USER DELETE
+
 module.exports.userDelete = (req, res, next) => {
     User.findByIdAndDelete(req.params.userId)
       .then((user) => {
@@ -177,15 +181,6 @@ module.exports.userDelete = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER LIKE
-
-// module.exports.profile = (req, res, next) => {
-//   Like.find({ user: req.user.id })
-//     .then((likes) => {
-//       console.log(likes)
-//       res.render("users/profile", { likes })
-//     })
-//     .catch(next)
-// }
 
 module.exports.doLike = (req, res, next) => {
   const tiendaId = req.params.tiendaId
@@ -209,6 +204,7 @@ module.exports.doLike = (req, res, next) => {
 
 //-------------------------------------------------------------------------------
 // USER COMMENT
+
 module.exports.comment = (req, res, next) => {
     const user = req.params.userId
     const producto = req.params.productId
@@ -222,9 +218,37 @@ module.exports.comment = (req, res, next) => {
     
     comment.save()
       .then((comment) => {
-        console.log("Comment added to db : ", comment)
+        //console.log("Comment added to db : ", comment)
         res.redirect(`/producto/${producto}`)
       })
       .catch(next)
-  }
+}
   
+
+//-------------------------------------------------------------------------------
+// USER EDIT COMMENT
+module.exports.commentEdit = (req, res, next) => {
+    let productId = req.params.productId
+    let newComment = {comment : req.body.comment}
+    let commentId = req.params.commentId
+    //console.log(newComment,commentId)
+    Comment.findByIdAndUpdate(commentId, newComment, {runValidators: true})
+        .then((user) => { res.redirect(`/producto/${productId}`) })
+        .catch(next)
+}
+
+
+//-------------------------------------------------------------------------------
+// USER DELETE COMMENT
+module.exports.commentDelete = (req, res, next) => {
+    let productId = req.params.productId
+    let newComment = {comment : req.body.comment}
+    let commentId = req.params.commentId
+    //console.log(newComment,commentId)
+    Comment.findByIdAndDelete(commentId)
+        .then((user) => { res.redirect(`/producto/${productId}`) })
+        .catch(next)
+}
+
+
+//-------------------------------------------------------------------------------

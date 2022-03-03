@@ -19,7 +19,6 @@ router.post('/register', myMw.isNotAuth, auth.doRegister)
 router.get ('/login',    myMw.isNotAuth, auth.login)
 router.post('/login',    myMw.isNotAuth, auth.doLogin)
 router.get ('/logout',   myMw.isAuth, auth.logout)
-//router.get ('/activate/:token', auth.activate)
 
 
 // ------- LOGIN GOOGLE -------
@@ -43,10 +42,11 @@ router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 
 //----------------------------------------------------------------------
-// ------- LIKES ROUTES -------
-router.post('/like/:productId',  user.doLike)
-router.post('/comment/:productId/:userId',  user.comment)
-
+// ------- LIKES - COMMENTS ROUTES -------
+router.post('/like/:productId',                             myMw.isAuth,    user.doLike)
+router.post('/comment/:productId/:userId',                  myMw.isAuth,    user.comment)
+router.post('/comment/edit/:commentId/:productId/:userId',  myMw.isTheUser, user.commentEdit)
+router.post('/comment/delete/:commentId/:productId/:userId',myMw.isTheUser, user.commentDelete)
 
 //----------------------------------------------------------------------
 // ------- OWNER ROUTES -------
@@ -71,10 +71,7 @@ router.post('/producto/:productoId/delete/:tiendaId', myMw.isDueño, misc.produc
 router.get('/',  misc.home)
 router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
-router.get ('/prueba', (req, res, next) => {  res.render('prueba')})
-
-
-
+router.get('/prueba', (req, res, next) => {  res.render('prueba')})
 
 
 module.exports = router 

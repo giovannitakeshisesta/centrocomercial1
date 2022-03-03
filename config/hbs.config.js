@@ -54,3 +54,13 @@ hbs.registerHelper('countLikes', function (options) {
     return sum
   }
 })
+
+// check if the comment is of the current User
+hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
+  const { idUserWhoCommented , currentUserId} = options.hash;
+  if (idUserWhoCommented && currentUserId && idUserWhoCommented===currentUserId){
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
+    }  
+})
