@@ -3,6 +3,7 @@
 <p>name : {{prod.name}}</p>
 <p>Descripcion :{{prod.description}} </p>
 <p>Precio : {{prod.precio}} €</p>
+
 <img style="max-width:20%;" src="{{prod.image1}}" alt="">
 <img style="max-width:20%;" src="{{prod.image2}}" alt="">
 
@@ -16,15 +17,22 @@
 </form>   
 {{/ifIsDueño}}
 
- {{!-- -------------------------- COMMENTS --------------------------  --}}
-{{#if currentUser}}  
 
-    {{!-- comment button--}}
+
+ {{!-- --------------------------  COMMENT AND STARS --------------------------  --}}
+
+{{#if currentUser}}  
+    {{!-- Display Average Rating stars --}}
+    <b>Rating: <span id="averageStars"></span></b>
+    <p id="avRatingToIndexJs" hidden>{{averageRating}}</p>
+    
+
+    {{!-- add comment - button--}}
     <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">
         comment
     </a>
 
-    {{!-- comment  modal--}}
+    {{!-- add comment - modal--}}
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -40,25 +48,36 @@
                 class="form-control" 
                 required
                 >
+                {{!-- duda   required --}}
+                <div class="rating" >
+                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
+                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
+                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Post Comment</button>
             </form>
         </div>
     </div>
     </div>
     </div>
+        
 
-    {{!-- SHOW COMMENTS --}}
+    {{!--  COMMENTS SECTION--}}
     <div>
         {{#each prod.comments as | prodItem |}}
         <div class="border col-4 ">
+
+            {{!-- display user image,name,rating,comment --}}
             <div>
                 <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
                 <p style="display: inline;">User : {{prodItem.user.name}}</p>
+                <p class="userRatingToIndexJs" >{{prodItem.rating}}</p>
+                <p class="text-break" >Comment :{{prodItem.comment}}</p>
             </div>
-
-            
-            <p class="text-break" >Comment :{{prodItem.comment}}</p>
-            
+                        
             {{!-- EDIT - DELETE COMMENT --}}
             {{#ifCommentOfTheCurrentUser idUserWhoCommented=prodItem.user.id  currentUserId=../currentUser.id}}
             <div>
@@ -80,6 +99,7 @@
                     <div class="modal-body">
                         <form action="/comment/edit/{{prodItem.id}}/{{../prod.id}}/{{prodItem.user.id}}" method="POST">            
                             <textarea name="comment" class="form-control" id="message-text" required>{{prodItem.comment}}</textarea>
+
                             <button type="submit" class="btn btn-primary">Post Comment</button>
                         </form>
                     </div>
@@ -125,6 +145,6 @@
 
 {{/if}}
             
-            
+           
 
             

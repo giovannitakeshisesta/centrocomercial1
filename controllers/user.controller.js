@@ -209,11 +209,14 @@ module.exports.comment = (req, res, next) => {
     const user = req.params.userId
     const producto = req.params.productId
     const text = req.body.comment
+    const rating = req.body.rating
+    console.log(rating)
 
     const comment = new Comment({
         user: user,
         producto: producto,
         comment: text,
+        rating: rating
     });
     
     comment.save()

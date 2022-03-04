@@ -18,3 +18,4 @@ document.querySelectorAll('.like-button ')
     likeProduct(event.target.dataset.id, event.target)
   }
 })
+

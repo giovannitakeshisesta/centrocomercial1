@@ -64,3 +64,13 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
       return options.inverse(this);
     }  
 })
+
+
+// // count all likes of each product
+// hbs.registerHelper('averageRating', function (options) {
+//   const { totalRatings , allLikes} = options.hash;
+//   if (producto && allLikes) {
+//     const sum = allLikes.filter(el=> el.producto==producto).length
+//     return sum
+//   }
+// })
