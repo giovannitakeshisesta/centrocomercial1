@@ -197,10 +197,7 @@ module.exports.producto = (req, res, next) => {
     .then((result)=> {
       var sumRatings = result.reduce((acc, curr) => acc + curr.rating, 0);
       const averageRating = sumRatings / result.length
-      console.log(sumRatings);
-      console.log(result.length)
-      console.log("the avg is ", averageRating)
-
+      
       return  Producto.findById(productoId)
       .populate({
         path: 'comments',

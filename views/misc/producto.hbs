@@ -28,9 +28,11 @@
     
 
     {{!-- add comment - button--}}
-    <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">
+    {{#ifNoCommentOfCurrenUser currentUser=currentUser.id allInfo = prod.comments}}
+    <a href="#"  data-bs-toggle="modal" data-bs-target="#commentModal">
         comment
     </a>
+    {{/ifNoCommentOfCurrenUser}}
 
     {{!-- add comment - modal--}}
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
@@ -67,20 +69,28 @@
 
     {{!--  COMMENTS SECTION--}}
     <div>
-        {{#each prod.comments as | prodItem |}}
+        {{#each prod.comments as | comm |}}
         <div class="border col-4 ">
 
             {{!-- display user image,name,rating,comment --}}
             <div>
-                <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
-                <p style="display: inline;">User : {{prodItem.user.name}}</p>
-                <p class="userRatingToIndexJs" >{{prodItem.rating}}</p>
-                <p class="text-break" >Comment :{{prodItem.comment}}</p>
+                <img src="{{comm.user.image}}" alt="" class="logoCircle">
+                <p style="display: inline;">User : {{comm.user.name}}</p>
+                <p class="userRatingToIndexJs" >{{comm.rating}}</p>
+                <p class="text-break" >Comment :{{comm.comment}}</p>
             </div>
                         
             {{!-- EDIT - DELETE COMMENT --}}
-            {{#ifCommentOfTheCurrentUser idUserWhoCommented=prodItem.user.id  currentUserId=../currentUser.id}}
+            {{#ifCommentOfTheCurrentUser idUserWhoCommented=comm.user.id  currentUserId=../currentUser.id}}
             <div>
+                <form method="POST" action="/comment/delete/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}">
+                    <p>comm.id/ {{comm.id}}</p>
+                    <p>../prod.id/ {{../prod.id}} </p>
+                    <p>comm.user.id/ {{comm.user.id}}</p>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form> 
+
+
                 {{!-- edit comment button--}}
                 <a href="#" data-bs-toggle="modal" data-bs-target="#editCommentModal">
                     edit comment
@@ -97,8 +107,8 @@
                     </div>
 
                     <div class="modal-body">
-                        <form action="/comment/edit/{{prodItem.id}}/{{../prod.id}}/{{prodItem.user.id}}" method="POST">            
-                            <textarea name="comment" class="form-control" id="message-text" required>{{prodItem.comment}}</textarea>
+                        <form action="/comment/edit/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}" method="POST">            
+                            <textarea name="comment" class="form-control" id="message-text" required>{{comm.comment}}</textarea>
 
                             <button type="submit" class="btn btn-primary">Post Comment</button>
                         </form>
@@ -108,12 +118,12 @@
                 </div>
 
                 {{!-- delete comment button--}}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
+                {{!-- <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
                     Delete comment
-                </a>
+                </a> --}}
 
                 {{!-- delete comment  modal--}}
-                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                {{!-- <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -128,13 +138,13 @@
 
                     <div class="modal-footer">
 
-                    <form method="POST" action="/comment/delete/{{prodItem.id}}/{{../prod.id}}/{{prodItem.user.id}}">
+                    <form method="POST" action="/comment/delete/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}">
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </form> 
                 </div>
                 </div>
                 </div>
-                </div>
+                </div> --}}
 
             </div>
             {{/ifCommentOfTheCurrentUser}}

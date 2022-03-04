@@ -66,11 +66,13 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
 })
 
 
-// // count all likes of each product
-// hbs.registerHelper('averageRating', function (options) {
-//   const { totalRatings , allLikes} = options.hash;
-//   if (producto && allLikes) {
-//     const sum = allLikes.filter(el=> el.producto==producto).length
-//     return sum
-//   }
-// })
+
+hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
+  const { allInfo , currentUser} = options.hash;
+  let ccc = allInfo.map (el => el.user.id).some(el => el===currentUser)
+  if (!ccc){
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  } 
+})
