@@ -51,7 +51,7 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
       return options.fn(this);
     } else {
       return options.inverse(this);
-    }
+    }  
 })
 // chek if the current User has already posted a comment, if so, dont show the link
 hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
@@ -61,19 +61,6 @@ hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
     return options.fn(this);
   } else {
     return options.inverse(this);
-  }
+  } 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -3,6 +3,8 @@ const Tienda = require('../models/tienda.model');
 const Producto = require('../models/producto.model');
 const User = require('../models/user.model');
 const Like = require('../models/like.model');
+const Comment = require('../models/comment.model');
+
 
 
 
@@ -194,19 +196,27 @@ module.exports.productoDoCreate = (req, res, next) => {
 
 module.exports.producto = (req, res, next) => {
   let productoId = req.params.productoId
-  Producto.findById(productoId)
-  //.populate('comments')
 
-  .populate({
-    path: 'comments',
-    populate:{
-        path:'user',
-    }
-  })
-  .then((prod)=> res.render('misc/producto', {prod}))
-  .catch(next)
-  
-};
+  Comment.find({producto:`${productoId}`})
+    .then((result)=> {
+      var sumRatings = result.reduce((acc, curr) => acc + curr.rating, 0);
+      const averageRating = sumRatings / result.length
+      
+      return  Producto.findById(productoId)
+      .populate({
+        path: 'comments',
+        populate:{
+          path:'user',
+        }
+      })
+      .then((prod)=> {
+          return res.render('misc/producto', {prod,averageRating})
+        })
+    })    
+    .catch(next)
+}
+
+
 
 // -------------------------------------------------------------------------------
 // PRODUCTO EDIT . GET FORM

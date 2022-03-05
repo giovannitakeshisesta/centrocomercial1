@@ -3,6 +3,7 @@
 <p>name : {{prod.name}}</p>
 <p>Descripcion :{{prod.description}} </p>
 <p>Precio : {{prod.precio}} €</p>
+
 <img style="max-width:20%;" src="{{prod.image1}}" alt="">
 <img style="max-width:20%;" src="{{prod.image2}}" alt="">
 
@@ -17,14 +18,23 @@
 {{/ifIsDueño}}
 
 
-{{#if currentUser}}  
 
-    {{!-- product comment --}}
-    <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">
+ {{!-- --------------------------  COMMENT AND STARS --------------------------  --}}
+
+{{#if currentUser}}  
+    {{!-- Display Average Rating stars --}}
+    <b>Rating: <span id="averageStars"></span></b>
+    <p id="avRatingToIndexJs" hidden>{{averageRating}}</p>
+    
+
+    {{!-- add comment - button--}}
+    {{#ifNoCommentOfCurrenUser currentUser=currentUser.id allInfo = prod.comments}}
+    <a href="#"  data-bs-toggle="modal" data-bs-target="#commentModal">
         comment
     </a>
+    {{/ifNoCommentOfCurrenUser}}
 
-    {{!-- comment  modal--}}
+    {{!-- add comment - modal--}}
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -35,26 +45,115 @@
         </div>
 
         <div class="modal-body">
-            <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST">
-                <input name="comment" type="text" id="comment"
-                class="form-control" 
-                required
-                >
-                <button type="submit" class="btn btn-primary">Send</button>
+            <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST" >
+                <textarea name="comment" class="form-control"  required></textarea>
+
+                {{!-- duda   required --}}
+                <div class="rating" >
+                    <input type="radio" name="rating" value="5" id="5" required><label for="5">☆</label> 
+                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
+                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Post Comment</button>
             </form>
         </div>
     </div>
     </div>
     </div>
+        
 
-    {{!-- SHOW COMMENTS --}}
+    {{!--  COMMENTS SECTION--}}
     <div>
-        {{#each prod.comments as | prodItem |}}
-            <img src="{{prodItem.user.image}}" alt="" class="logoCircle">
-            <p style="display: inline;">User : {{prodItem.user.name}}</p>
-            <p style="display: inline;">Comment :{{prodItem.comment}}</p>
+        {{#each prod.comments as | comm |}}
+        <div class="border col-4 ">
+
+            {{!-- display user image,name,rating,comment --}}
+            <div>
+                <img src="{{comm.user.image}}" alt="" class="logoCircle">
+                <p style="display: inline;">User : {{comm.user.name}}</p>
+                <p class="userRatingToIndexJs" >{{comm.rating}}</p>
+                <p class="text-break" >Comment :{{comm.comment}}</p>
+            </div>
+                        
+            {{!-- EDIT - DELETE COMMENT --}}
+            {{#ifCommentOfTheCurrentUser idUserWhoCommented=comm.user.id  currentUserId=../currentUser.id}}
+            <div>
+                
+                {{!-- edit comment button--}}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#editCommentModal">
+                    edit comment
+                </a>
+
+                {{!-- edit comment  modal--}}
+                <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCommentModalLabel">Edit comment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="/comment/edit/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}" method="POST">            
+                            <textarea name="comment" class="form-control" id="message-text" required>{{comm.comment}}</textarea>
+
+                            <div class="rating" >
+                                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                            </div>
+                      
+
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                </div>
+
+                {{!-- delete comment button--}}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
+                    Delete comment
+                </a>
+
+                {{!-- delete comment  modal--}}
+                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteCommentModalLabel">Delete comment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you sure?
+                    </div>
+
+                    <div class="modal-footer">
+
+                    <form method="POST" action="/comment/delete/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}">
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form> 
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+            </div>
+            {{/ifCommentOfTheCurrentUser}}
+        </div>
+            
         {{/each}}
     </div>
-    
 
 {{/if}}
+            
+           
