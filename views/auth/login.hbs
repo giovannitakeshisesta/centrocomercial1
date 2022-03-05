@@ -1,36 +1,33 @@
 <div id="login" class="d-flex justify-content-center align-items-center form-page-block">
   <div class="form-block">
     <h3 class="mb-4">Login</h3>
-
     <form method="POST" action="/login">
 
-      <div class="form-group mb-3">
-        <input
-          id="email"
-          value="{{user.email}}"
-          name="email"
-          type="email"
-          class="form-control {{#if errorMessage}}is-invalid{{/if}}"
-          placeholder="Enter name"
-        >
-      </div>
-
-      <div class="input-group mb-3">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          class="form-control {{#if errorMessage}}is-invalid{{/if}}"
-          placeholder="Password"
-        >
-
-        <button class="btn btn-outline-secondary password-toggle c-dark" type="button">
-          <i class="fa fa-eye-slash fa-fw"></i>
-        </button>
+      {{!-- Email --}}
+      <div class="form-group">
+        <div class="input-contain mt-3 mb-4">
+          <input 
+            id="email" 
+            value="{{user.email}}"
+            name="email" 
+            type="email" 
+            autocomplete="off" 
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
+          >
+          <label class="placeholder-text" for="email" id="placeholder-fname">
+            <div class="text">Email</div>
+          </label>
+          {{#if errorMessage }}
+            <span class="invalid-input">*{{errorMessage}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div>
       </div>
 
       {{!-- Password --}}
-      {{!-- <div class="form-group mt-5">
+      <div class="form-group mt-5">
         <div class="input-contain mt-3 mb-4">
           <input 
             id="password"
@@ -49,24 +46,24 @@
           {{else}}
             <span>*Required</span>
           {{/if}}
-        </div> --}}
+        </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      {{!-- Submit --}}
+      <button type="submit" class="btn-brand-1 mt-2 mb-3">Submit</button>
 
+      {{!-- Google Login --}}
       <div>
         <a 
-        href="/login/google" class="btn  btn-social btn-outline-primary">
-        <i class="fa fa-google"></i>Sign in with Google
+        href="/login/google" class="btn mb-3 btn-social btn-outline-primary btn-brand-google">
+        <i class="fa fa-google icon-login"></i>Sign in with Google
         </a>
       </div>
-
       <div>
         <a 
-        href="/login/gitHub" class="btn  btn-social btn-outline-primary">
-        <i class="fa fa-github"></i>Sign in with Git Hub
+        href="/login/gitHub" class="btn  btn-social btn-outline-primary btn-brand-google">
+        <i class="fa fa-github icon-login"></i>Sign in with Git Hub
         </a>
       </div>
-
     </form>
     </div>
   </div>

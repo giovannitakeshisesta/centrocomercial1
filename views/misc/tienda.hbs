@@ -1,13 +1,9 @@
-
-
 <div id="tienda">
     <div class="tiendaImg" style="background: url('{{tienda.image1}}')"></div>
     <div class="tienda-info">
-        {{!-- <h3>NOVEDADES <br>TENDENCIAS <br> MONTAÑA</h3> --}}
         <h3>{{tienda.name}}</h3>
         <p class="description">{{tienda.description}}</p>
         <a href="{{tienda.officialWeb}}" class="officialWeb mt-4">{{tienda.officialWeb}}</a>
-        {{!-- <p class="description">Tenemos dispoinbles los modelos más exclusivos de los ulitmos años. Cazadoras, mochilas, zapatillas...</p> --}}
     </div>
     <div class="mouse_scroll mouse_scroll_tienda ">
         <div>
@@ -17,38 +13,82 @@
         </div>
     </div> 
     <img class="logo-tienda" src="{{tienda.logo}}" alt="">
-
-
 </div>
 
 
-<div class="container tienda-productos">
-    <div class="mt-5">
-        <h4>PRODUCTOS</h4>
-        {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-        <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1">añade producto </a>
-        {{/ifIsDueño}}
-    </div>
-    
-    <div class="d-flex flex-row">
+<!-- Swiper Tiendas -->
+<div id='section-tiendas' class="pt-5 pb-5 container mt-5">
+  <h3 class="pb-3 small">PRODUCTOS</h3>
+
+    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+        <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1 mb-5">añade producto </a>
+    {{/ifIsDueño}}
+
+    <div class="swiper mySwiper container">
+      <div class="swiper-wrapper">
+
         {{#each pro as | producto |}}
-        <div class="d-flex flex-column" style="border :1px solid blue;">
-            <p>{{producto.name}}</p> 
-            <a href='/producto/{{producto.id}}'>
-                <img class="logoCircle" src="{{producto.image2}}" alt="">
-            </a>
-        </div>
+            <div class="swiper-slide product-slide" style="background: url({{producto.image1}});">
+                <div class="head-product">
+                    <p>{{producto.name}}</p> 
+                        {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
+                </div>
+                <div class="footer-product">
+                    <p>{{producto.description}}</p> 
+                        {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
+                </div>    
+                <a href='/producto/{{producto.id}}' class="tiendalink-home"></a>
+
+                {{!-- product like --}}
+                {{#if ../currentUser}}
+                <div class="divLike">
+                    <button class="
+                        like-button border-0
+                        fa fa-heart fa-2x
+                        {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}"
+                        data-id="{{producto.id}}"
+                        >
+                        <p class="pe-none">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
+                    </button>
+                </div>
+                {{/if}}
+            </div>
         {{/each}}
+
+        {{#each pro as | producto |}}
+            <div class="d-flex flex-column" style="border :1px solid blue;">
+                <p>{{producto.name}}</p> 
+                <a href='/producto/{{producto.id}}'>
+                    <img class="logoCircle" src="{{producto.image2}}" alt="">
+                </a>
+            </div>
+        {{/each}}
+        
+      </div>
     </div>
 </div>
+
+
 
 <script>
+
     let tienda_imgs = document.querySelectorAll('.tiendaImg')
     tienda_imgs.forEach(element => {
         setTimeout( () => {
             element.classList.add('active')
         },100)
     });
+
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3.5,
+        spaceBetween: 15,
+        pagination: {
+            clickable: true,
+        },
+    });
+
 </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/axios.js"></script>

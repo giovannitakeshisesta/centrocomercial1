@@ -5,15 +5,12 @@ inputs_element.forEach(element => {
     })
 });
 
-
-
 // login eye toggler
 document.addEventListener('DOMContentLoaded', () => {
   function onClickPasswordToggle(event) {
     const button = event.currentTarget;
     const input = button.previousElementSibling;
     const icon = button.querySelector('i');
-
     if (input.type === 'text') {
       input.type = 'password';
       icon.classList.remove('fa-eye');
@@ -24,12 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
       icon.classList.add('fa-eye');
     }
   }
-
   document.querySelectorAll('.password-toggle')
     .forEach(button => button.addEventListener('click', onClickPasswordToggle));
 })
-
-
 // ----------------------------------------------
 // when like button is pressed the number increase or decrease(not in the database)
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,14 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       p.innerHTML   = (Number(p.innerText)+1)
     }
-    
   }
-
   document.querySelectorAll('.like-button')
     .forEach(button => button.addEventListener('click', onClickAddRemoveOne));
 })
-
-
 // ---------------------- RATING STARS------------------------
 // when the page product is loaded, we receive from the controller, the averageRating
 // here we convert the number in stars
