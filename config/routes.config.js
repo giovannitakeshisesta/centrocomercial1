@@ -57,6 +57,9 @@ router.get ('/tienda/:tiendaId/edit',   myMw.isDueño, misc.tiendaEdit)
 router.post('/tienda/:tiendaId/edit',   myMw.isDueño, upload.single('image'), misc.tiendaDoEdit)
 router.post('/tienda/:tiendaId/delete', myMw.isDueño, misc.tiendaDelete)
 
+// routa para generar diseño sin claves cloudinari - edu
+router.get('/tienda/',                  misc.tiendaDesing)
+
 
 // Productos 
 router.get ('/producto/:tiendaId/create',             myMw.isDueño, misc.productoCreate)

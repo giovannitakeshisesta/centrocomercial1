@@ -100,6 +100,10 @@ module.exports.tiendaEdit = (req, res, next) => {
     .catch(next)
 };
 
+module.exports.tiendaDesing = (req, res, next) => {
+  res.render('misc/tiendaDesing');
+}
+
 // TIENDA EDIT - POST FORM
 
 module.exports.tiendaDoEdit = (req, res, next) => {

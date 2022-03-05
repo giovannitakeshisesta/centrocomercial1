@@ -1,8 +1,8 @@
-<div class="mt-4 row justify-content-center">
-  <div class="col-4">
-    <h2 class="text-center">LOGIN</h2>
+<div id="login" class="d-flex justify-content-center align-items-center form-page-block">
+  <div class="form-block">
+    <h3 class="mb-4">Login</h3>
 
-    <form class="mt-4" method="POST" action="/login">
+    <form method="POST" action="/login">
 
       <div class="form-group mb-3">
         <input
@@ -29,11 +29,27 @@
         </button>
       </div>
 
-      {{#if errorMessage}}
-        <div class="text-danger text-small mb-2">
-          {{errorMessage}}
-        </div>
-      {{/if}}
+      {{!-- Password --}}
+      {{!-- <div class="form-group mt-5">
+        <div class="input-contain mt-3 mb-4">
+          <input 
+            id="password"
+            value=""
+            name="password"
+            type="password"
+            autocomplete="off" 
+            aria-labelledby="placeholder-fname"
+            class="form-control {{#if errorMessage}}is-invalid{{/if}} input-material"
+          >
+          <label class="placeholder-text" for="password" id="placeholder-fname">
+            <div class="text">Password</div>
+          </label>
+          {{#if errorMessage }}
+            <span class="invalid-input">*{{errorMessage}}</span>
+          {{else}}
+            <span>*Required</span>
+          {{/if}}
+        </div> --}}
 
       <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -52,5 +68,10 @@
       </div>
 
     </form>
+    </div>
   </div>
 </div>
+
+
+
+     
