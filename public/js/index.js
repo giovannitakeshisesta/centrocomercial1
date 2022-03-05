@@ -67,8 +67,10 @@ function numberToStars(rating) {
 
 
 // average rating of the product displayed on product page comments
-const averageRating = document.getElementById("avRatingToIndexJs").innerHTML 
-document.getElementById("averageStars").innerHTML = numberToStars(averageRating);
+const averageRating = document.getElementById("avRatingToIndexJs")?.innerHTML;
+if(averageRating) {
+  document.getElementById("averageStars").innerHTML = numberToStars(averageRating);
+}
 
 
 // each user rating displayed on product page comments
