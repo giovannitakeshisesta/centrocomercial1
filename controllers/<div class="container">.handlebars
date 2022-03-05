@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="d-flex flex-rox justify-content-between">
+        <div>
+            <h1>Name :       {{tienda.name}}</h1>
+            <p>Categories:   {{tienda.categories}}</p>
+            <p>Id tienda:    {{tienda.id}}</p>
+            <a href="        {{tienda.officialWeb}}">Official WebPage </a>
+            <p>Description : {{tienda.description}}</p>
+            <img class="logoCircle" src="{{tienda.logo}}" alt="logo tienda">
+        </div>
+        <div>
+            <img src="{{tienda.image1}}" alt="img1 tienda">
+        </div>
+        <div>
+            <img src="{{tienda.image2}}" alt="img 2 tienda">
+        </div>
+        <div>
+            <img src="{{tienda.image}}" alt="img 2 tienda">
+        </div>
+    </div>
+    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+        <a href="/tienda/{{tienda.id}}/edit"   class="btn btn-success mt-1"> edit tienda</a>
+        <form method="POST" action="/tienda/{{tienda.id}}/delete">
+            <button type="submit">Delete</button>
+        </form>
+    {{/ifIsDueño}}
+    <div>
+        <div class="d-flex mt-5">
+            <h1>PRODUCTOS</h1>
+            {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+            <a href="/producto/{{tienda.id}}/create" class="btn btn-success mt-1">añade producto </a>
+            {{/ifIsDueño}}
+        </div>
+
+
+        
+        <div class="d-flex flex-row">
+            {{#each pro as | producto |}}
+            <div class="position-relative d-flex flex-column m-3" style="border :1px solid blue;">
+                {{!-- product name --}}
+                <p>{{producto.name}}</p>
+                {{!-- product image --}}
+                <a href='/producto/{{producto.id}}'>
+                    <img class="logoCircle" src="{{producto.image1}}" alt="">
+                </a>
+                {{!-- product like --}}
+                {{#if ../currentUser}}
+                <div class="divLike">
+                    <button class="
+                        like-button border-0
+                        fa fa-heart fa-2x
+                        {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}"
+                        data-id="{{producto.id}}"
+                        >
+                        <p class="pe-none">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/axios.js"></script>

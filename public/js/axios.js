@@ -1,17 +1,23 @@
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://localhost:3001'
 })
+
+
 
 const likeProduct = (id, icon) => httpClient.post(`/like/${id}`)
   .then(() => {
     icon.classList.toggle('icon-liked');
   })
-  .catch(err => console.error(err))
+  .catch(err => console.log(err))
   .finally(() => icon.classList.remove('icon-events-none'))
 
-document.querySelectorAll('.like-button ')
+
+
+
+document.querySelectorAll('.like-button')
 .forEach(btn => {
+  console.log(btn)
   btn.onclick = (event) => {
     //console.log(btn)
     btn.classList.add('icon-events-none')
