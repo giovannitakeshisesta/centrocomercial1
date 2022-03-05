@@ -162,3 +162,11 @@
 </div>
 
            
+<script>
+    // when edit comment, show the stars checked
+    let val = document.getElementById("valor")
+    if(val) {
+    let selectItem = val.innerText
+    document.querySelector(`[edit-value="${selectItem}"]`).checked = true
+    }
+</script>
