@@ -233,11 +233,17 @@ module.exports.comment = (req, res, next) => {
 //-------------------------------------------------------------------------------
 // USER EDIT COMMENT
 module.exports.commentEdit = (req, res, next) => {
-    let productId = req.params.productId
-    let newComment = {comment : req.body.comment}
-    let commentId = req.params.commentId
-    //console.log(newComment,commentId)
-    Comment.findByIdAndUpdate(commentId, newComment, {runValidators: true})
+    let productId  = req.params.productId
+    let newComment = req.body.comment
+    let newRating  = req.body.rating
+    let commentId  = req.params.commentId
+    console.log(newComment,commentId,newRating)
+
+    // let newComment = new Comment({
+    //     comment: newComment,
+    //     rating: newRating
+    // });
+    Comment.findByIdAndUpdate({"_id": commentId}, {"$set":{"comment": newComment,"rating": newRating}} , {runValidators: true})
         .then((user) => { res.redirect(`/producto/${productId}`) })
         .catch(next)
 }
@@ -247,9 +253,7 @@ module.exports.commentEdit = (req, res, next) => {
 // USER DELETE COMMENT
 module.exports.commentDelete = (req, res, next) => {
     let productId = req.params.productId
-    let newComment = {comment : req.body.comment}
     let commentId = req.params.commentId
-    //console.log(newComment,commentId)
     Comment.findByIdAndDelete(commentId)
         .then((user) => { res.redirect(`/producto/${productId}`) })
         .catch(next)

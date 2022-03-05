@@ -609,6 +609,7 @@ input {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
 /* ------------------------------- */
 /* ACCOUNT 
 /* ------------------------------- */
@@ -646,16 +647,6 @@ input {
 }
 
 
-
-/* RATING STARS */
-.ratingTwo {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: start
-}
-
-.ratingTwo>input {
-    display: none
 /* ------------------------------- */
 /* LIKE - BTN 
 /* ------------------------------- */
@@ -682,33 +673,6 @@ input {
 }
 .icon-liked {
     color: red;
-}
-
-.ratingTwo>label {
-    position: relative;
-    width: 1em;
-    font-size:2vw;
-    color: #FFD600;
-    cursor: pointer
-}
-
-.ratingTwo>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
-}
-
-.ratingTwo>label:hover:before,
-.ratingTwo>label:hover~label:before {
-    opacity: 1 !important
-}
-
-.ratingTwo>input:checked~label:before {
-    opacity: 1
-}
-
-.ratingTwo:hover>input:checked~label:before {
-    opacity: 0.4
 }
 
 

@@ -64,3 +64,18 @@ hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
   } 
 })
 
+
+
+
+// hbs.registerHelper('checked', function (options) {
+//   const { value } = options.hash;
+//   console.log(value)
+//   document.querySelectorAll(`[value="${value}"]`).checked = true;
+//   //if(value==5){ return console.log("hola")}
+//   //document.getElementById("10").checked = true
+  
+//   //   return options.fn(this);
+//   // } else {
+//   //   return options.inverse(this);
+//   // } 
+// })
