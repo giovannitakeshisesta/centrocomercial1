@@ -103,13 +103,13 @@
                         <div class="modal-body">
                             <form action="/comment/edit/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}" method="POST">            
                                 <textarea name="comment" class="form-control" id="message-text" required>{{comm.comment}}</textarea>
-
+                                <p id="valor" hidden>{{comm.rating}}</p>
                                 <div class="rating" >
-                                    <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                                    <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                                    <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                                    <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                                    <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                                    <input type="radio" name="rating" value="5" edit-value="5" id="10"><label for="10">☆</label> 
+                                    <input type="radio" name="rating" value="4" edit-value="4" id="9"><label for="9">☆</label> 
+                                    <input type="radio" name="rating" value="3" edit-value="3" id="8"><label for="8">☆</label> 
+                                    <input type="radio" name="rating" value="2" edit-value="2" id="7"><label for="7">☆</label> 
+                                    <input type="radio" name="rating" value="1" edit-value="1" id="6"><label for="6">☆</label>
                                 </div>
                         
 
@@ -164,9 +164,9 @@
            
 <script>
     // when edit comment, show the stars checked
-    let val = document.getElementById("valor")
+    let val = document.getElementById('valor')
     if(val) {
-    let selectItem = val.innerText
-    document.querySelector(`[edit-value="${selectItem}"]`).checked = true
+        let selectItem = val.innerText
+        document.querySelector(`[edit-value="${selectItem}"]`).checked = true
     }
 </script>
