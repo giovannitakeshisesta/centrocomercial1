@@ -609,6 +609,7 @@ input {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
 /* ------------------------------- */
 /* ACCOUNT 
 /* ------------------------------- */
@@ -646,16 +647,6 @@ input {
 }
 
 
-
-/* RATING STARS */
-.ratingTwo {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: start
-}
-
-.ratingTwo>input {
-    display: none
 /* ------------------------------- */
 /* LIKE - BTN 
 /* ------------------------------- */
@@ -680,35 +671,104 @@ input {
     transform: translate(-50%, -50%);
     color: white;
 }
+
 .icon-liked {
     color: red;
 }
 
-.ratingTwo>label {
+/* ------------------------------- */
+/* PRODUCT - PAGE 
+/* ------------------------------- */
+
+#producto {
+    color: #fff;
+}
+
+#producto .form-block {
+    border: none;
+}
+
+.produto-block-info_img {
+    width: 45%;
+    object-fit: cover;
+}
+
+.produto-block-info_text {
     position: relative;
-    width: 1em;
-    font-size:2vw;
-    color: #FFD600;
-    cursor: pointer
+    width: 50%;
+    padding: 150px 0;
 }
 
-.ratingTwo>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
+.producto-title, .producto-price {
+    font-size: 50px;
+    color: #acff00;
+    font-family: 'Montserrat';
+    margin-bottom: 5px;
 }
 
-.ratingTwo>label:hover:before,
-.ratingTwo>label:hover~label:before {
-    opacity: 1 !important
+.producto-price {
+    font-size: 30px;
 }
 
-.ratingTwo>input:checked~label:before {
-    opacity: 1
+.producto-block-title {
+    max-width: 400px;
 }
 
-.ratingTwo:hover>input:checked~label:before {
-    opacity: 0.4
+.producto-description {
+    font-family: 'Montserrat';
+    line-height: 150%;
+    font-size: 16px;
 }
+
+.rating-title {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.comment-block {
+    margin-top: 150px;
+}
+
+.comment-block-title{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.comment-block-title img {
+    margin: 0;
+}
+
+.comment-block-title p {
+    margin: 0;
+    margin-left: 20px;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.comment-block-element {
+    padding: 30px;
+    border: 1px solid #acff00 !important;
+    border-radius: 4px;
+}
+
+.comment-block-description {
+    font-family: 'Montserrat';
+}
+
+.mouse_scroll_producto {
+    margin-top: 40px !important;
+    position: inherit !important;
+    bottom: 0 !important;
+    left: 0 !important;
+}
+
+
+
+
+
+
+
+
 
 
