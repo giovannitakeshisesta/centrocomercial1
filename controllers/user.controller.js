@@ -192,6 +192,8 @@ module.exports.doLike = (req, res, next) => {
   const prodId = req.params.productId
   const userId = req.user.id
 
+  console.log('Dentro del controaldor')
+
   Like.findOneAndDelete({ producto: prodId, user: userId})
     .then(like => {
       if (like) {

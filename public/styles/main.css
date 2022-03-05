@@ -70,6 +70,10 @@ h5 {
     border: none;
 }
 
+.btn-brand-1_account {
+    margin-left: 15px;
+}
+
 .btn-brand-2 {
     display: inline-block;
     color: #acff00;
@@ -79,6 +83,29 @@ h5 {
     text-decoration: none;
     letter-spacing: 1.2px;
 }
+
+.btn-brand-google {
+    width: 100%;
+    color: #acff00;
+    border-color: #acff00;
+}
+
+.btn-brand-google:hover {
+    background-color: #acff00;
+    color: #000;
+    border-color: #acff00;
+}
+
+form {
+    position: relative;
+    z-index: 9999;
+}
+
+.icon-login {
+    margin-right: 7px;
+}
+
+
 
 /* ----------------- */
 /* NAV */
@@ -98,7 +125,8 @@ nav {
     font-weight: 700;
     font-size: 50px;
     padding: 0 50px;
-    position: relative
+    position: relative;
+    text-decoration: none;
 }
 
 .logo-description {
@@ -111,6 +139,10 @@ nav {
     font-size: 14px;
     width: 116px;
     line-height: 1.4;
+}
+
+.logo-link {
+    text-decoration: none;
 }
 
 .imagotipo {
@@ -144,6 +176,25 @@ nav {
     margin-top: 200px;
 }
 
+.product-slide {
+    height: 300px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: #fff !important;
+}
+
+.head-product, .footer-product {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+}
+
+.footer-product {
+    top: auto;
+    bottom: 20px;
+}
 
 /* nav Dark */
 
@@ -522,16 +573,71 @@ input {
 }
 
 
+/* ------------------------------- */
+/* ACCOUNT 
+/* ------------------------------- */
+
+.account-name {
+    color: #fff;
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Montserrat';
+    color: #acff00;
+}
+
+.password-account {
+    width: 80%;
+}
+
+.image-delete {
+    margin-left: 50px;
+}
+
+.editMainDiv {
+    position: relative;
+}
+
+.editImage {
+    position: absolute;
+    top: 10px !important;
+    right: 10px !important;    
+}
+
+.editMainDiv img {
+    width: 100% !important;
+    margin-bottom: 10px;
+    object-fit: cover !important;
+}
 
 
 
+/* ------------------------------- */
+/* LIKE - BTN 
+/* ------------------------------- */
 
-
-
-
-
-
-
+.divLike{
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.like-button {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(26, 216, 9, 0.425);
+    border-radius: 100%;
+}
+.like-button p{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.icon-liked {
+    color: red;
+}
 
 
 
