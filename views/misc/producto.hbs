@@ -48,7 +48,7 @@
             <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST" >
                 <textarea name="comment" class="form-control"  required></textarea>
 
-                {{!-- duda   required --}}
+                {{!--    --}}
                 <div class="rating" >
                     <input type="radio" name="rating" value="5" id="5" required><label for="5">☆</label> 
                     <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
@@ -102,11 +102,16 @@
                             <textarea name="comment" class="form-control" id="message-text" required>{{comm.comment}}</textarea>
 
                             <div class="rating" >
-                                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                                {{comm.rating}}
+                                <p id="valor" hidden >{{comm.rating}}</p>
+                                {{#checked value=comm.rating}}
+                                {{/checked}}
+                                <input type="radio" name="rating" edit-value="5" value="5" id="10" required><label for="10">☆</label> 
+                                <input type="radio" name="rating" edit-value="4" value="4" id="9"><label for="9">☆</label> 
+                                <input type="radio" name="rating" edit-value="3" value="3" id="8"><label for="8">☆</label> 
+                                <input type="radio" name="rating" edit-value="2" value="2" id="7"><label for="7">☆</label> 
+                                <input type="radio" name="rating" edit-value="1" value="1" id="6"><label for="6">☆</label>
+                                
                             </div>
                       
 
@@ -157,3 +162,11 @@
 {{/if}}
             
            
+<script>
+    // when edit comment, show the stars checked
+    let val = document.getElementById("valor")
+    if(val) {
+    let selectItem = val.innerText
+    document.querySelector(`[edit-value="${selectItem}"]`).checked = true
+    }
+</script>
