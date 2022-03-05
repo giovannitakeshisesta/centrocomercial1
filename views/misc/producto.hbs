@@ -45,14 +45,12 @@
         </div>
 
         <div class="modal-body">
-            <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST">
-                <input name="comment" type="text" id="comment"
-                class="form-control" 
-                required
-                >
+            <form action="/comment/{{prod.id}}/{{currentUser.id}}" method="POST" >
+                <textarea name="comment" class="form-control"  required></textarea>
+
                 {{!-- duda   required --}}
                 <div class="rating" >
-                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
+                    <input type="radio" name="rating" value="5" id="5" required><label for="5">☆</label> 
                     <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
                     <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
                     <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
@@ -83,14 +81,7 @@
             {{!-- EDIT - DELETE COMMENT --}}
             {{#ifCommentOfTheCurrentUser idUserWhoCommented=comm.user.id  currentUserId=../currentUser.id}}
             <div>
-                <form method="POST" action="/comment/delete/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}">
-                    <p>comm.id/ {{comm.id}}</p>
-                    <p>../prod.id/ {{../prod.id}} </p>
-                    <p>comm.user.id/ {{comm.user.id}}</p>
-                    <button type="submit" class="btn btn-primary">Delete</button>
-                </form> 
-
-
+                
                 {{!-- edit comment button--}}
                 <a href="#" data-bs-toggle="modal" data-bs-target="#editCommentModal">
                     edit comment
@@ -110,6 +101,15 @@
                         <form action="/comment/edit/{{comm.id}}/{{../prod.id}}/{{comm.user.id}}" method="POST">            
                             <textarea name="comment" class="form-control" id="message-text" required>{{comm.comment}}</textarea>
 
+                            <div class="rating" >
+                                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                            </div>
+                      
+
                             <button type="submit" class="btn btn-primary">Post Comment</button>
                         </form>
                     </div>
@@ -118,12 +118,12 @@
                 </div>
 
                 {{!-- delete comment button--}}
-                {{!-- <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">
                     Delete comment
-                </a> --}}
+                </a>
 
                 {{!-- delete comment  modal--}}
-                {{!-- <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -144,7 +144,8 @@
                 </div>
                 </div>
                 </div>
-                </div> --}}
+                </div>
+
 
             </div>
             {{/ifCommentOfTheCurrentUser}}
@@ -156,5 +157,3 @@
 {{/if}}
             
            
-
-            

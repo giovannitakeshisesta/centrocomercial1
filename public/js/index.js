@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .forEach(button => button.addEventListener('click', onClickAddRemoveOne));
 })
 
-// ----------------------------------------------
+
+// ---------------------- RATING STARS------------------------
 // when the page product is loaded, we receive from the controller, the averageRating
 // here we convert the number in stars
 function numberToStars(rating) {
@@ -79,3 +80,4 @@ elements.forEach(element => {
       element.innerHTML = numberToStars(userRating)
 });
 
+// ----------------------------------------------

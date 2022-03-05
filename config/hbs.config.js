@@ -66,7 +66,7 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
 })
 
 
-
+// chek if the current User has already posted a comment, if so, dont show the link
 hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
   const { allInfo , currentUser} = options.hash;
   let ccc = allInfo.map (el => el.user.id).some(el => el===currentUser)
@@ -76,3 +76,4 @@ hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
     return options.inverse(this);
   } 
 })
+
