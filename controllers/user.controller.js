@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const mailer = require('../config/mailer.config');
 const Like = require('../models/like.model')
-const Comment = require('../models/comment.model')
+const Comment = require('../models/comment.model');
+const Producto = require('../models/producto.model');
+const Tienda = require('../models/tienda.model');
 
 
 //-------------------------------------------------------------------------------
@@ -101,9 +103,7 @@ module.exports.editPw = (req, res, next) => {
                     renderWithErrors({ password: 'must cntsin 8 char' })
                 }else {
                     User.findByIdAndUpdate(userId, {password:password}, { runValidators: true, new: true})
-                    .then((user)=> {
-                        res.redirect('/editUser')
-                    })
+                    .then((user)=> { res.redirect('/editUser')})
                     .catch((error) => {
                         if (error instanceof mongoose.Error.ValidationError) {
                             res.status(400).render('editUser', { errors: error.errors });
@@ -170,15 +170,17 @@ User.findByIdAndUpdate(req.params.userId,dueño)
 // USER DELETE
 
 module.exports.userDelete = (req, res, next) => {
-    User.findByIdAndDelete(req.params.userId)
-      .then((user) => {
-        console.log('Eliminar User', user)
-        res.redirect(`/`)
-      })
-      .catch(next)
-  }
+    let userId = req.params.userId
+    User.findByIdAndDelete(userId)
+    .then(() => {return Tienda.deleteMany({ownerId: userId })}) 
+    .then(() => {return Producto.deleteMany({ownerId: userId })}) 
+    .then(() => {return Like.deleteMany({user: userId })}) 
+    .then(() => {return Comment.deleteMany({user: userId })}) 
+    .then((user) => { res.redirect(`/`)})
+    .catch(next)
+}
   
-
+//-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 // USER LIKE
 
@@ -187,17 +189,13 @@ module.exports.doLike = (req, res, next) => {
   const prodId = req.params.productId
   const userId = req.user.id
 
-  console.log('Dentro del controaldor')
-
   Like.findOneAndDelete({ producto: prodId, user: userId})
     .then(like => {
       if (like) {
         res.status(200).send({ success : 'Like remove from DDBB'})
       } else {
         return Like.create({ producto: prodId, user: userId })
-          .then(() => {
-            res.status(201).send({ success : 'Like added to DDBB' })
-          })
+          .then(() => {res.status(201).send({ success : 'Like added to DDBB' }) })
       }
     })
     .catch(next)
@@ -212,7 +210,6 @@ module.exports.comment = (req, res, next) => {
     const producto = req.params.productId
     const text = req.body.comment
     const rating = req.body.rating
-    console.log(rating)
 
     const comment = new Comment({
         user: user,
@@ -222,11 +219,8 @@ module.exports.comment = (req, res, next) => {
     });
     
     comment.save()
-      .then((comment) => {
-        //console.log("Comment added to db : ", comment)
-        res.redirect(`/producto/${producto}`)
-      })
-      .catch(next)
+    .then((comment) => {res.redirect(`/producto/${producto}`)})
+    .catch(next)
 }
   
 
@@ -237,13 +231,12 @@ module.exports.commentEdit = (req, res, next) => {
     let newComment = req.body.comment
     let newRating  = req.body.rating
     let commentId  = req.params.commentId
-    console.log(newComment,commentId,newRating)
+    //console.log(newComment,commentId,newRating)
 
-    // let newComment = new Comment({
-    //     comment: newComment,
-    //     rating: newRating
-    // });
-    Comment.findByIdAndUpdate({"_id": commentId}, {"$set":{"comment": newComment,"rating": newRating}} , {runValidators: true})
+    Comment.findByIdAndUpdate(
+        {"_id": commentId}, 
+        {"$set":{"comment": newComment,"rating": newRating}}, 
+        {runValidators: true})
         .then((user) => { res.redirect(`/producto/${productId}`) })
         .catch(next)
 }

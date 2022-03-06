@@ -15,6 +15,13 @@
     <img class="logo-tienda" src="{{tienda.logo}}" alt="">
 </div>
 
+    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+        <a href="/tienda/{{tienda.id}}/edit"   class="btn btn-success mt-1"> edit tienda</a>
+
+        <form method="POST" action="/tienda/{{tienda.id}}/delete">
+            <button type="submit">Delete</button>
+        </form> 
+    {{/ifIsDueño}}
 
 <!-- Swiper Tiendas -->
 <div id='section-tiendas' class="pt-5 pb-5 container mt-5">

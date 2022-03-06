@@ -11,40 +11,36 @@ const Comment = require('../models/comment.model');
 // -------------------------------------------------------------------------------
 //  SHOW TIENDAS AT THE HOME PAGE 
 
-  module.exports.home = (req, res, next) => {
-    Tienda.find()
-      .sort({ createdAt: 'desc' })
-      .limit(6)
-      .then((tiendas) => res.render('misc/home', { tiendas }))
-      .catch((error) => next(error));
-  };
+module.exports.home = (req, res, next) => {
+  Tienda.find()
+    .sort({ createdAt: 'desc' })
+    .limit(6)
+    .then((tiendas) => res.render('misc/home', { tiendas }))
+    .catch((error) => next(error));
+};
 
 
 //  SHOW TIENDA PAGE
 
 module.exports.tienda = (req, res, next) => {
   Tienda.findById(req.params.tiendaId)
-    .then((tienda) => {
-      if (tienda) {
-        Producto.find({tienda:req.params.tiendaId})
-        .then((pro)=> {
-          if (req.user){
-            Like.find({ user: req.user.id})
-              .then((userlikes)=> {
-                return Like.find()
-                .then((allLikes)=> res.render('misc/tienda', {tienda,pro,userlikes,allLikes}))              
-              }) 
-          }
-          else {
-            res.render('misc/tienda', {tienda,pro})
-          }       
-        })
-        .catch(next)
-      } else {
-        res.redirect('/');
-      }
-    })
-    .catch(error => next(error));
+  .then((tienda) => {
+    if (tienda) {
+      Producto.find({tienda:req.params.tiendaId})
+      .then((pro)=> {
+        if (req.user){
+          Like.find({ user: req.user.id})
+          .then((userlikes)=> {
+            return Like.find()
+            .then((allLikes)=> res.render('misc/tienda', {tienda,pro,userlikes,allLikes}))              
+          }) 
+        }
+        else {res.render('misc/tienda', {tienda,pro})}       
+      })
+      .catch(next)
+    } else { res.redirect('/');}
+  })
+  .catch(error => next(error));
 };
 
 // -------------------------------------------------------------------------------
@@ -104,6 +100,7 @@ module.exports.tiendaDesing = (req, res, next) => {
   res.render('misc/tiendaDesing');
 }
 
+
 // TIENDA EDIT - POST FORM
 
 module.exports.tiendaDoEdit = (req, res, next) => {
@@ -132,16 +129,21 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 };
 
 // -------------------------------------------------------------------------------
-// DELETE TIENDA
+// DELETE TIENDA and products,like,comments
 
 module.exports.tiendaDelete = (req, res, next) => {
-  console.log("DELETE", req.user.dueño)
-  Tienda.findByIdAndDelete(req.params.tiendaId)
+  let tiendaId = req.params.tiendaId
+  Tienda.findByIdAndDelete(tiendaId)
   .then(()=> {
     return User.findByIdAndUpdate(req.user, {dueño : "off"})
-    .then(()=> res.redirect('/'))
-    
   })
+  .then(()=> {
+    return Producto.find({tienda :tiendaId})
+  })
+  .then((prod)=> {
+    return prod.forEach(el => deleteProductLikeComm(el.id))
+  })
+  .then(()=> res.redirect('/'))
   .catch(next)
 }
 
@@ -159,7 +161,6 @@ module.exports.productoCreate = (req, res, next) => {
 module.exports.productoDoCreate = (req, res, next) => {
   let tiendaId = req.params.tiendaId
   console.log(tiendaId, req.body)
-
 
   const producto = new Producto({
     ownerId: req.user.id,
@@ -248,15 +249,20 @@ module.exports.productoDoEdit = (req, res, next) => {
 }
 
 // -------------------------------------------------------------------------------
-// PRODUCTO DELETE
+const deleteProductLikeComm = (productoId)=>{
+  Producto.findByIdAndDelete(productoId)
+  .then(() => {return Like.deleteMany({producto: productoId })})  
+  .then(() => {return Comment.deleteMany({producto: productoId })}) 
+  .catch(err => next(err))
+}
+
+
+// PRODUCTO DELETE,like,comments
 
 module.exports.productoDelete = (req, res, next) => {
-  Producto.findByIdAndDelete(req.params.productoId)
-    .then((producto) => {
-      console.log('Eliminar producto', producto)
-      res.redirect(`/tienda/${req.params.tiendaId}`)
-    })
-    .catch(next)
+ 
+    deleteProductLikeComm(req.params.productoId)
+    res.redirect(`/tienda/${req.params.tiendaId}`)
 }
 
 // -------------------------------------------------------------------------------
