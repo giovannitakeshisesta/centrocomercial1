@@ -56,7 +56,7 @@ h5 {
 
 .btn-brand-1 {
     padding: 10px 45px;
-    background: #acff00;
+    background: #acff00 !important;
     color: #000;
     font-family: 'Montserrat';
     text-decoration: none;
@@ -68,6 +68,10 @@ h5 {
     letter-spacing: 1.2px;
     text-transform: uppercase;
     border: none;
+}
+
+.btn-brand-1_width {
+    width: fit-content;
 }
 
 .btn-brand-1_account {
@@ -82,6 +86,8 @@ h5 {
     font-family: 'Montserrat';
     text-decoration: none;
     letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border: none;
 }
 
 .btn-brand-google {
@@ -96,6 +102,14 @@ h5 {
     border-color: #acff00;
 }
 
+#owner-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+}
+
+
 form {
     position: relative;
     z-index: 9999;
@@ -105,6 +119,46 @@ form {
     margin-right: 7px;
 }
 
+button {
+    background-color: transparent !important;
+}
+
+.fa-2x {
+    font-size: 1.5em;
+}
+
+.modal {
+    background: rgba(0, 0, 0, .6);
+}
+
+.modal-content {
+    background: #000;
+    border: 2px solid #acff00;
+    padding: 30px;
+}
+
+.btn-close {
+    background-color: #fff !important;
+}
+
+.modal-header {
+    border: none;
+    padding-bottom: 0;
+}
+
+#message-text,
+.modal-body textarea {
+    background: transparent;
+    color: #fff;
+    padding: 20px;
+}
+
+#message-text:focus,
+.modal-body textarea:focus {
+    color: #fff;
+}
+
+ 
 
 
 /* ----------------- */
@@ -165,11 +219,19 @@ nav {
 
 .logo-tienda {
     position: absolute;
-    width: 200px;
+    width: 300px;
     bottom: 0;
     left: 0;
     object-fit: contain;  
-    background: url();
+    -webkit-animation-name: slideInLeft;
+    animation-name: slideInLeft;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.5s;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    height: 200px;
+    object-fit: cover;
 }
 
 .tienda-productos {
@@ -195,6 +257,30 @@ nav {
     top: auto;
     bottom: 20px;
 }
+
+.productos-liked {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.productos-liked_element {
+    width: 30%;
+    padding-right: 2%;
+    margin-bottom: 25px;
+}
+
+.productos-liked_element a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.productos-liked_element a img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
 
 /* nav Dark */
 
@@ -225,8 +311,7 @@ nav.dark ul {
 
 footer {
     position: relative;
-    height: 100% !important;
-    height: 200px;
+    height: 250px;
     background-color: #acff00;
     margin-top: 150px;
 }
@@ -374,7 +459,8 @@ footer .container {
     height: 500px;
     transition: .5s ease-in-out;
     background-position: center !important;
-    background-size: contain !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 
 .tiendalink-home {
@@ -386,7 +472,7 @@ footer .container {
 }
 
 .tienda-slide:hover {
-    width: 500px !important;
+    width: 600px !important;
     cursor: pointer;
 
 }
@@ -652,18 +738,19 @@ input {
 /* ------------------------------- */
 
 .divLike{
-    background-color: aqua;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: end;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
 }
-.like-button {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    background-color: rgba(26, 216, 9, 0.425);
-    border-radius: 100%;
+
+.icon-liked {
+    color: #e04652;
 }
+
 .like-button p{
     position: absolute;
     left: 50%;
@@ -672,9 +759,6 @@ input {
     color: white;
 }
 
-.icon-liked {
-    color: red;
-}
 
 /* ------------------------------- */
 /* PRODUCT - PAGE 
@@ -727,6 +811,8 @@ input {
 
 .comment-block {
     margin-top: 150px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .comment-block-title{
@@ -747,9 +833,12 @@ input {
 }
 
 .comment-block-element {
+    width: 30%;
     padding: 30px;
     border: 1px solid #acff00 !important;
     border-radius: 4px;
+    margin-right: 2%;
+    margin-bottom: 25px;
 }
 
 .comment-block-description {
@@ -830,3 +919,130 @@ input {
     font-weight: 300;
 }
 
+/* -----------------maps----------------- */
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+        height: 50%;
+      }
+  
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      
+      #origin-input,
+      #destination-input {
+        background-color: #fff !important;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 200px;
+      }
+      
+      #origin-input:focus,
+      #destination-input:focus {
+        border-color: #4d90fe;
+      }
+      
+      #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        margin-left: 12px;
+        padding: 5px 11px 0px 11px;
+      }
+      
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes slideInRight {
+from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+}
+
+to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+}
+
+@keyframes slideInRight {
+from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+}
+
+to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+}
+
+.slideInRight {
+-webkit-animation-name: slideInRight;
+animation-name: slideInRight;
+}
+
+@-webkit-keyframes slideInLeft {
+from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+}
+
+to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+}
+
+@keyframes slideInLeft {
+from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+}
+
+to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+}
+
+.slideInLeft {
+-webkit-animation-name: slideInLeft;
+animation-name: slideInLeft;
+}

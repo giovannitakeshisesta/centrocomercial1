@@ -4,6 +4,15 @@
         <h3>{{tienda.name}}</h3>
         <p class="description">{{tienda.description}}</p>
         <a href="{{tienda.officialWeb}}" class="officialWeb mt-4">{{tienda.officialWeb}}</a>
+        <div id="owner-buttons">
+            {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+                <a href="/tienda/{{tienda.id}}/edit" class="btn-brand-1 mt-1"> edit tienda</a>
+
+                <form method="POST" action="/tienda/{{tienda.id}}/delete">
+                    <button type="submit" class="btn-brand-2">Delete</button>
+                </form> 
+            {{/ifIsDueño}}
+    </div>
     </div>
     <div class="mouse_scroll mouse_scroll_tienda ">
         <div>
@@ -15,21 +24,18 @@
     <img class="logo-tienda" src="{{tienda.logo}}" alt="">
 </div>
 
-    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-        <a href="/tienda/{{tienda.id}}/edit"   class="btn btn-success mt-1"> edit tienda</a>
 
-        <form method="POST" action="/tienda/{{tienda.id}}/delete">
-            <button type="submit">Delete</button>
-        </form> 
-    {{/ifIsDueño}}
 
 <!-- Swiper Tiendas -->
-<div id='section-tiendas' class="pt-5 pb-5 container mt-5">
-  <h3 class="pb-3 small">PRODUCTOS</h3>
+<div id='section-tiendas' class="pt-5 pb-5 mt-5">
+  <h3 class="pb-3 small container">PRODUCTOS</h3>
 
-    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-        <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1 mb-5">añade producto </a>
-    {{/ifIsDueño}}
+
+    <div class="container">
+        {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
+            <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1 mb-5">añade producto </a>
+        {{/ifIsDueño}}
+    </div>
 
     <div class="swiper mySwiper container">
       <div class="swiper-wrapper">
@@ -40,10 +46,10 @@
                     <p>{{producto.name}}</p> 
                         {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
                 </div>
-                <div class="footer-product">
-                    <p>{{producto.description}}</p> 
+                {{!-- <div class="footer-product"> --}}
+                    {{!-- <p>{{producto.description}}</p>  --}}
                         {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
-                </div>    
+                {{!-- </div>     --}}
                 <a href='/producto/{{producto.id}}' class="tiendalink-home"></a>
 
                 {{!-- product like --}}
@@ -55,7 +61,7 @@
                         {{#userLikedProduct likes=../userlikes producto = producto.id}}icon-liked{{/userLikedProduct}}"
                         data-id="{{producto.id}}"
                         >
-                        <p class="pe-none">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
+                        <p class="pe-none" style="opacity: 0;">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
                     </button>
                 </div>
                 {{/if}}
@@ -70,6 +76,8 @@
                 </a>
             </div>
         {{/each}}
+
+        
         
       </div>
     </div>
