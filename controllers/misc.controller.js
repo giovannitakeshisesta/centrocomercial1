@@ -14,7 +14,6 @@ const Comment = require('../models/comment.model');
 module.exports.home = (req, res, next) => {
   Tienda.find()
     .sort({ createdAt: 'desc' })
-    .limit(6)
     .then((tiendas) => res.render('misc/home', { tiendas }))
     .catch((error) => next(error));
 };
