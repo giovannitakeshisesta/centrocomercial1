@@ -1,34 +1,50 @@
+<div id="mapsMainDiv">
+    <div class="container">
+        <div class=" row " >
+        
+            <div class="col-lg-4 col-sm-12">
+                <h4>How to get here</h4>
+                <p>You can find us at the old Matadero in Madrid.</p>
+                <p>Pl. de Legazpi, 8, 28045 Madrid</p>
+                <p>Opening Hours: 10-20 every day</p>
+            </div>
+        
+            <div class="col-lg-8 col-sm-12">
+                {{!-- Google maps --}}
+                <div class="mapsForm " >
+                    <input
+                    id="origin-input"
+                    class="controls"
+                    type="text"
+                    placeholder="Enter an origin location"
+                    />
 
-<br><br><br><br><br><br><br>
-{{!-- Google maps --}}
-<div class="mapsDiv" style="display: none">
-    <input
-    id="origin-input"
-    class="controls"
-    type="text"
-    placeholder="Enter an origin location"
-    />
+                    <input
+                    id="destination-input"
+                    class="controls"
+                    type="text"
+                    placeholder="Enter a destination location"
+                    />
 
-    <input
-    id="destination-input"
-    class="controls"
-    type="text"
-    placeholder="Enter a destination location"
-    />
+                    <div id="mode-selector" class="controls">
+                    <input type="radio" name="type" id="changemode-walking" checked="checked"/>
+                    <label for="changemode-walking">Walking</label>
 
-    <div id="mode-selector" class="controls">
-    <input type="radio" name="type" id="changemode-walking" checked="checked"/>
-    <label for="changemode-walking">Walking</label>
+                    <input type="radio" name="type" id="changemode-transit" />
+                    <label for="changemode-transit">Transit</label>
 
-    <input type="radio" name="type" id="changemode-transit" />
-    <label for="changemode-transit">Transit</label>
+                    <input type="radio" name="type" id="changemode-driving" />
+                    <label for="changemode-driving">Driving</label>
+                    </div>
+                </div>
 
-    <input type="radio" name="type" id="changemode-driving" />
-    <label for="changemode-driving">Driving</label>
+                <div id="map"></div>
+            </div>
+
+    </div>
     </div>
 </div>
 
-<div id="map"></div>
 
 <script src="/js/googleMaps.js"></script>    
 <script
