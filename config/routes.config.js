@@ -74,7 +74,7 @@ router.post('/producto/:productoId/delete/:tiendaId', myMw.isDueño, misc.produc
 router.get('/',  misc.home)
 router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
-router.get('/prueba', (req, res, next) => {  res.render('prueba')})
+router.get('/map', (req, res, next) => {  res.render('map')})
 
 
 module.exports = router 

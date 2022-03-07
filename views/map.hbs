@@ -1,26 +1,7 @@
 
-
-<div style="margin-top: 100px">
-    {{#if currentUser}}
-        {{#ifDueñoisOn  dueño=currentUser.dueño}}
-            <h2>eres el amo!</h2>
-            <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
-            <p>{{currentUser.id}} </p>
-        {{/ifDueñoisOn}}
-
-        {{#ifDueñoisOff dueño=currentUser.dueño}}
-            <h2>eres un User!</h2>
-            <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
-        {{/ifDueñoisOff}}
-
-    {{else}}
-        <h3>no eres ni dueño ni user, solo eres una mierda</h3>
-    {{/if}}
-</div>
-
-
+<br><br><br><br><br><br><br>
 {{!-- Google maps --}}
-<div style="display: none">
+<div class="mapsDiv" style="display: none">
     <input
     id="origin-input"
     class="controls"
@@ -51,9 +32,28 @@
 
 <script src="/js/googleMaps.js"></script>    
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2huYjpFRA9Td5UruS2jAj0pTyrD_atn8&callback=initMap&libraries=places&v=weekly"
     async
 ></script>
 
 
 
+
+{{!-- 
+<div style="margin-top: 100px">
+    {{#if currentUser}}
+        {{#ifDueñoisOn  dueño=currentUser.dueño}}
+            <h2>eres el amo!</h2>
+            <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
+            <p>{{currentUser.id}} </p>
+        {{/ifDueñoisOn}}
+
+        {{#ifDueñoisOff dueño=currentUser.dueño}}
+            <h2>eres un User!</h2>
+            <p>Hello {{currentUser.name}} - - {{currentUser.email}}</p>
+        {{/ifDueñoisOff}}
+
+    {{else}}
+        <h3>no eres ni dueño ni user, solo eres una mierda</h3>
+    {{/if}}
+</div> --}}
