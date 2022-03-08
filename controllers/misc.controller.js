@@ -31,10 +31,10 @@ module.exports.tienda = (req, res, next) => {
           Like.find({ user: req.user.id})
           .then((userlikes)=> {
             return Like.find()
-            .then((allLikes)=> res.render('misc/tienda', {tienda,pro,userlikes,allLikes}))              
+            .then((allLikes)=> res.render('tienda/tienda', {tienda,pro,userlikes,allLikes}))              
           }) 
         }
-        else {res.render('misc/tienda', {tienda,pro})}       
+        else {res.render('tienda/tienda', {tienda,pro})}       
       })
       .catch(next)
     } else { res.redirect('/');}
@@ -46,7 +46,7 @@ module.exports.tienda = (req, res, next) => {
 //  TIENDA CREATE - GET FORM 
 
 module.exports.tiendaCreate = (req, res, next) => {
-  res.render('misc/tiendaCreate')
+  res.render('tienda/tiendaCreate')
 };
 
 
@@ -74,7 +74,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         console.log(error)
-        res.status(400).render('misc/tiendaCreate', {
+        res.status(400).render('tienda/tiendaCreate', {
           errors: error.errors,
           tienda
         });
@@ -90,13 +90,13 @@ module.exports.tiendaDoCreate = (req, res, next) => {
 module.exports.tiendaEdit = (req, res, next) => {
   Tienda.findById(req.params.tiendaId)
     .then((tienda) => {
-      res.render('misc/tiendaEdit', {tienda});
+      res.render('tienda/tiendaEdit', {tienda});
     })
     .catch(next)
 };
 
 module.exports.tiendaDesing = (req, res, next) => {
-  res.render('misc/tiendaDesing');
+  res.render('tienda/tiendaDesing');
 }
 
 
@@ -152,7 +152,7 @@ module.exports.tiendaDelete = (req, res, next) => {
 
 module.exports.productoCreate = (req, res, next) => {
   let tiendaId = req.params.tiendaId
-  res.render('misc/productoCreate', {tiendaId})
+  res.render('producto/productoCreate', {tiendaId})
 };
 
 
@@ -179,7 +179,7 @@ module.exports.productoDoCreate = (req, res, next) => {
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         console.log(error)
-        res.status(400).render(`misc/productoCreate`, {
+        res.status(400).render(`producto/productoCreate`, {
           errors: error.errors,
           producto,
           tiendaId
@@ -210,7 +210,7 @@ module.exports.producto = (req, res, next) => {
         }
       })
       .then((prod)=> {
-          return res.render('misc/producto', {prod,averageRating})
+          return res.render('producto/producto', {prod,averageRating})
         })
     })    
     .catch(next)
@@ -225,7 +225,7 @@ module.exports.productoEdit = (req, res, next) => {
   let tiendaId = req.params.tiendaId
   Producto.findById(req.params.productoId)
     .then( producto => {
-      res.render('misc/productoEdit', { producto ,tiendaId})
+      res.render('producto/productoEdit', { producto ,tiendaId})
     })
     .catch(next)
 }

@@ -1,22 +1,3 @@
-{{!-- <div class="home">
-  <div class="homeTitle">
-    <h1>Welcome to centro commercial!</h1>
-    <h5>Cosas</h5>
-  </div>
-  <div class="homeTiendas">
-    <div class="homeBtnsTiendas">
-      {{#each tiendas as |tienda|}}
-      <div id="btnHomeTienda">
-          <a href="/tienda/{{tienda.id}}">
-          <img class="logoCircle" src="{{tienda.logo}}" alt="logoCircle">
-        </a>
-      </div>
-      {{/each}}
-    </div>
-  </div>
-</div> --}}
-
-
 {{!-- Hero --}}
 <div id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container">
@@ -27,7 +8,7 @@
     </h1>
     <div id="hero-button mt-4">
       <a href="/login" class="btn-brand-1">LOGIN</a>
-      <a href="contact" class="btn-brand-2">CONTACT</a>
+      <a href="/map" class="btn-brand-2">CONTACT</a>
     </div>
   </div>
   <div class="social-media d-flex justify-content-between">
@@ -58,9 +39,7 @@
       {{#each tiendas as |tienda|}}
       
         <div class="swiper-slide tienda-slide" style="background: url({{tienda.image1}});">
-          <a class="tiendalink-home" href="/tienda/{{tienda.id}}">
-          {{!-- <img class="logoCircle" src="{{tienda.logo}}" alt="logoCircle"> --}}
-          </a>
+          <a class="tiendalink-home" href="/tienda/{{tienda.id}}"></a>
         </div>
       {{/each}}
         
@@ -76,8 +55,6 @@
       </div>
     </div>
 </div>
-
-
 
 
 <script>

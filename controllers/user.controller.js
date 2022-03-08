@@ -14,14 +14,14 @@ module.exports.renderEditUser = (req, res, next) => {
     // Like.find({ user: req.user.id })
     // .then((likes) => {
     //   console.log(likes)
-    //   res.render("editUser", { likes })
+    //   res.render("user/editUser", { likes })
     // })
     // .catch(next)
 
     // con populate
     // User.findById(req.user.id)
     // .populate('likes')
-    // .then((user)=> res.render("editUser",{user}))
+    // .then((user)=> res.render("user/editUser",{user}))
     // .catch(next)
 
     // con multiple populate
@@ -35,7 +35,7 @@ module.exports.renderEditUser = (req, res, next) => {
             }
         }
     })
-    .then((user)=> res.render("editUser",{user}))
+    .then((user)=> res.render("user/editUser",{user}))
     .catch(next)
 }
 
@@ -50,7 +50,7 @@ User.findByIdAndUpdate(req.params.userId,newName,{ runValidators: true})
     })
     .catch((error) => {
     if (error instanceof mongoose.Error.ValidationError) {
-        res.status(400).render('editUser', { errors: error.errors });
+        res.status(400).render('user/editUser', { errors: error.errors });
     } else {
         next(error);
     }
@@ -69,7 +69,7 @@ module.exports.editUserImage = (req, res, next) => {
         })
         .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
-            res.status(400).render('editUser', { errors: error.errors });
+            res.status(400).render('user/editUser', { errors: error.errors });
         } else {
             next(error);
         }
@@ -78,7 +78,7 @@ module.exports.editUserImage = (req, res, next) => {
 
 
 //-------------------------------------------------------------------------------
-// USER EDIT PASSWORD  no hashea la pw....
+// USER EDIT PASSWORD 
 
 module.exports.editPw = (req, res, next) => {
     let userId = req.params.userId
@@ -88,7 +88,7 @@ module.exports.editPw = (req, res, next) => {
 
     const renderWithErrors = (errors) => {
         console.log(errors)
-        res.render('editUser', {errors})
+        res.render('user/editUser', {errors})
     }
 
     User.findById(userId)
@@ -100,13 +100,16 @@ module.exports.editPw = (req, res, next) => {
             } 
             else {
                 if (password.length<8){
-                    renderWithErrors({ password: 'must cntsin 8 char' })
+                    renderWithErrors({ password: 'must contain 8 char' })
                 }else {
                     User.findByIdAndUpdate(userId, {password:password}, { runValidators: true, new: true})
-                    .then((user)=> { res.redirect('/editUser')})
+                    .then((user)=> { 
+                        req.flash('flashMessage', `Password updated succesfully`)
+                        res.redirect('/editUser')
+                    })
                     .catch((error) => {
                         if (error instanceof mongoose.Error.ValidationError) {
-                            res.status(400).render('editUser', { errors: error.errors });
+                            res.status(400).render('user/editUser', { errors: error.errors });
                         } else {
                             next(error);
                         }
@@ -127,7 +130,7 @@ module.exports.sendEmail = (req, res, next) => {
     //console.log(req.body.email, req.params.userId)
     User.findById(req.params.userId)
     .then((user)=> {
-        //console.log(user.activationToken)
+        //console.log("Chek your inbox! Logged out!",user.activationToken)
         mailer.sendChangeEmail(req.body.email, user.activationToken)
         req.flash('flashMessage', `Chek your inbox! Logged out!   See you soon!`)
         req.logout();
