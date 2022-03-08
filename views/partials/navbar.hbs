@@ -14,23 +14,29 @@
             <a class="nav-link" href="/logout">Log out</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/editUser">Account</a>
+            <a class="nav-link" href="/editUser">Profile</a>
           </li>
+          {{#ifDueñoisOn dueño=currentUser}}
+            <li class="nav-item">
+              <a class="nav-link" href="/tienda/create">Create Shop</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/tienda/create">Create Shop</a>
+            </li>
+          {{/ifDueñoisOn }}
+
           {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
+            <a class="nav-link" href="/register">Sign in</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Tiendas</a>
-          </li>
         {{/if}}
           <li class="nav-item">
-            <a class="nav-link" href="/map">Map</a>
+            <a class="nav-link" href="/map">Contact</a>
           </li>
-          
       </ul>
     </div>
   </div>

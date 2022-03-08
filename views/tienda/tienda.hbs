@@ -1,5 +1,5 @@
 <div id="tienda">
-    <div class="tiendaImg" style="background: url('{{tienda.image1}}')"></div>
+    <div class="tiendaImg" style="background: url('{{tienda.image}}')"></div>
     <div class="tienda-info">
         <h3>{{tienda.name}}</h3>
         <p class="description">{{tienda.description}}</p>
@@ -41,7 +41,7 @@
       <div class="swiper-wrapper">
 
         {{#each pro as | producto |}}
-            <div class="swiper-slide product-slide" style="background: url({{producto.image1}});">
+            <div class="swiper-slide product-slide">
                 <div class="head-product">
                     <p>{{producto.name}}</p> 
                         {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
@@ -50,7 +50,7 @@
                     {{!-- <p>{{producto.description}}</p>  --}}
                         {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
                 {{!-- </div>     --}}
-                <a href='/producto/{{producto.id}}' class="tiendalink-home"></a>
+                <a href='/producto/{{producto.id}}' class="tiendalink-home" style="background: url({{producto.image1}});"></a>
 
                 {{!-- product like --}}
                 {{#if ../currentUser}}

@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
   },
   image:{
     type : String,
-    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1644841363/ironhack/multer-example/avatar.png'
+    default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1646770000/ironhack/centro-comercial/nmkp3zxtgrfu8udfj9xw.jpg'
   },
   // node mailer, when mail confirmed the active key switch to active
   active: {

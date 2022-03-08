@@ -1,10 +1,12 @@
 <div id="tiendaForm" class="d-flex justify-content-center">
   <div class="form-block">
-    <h3 class="mb-4 small">Create Shop</h3>
+    
 
     {{#if edit }}
+      <h3 class="mb-4 small">Edit Shop</h3>
       <form action="/tienda/{{tienda.id}}/edit" method="POST" enctype="multipart/form-data" class="form">
     {{else}}
+      <h3 class="mb-4 small">Create Shop</h3>
       <form action="/tienda/create"             method="POST" enctype="multipart/form-data" class="form">
     {{/if}}
 
@@ -100,7 +102,7 @@
       --}}
 
       {{!-- Categories --}}
-      <div class="form-group mt-5">
+      {{!-- <div class="form-group mt-5">
         <div class="input-contain mt-3 mb-4 mt-0">
           <input 
             type="text" 
@@ -117,10 +119,9 @@
           {{#if errors.categories }}
             <span class="invalid-input">*{{errors.categories.message}}</span>
           {{else}}
-            {{!-- <span>*Required</span> --}}
           {{/if}}
         </div>
-      </div>
+      </div> --}}
 
 
       {{!-- Oficial Web --}}
@@ -213,7 +214,7 @@
 
 
       {{!-- Image 1 --}}
-      <div class="form-group mt-5">
+      {{!-- <div class="form-group mt-5">
         <div class="input-contain mt-3 mb-4 mt-0">
           <input 
             type="text" 
@@ -233,7 +234,7 @@
             <span>*Required</span>
           {{/if}}
         </div>
-      </div>
+      </div> --}}
 
       {{!-- <div class="form-group mb-2">
         <label for="image2">image2</label>
@@ -249,7 +250,7 @@
       </div> --}}
 
       {{!-- Image 2 --}}
-      <div class="form-group mt-5">
+      {{!-- <div class="form-group mt-5">
         <div class="input-contain mt-3 mb-4 mt-0">
           <input 
             type="text" 
@@ -266,10 +267,9 @@
           {{#if errors.image2 }}
             <span class="invalid-input">*{{errors.image2.message}}</span>
           {{else}}
-            {{!-- <span>*Required</span> --}}
           {{/if}}
         </div>
-      </div>
+      </div> --}}
 
 
       {{!-- Drag Img --}}

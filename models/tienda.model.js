@@ -29,14 +29,14 @@ const tiendaSchema = new Schema({
     required: [true, 'A logo is required'],
     default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645129550/ironhack/multer-example/icon-round-logo.png'
   },
-  image1: {
-    type: String,
-    default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645380028/ironhack/multer-example/images_zalqux.jpg'
-  },
-  image2: {
-    type: String,
-    default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645380207/ironhack/multer-example/image2_xjz29k.jpg'
-  },
+  // image1: {
+  //   type: String,
+  //   default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645380028/ironhack/multer-example/images_zalqux.jpg'
+  // },
+  // image2: {
+  //   type: String,
+  //   default: 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645380207/ironhack/multer-example/image2_xjz29k.jpg'
+  // },
   image: {
     type : String,
     default : 'https://res.cloudinary.com/dly7e46yt/image/upload/v1645721993/ironhack/multer-example/Screenshot_2022-02-24_at_17.58.02_on3sp3.png'

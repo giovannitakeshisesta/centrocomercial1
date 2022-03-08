@@ -22,6 +22,7 @@
 
 
                 {{/if}}
+                <a href="/tienda/{{prod.tienda}}" class="btn-brand-2 input-createTienda btn-brand-2_width">back to the shop</a>
                   <div class="mouse_scroll mouse_scroll_producto">
                     <div>
                         <span class="m_scroll_arrows unu"></span>
@@ -29,20 +30,27 @@
                         <span class="m_scroll_arrows trei"></span>
                     </div>
                 </div> 
-                <a href="/tienda/{{prod.tienda}}" class="btn btn-primary">back to the shop</a>
             </div>
         </div>
+
+
+    <div class="editDelete-product">
+
+        {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=prod.ownerId}}
+        <div>
+            <a href="/producto/{{prod.id}}/edit/{{prod.tienda}}" class="btn-brand-1"> edit </a>               
+        </div>
+
+        <form method="POST" action="/producto/{{prod.id}}/delete/{{prod.tienda}}">
+            <button type="submit" class="btn-brand-2">Delete</button>
+        </form>   
+        {{/ifIsDueño}}
+
+    </div>
     </div>
 
-    {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=prod.ownerId}}
-    <div>
-        <a href="/producto/{{prod.id}}/edit/{{prod.tienda}}" class="btn btn-success mt-1"> edit </a>               
-    </div>
 
-    <form method="POST" action="/producto/{{prod.id}}/delete/{{prod.tienda}}">
-        <button type="submit">Delete</button>
-    </form>   
-    {{/ifIsDueño}}
+
 
     {{!-- -------------------------- --}}
     {{!-- COMMENT AND STARS  --}}
