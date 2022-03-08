@@ -9,24 +9,30 @@ hbs.registerHelper('ifIsDueño', function (options) {
       return options.inverse(this);
     }
   })
+
+
 // check if the user key "dueño" has "on" value
 hbs.registerHelper('ifDueñoisOn', function (options) {
   const { dueño } = options.hash;
-  if (dueño && dueño === "on") {
+  if (dueño && dueño === 'on') {
     return options.fn(this);
   } else {
     return options.inverse(this);
   }
 })
+
+
 // check if the user key "dueño" has "off" value
 hbs.registerHelper('ifDueñoisOff', function (options) {
   const { dueño } = options.hash;
-  if (dueño && dueño === "off") {
+  if (dueño && dueño === 'off') {
     return options.fn(this);
   } else {
     return options.inverse(this);
   }
 })
+
+
 // show in red the likes of the current user
 hbs.registerHelper('userLikedProduct', function (options) {
   const { producto, likes } = options.hash;
@@ -36,6 +42,8 @@ hbs.registerHelper('userLikedProduct', function (options) {
     return options.inverse(this);
   }
 })
+
+
 // count all likes of each product
 hbs.registerHelper('countLikes', function (options) {
   const { producto , allLikes} = options.hash;
@@ -44,6 +52,8 @@ hbs.registerHelper('countLikes', function (options) {
     return sum
   }
 })
+
+
 // check if the comment is of the current User
 hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
   const { idUserWhoCommented , currentUserId} = options.hash;
@@ -53,6 +63,8 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
       return options.inverse(this);
     }  
 })
+
+
 // chek if the current User has already posted a comment, if so, dont show the link
 hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
   const { allInfo , currentUser} = options.hash;
@@ -66,16 +78,12 @@ hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
 
 
 
-
-// hbs.registerHelper('checked', function (options) {
-//   const { value } = options.hash;
-//   console.log(value)
-//   document.querySelectorAll(`[value="${value}"]`).checked = true;
-//   //if(value==5){ return console.log("hola")}
-//   //document.getElementById("10").checked = true
-  
-//   //   return options.fn(this);
-//   // } else {
-//   //   return options.inverse(this);
-//   // } 
-// })
+// chek if the current User has logged with socials, if so, dont show the link
+hbs.registerHelper('ifLoginSocial', function (options) {
+  const { social} = options.hash;
+  if (!social){
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  } 
+})
