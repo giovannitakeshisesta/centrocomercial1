@@ -106,7 +106,7 @@ passport.use('google-auth', new GoogleStrategy(
 passport.use('GitHubStrategy', new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "/auth/github/callback"
+    callbackURL: process.env.GITHUB_REDIRECT_URI || "/auth/github/callback"
   },
   (accessToken, refreshToken, profile, next)=> {
     loginSocial(profile,next)
