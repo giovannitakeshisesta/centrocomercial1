@@ -21,6 +21,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/tienda/your/{{currentUser.id}}">Your Shop</a>
               </li>
+            {{else}}
+              <li class="nav-item">
+                <a class="nav-link" href="/tienda/create">Open your shop!</a>
+              </li>
             {{/ifDueñoisOn }}
 
         {{else}}
@@ -34,6 +38,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/map">Contacts</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/allTiendas">Tiendas</a>
+        </li>        
 
       </ul>
     </div>
