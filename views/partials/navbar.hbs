@@ -15,6 +15,10 @@
               <li class="nav-item">
                 <a class="nav-link btn-brand-3" href="/tienda/your/{{currentUser.id}}">Your Shop</a>
               </li>
+            {{else}}
+              <li class="nav-item">
+                <a class="nav-link" href="/tienda/create">Open your shop!</a>
+              </li>
             {{/ifDueñoisOn }}
 
             <li class="nav-item">
@@ -35,6 +39,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/map">Contact</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/allTiendas">Tiendas</a>
+        </li>        
 
       </ul>
     </div>

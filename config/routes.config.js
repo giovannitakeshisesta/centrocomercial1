@@ -74,6 +74,8 @@ router.post('/producto/:productoId/delete/:tiendaId', myMw.isDueño, misc.produc
 //----------------------------------------------------------------------
 // ------- MISC ROUTES -------
 router.get('/',  misc.home)
+router.get('/allTiendas',  misc.allTiendas)
+
 router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
 router.get('/map', (req, res, next) => {  res.render('misc/map')})

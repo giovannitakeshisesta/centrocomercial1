@@ -312,3 +312,11 @@ module.exports.yourTienda = (req, res, next) => {
 
 
 // -------------------------------------------------------------------------------
+
+module.exports.allTiendas = (req, res, next) => {
+  Tienda.find()
+    .sort({ createdAt: 'desc' })
+    .then((tiendas) => res.render('misc/allTiendas', { tiendas }))
+    .catch((error) => next(error));
+};
+
