@@ -1,6 +1,6 @@
 
 const httpClient = axios.create({
-  baseURL: 'https://ih-centrocomercial.herokuapp.com' ||'http://localhost:3000'
+  baseURL: AXIOS_URI ||'http://localhost:3000'
 })
 
 
