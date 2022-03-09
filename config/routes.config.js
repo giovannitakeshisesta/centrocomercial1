@@ -38,7 +38,7 @@ router.post('/editUser/:userId/editUserImage',  myMw.isTheUser, upload.single('i
 router.post('/editUser/:userId/editEmail',      myMw.isTheUser, user.sendEmail)
 router.get ('/editUser/editmail/:token/:email', myMw.isNotAuth, user.editEmail)
 router.post('/editUser/:userId/editPw',         myMw.isTheUser, user.editPw)
-router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
+//router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 
 //----------------------------------------------------------------------
@@ -56,6 +56,8 @@ router.post('/tienda/create',           myMw.isAuth , upload.single('image'), mi
 router.get ('/tienda/:tiendaId/edit',   myMw.isDueño, misc.tiendaEdit)
 router.post('/tienda/:tiendaId/edit',   myMw.isDueño, upload.single('image'), misc.tiendaDoEdit)
 router.post('/tienda/:tiendaId/delete', myMw.isDueño, misc.tiendaDelete)
+router.get('/tienda/your/:userId',     misc.yourTienda)
+
 
 // routa para generar diseño sin claves cloudinari - edu
 router.get('/tienda/',                  misc.tiendaDesing)

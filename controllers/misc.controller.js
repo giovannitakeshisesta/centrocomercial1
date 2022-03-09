@@ -5,11 +5,8 @@ const User = require('../models/user.model');
 const Like = require('../models/like.model');
 const Comment = require('../models/comment.model');
 
-
-
-
 // -------------------------------------------------------------------------------
-//  SHOW TIENDAS AT THE HOME PAGE 
+//  SHOW  ALL TIENDAS AT THE HOME PAGE 
 
 module.exports.home = (req, res, next) => {
   Tienda.find()
@@ -19,7 +16,8 @@ module.exports.home = (req, res, next) => {
 };
 
 
-//  SHOW TIENDA PAGE
+// -------------------------------------------------------------------------------
+//  SHOW ONE TIENDA PAGE
 
 module.exports.tienda = (req, res, next) => {
   Tienda.findById(req.params.tiendaId)
@@ -41,6 +39,7 @@ module.exports.tienda = (req, res, next) => {
   })
   .catch(error => next(error));
 };
+
 
 // -------------------------------------------------------------------------------
 //  TIENDA CREATE - GET FORM 
@@ -70,6 +69,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
 
   tienda
     .save()
+    .then(()=> { return User.findByIdAndUpdate(req.user, {dueño : "on"}) })
     .then(() => res.redirect('/'))
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -83,6 +83,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
       }
     });
 };
+
 
 // -------------------------------------------------------------------------------
 // TIENDA EDIT - GET FORM
@@ -119,13 +120,19 @@ module.exports.tiendaDoEdit = (req, res, next) => {
 
     })
     .catch((error) => {
+      console.log("ASDASDASDASDASDASD",error)
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(400).redirect(`/tienda/${tiendaId}/edit`);
+        Tienda.findById(tiendaId)
+        .then((tienda) => {
+          res.render('tienda/tiendaEdit', {tienda,errors: error.errors});
+        })
+        .catch(next)
       } else {
         next(error);
       }
     });
 };
+
 
 // -------------------------------------------------------------------------------
 // DELETE TIENDA and products,like,comments
@@ -147,6 +154,8 @@ module.exports.tiendaDelete = (req, res, next) => {
 }
 
 
+
+// -------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------
 //  PRODUCTO CREATE - GET FORM 
 
@@ -230,17 +239,24 @@ module.exports.productoEdit = (req, res, next) => {
     .catch(next)
 }
 
+
 // PRODUCTO EDIT . POST FORM
 module.exports.productoDoEdit = (req, res, next) => {
   let productoId = req.params.productoId
+  let tiendaId = req.params.tiendaId
 
   Producto.findByIdAndUpdate(productoId, req.body, { runValidators: true, new: true } )
-    .then(producto => {
-      res.redirect(`/producto/${producto.id}`)
-    })
+  
+    .then(() => { res.redirect(`/producto/${productoId}`)})
+
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(400).redirect(`/producto/${productoId}/edit`);
+        Producto.findById(productoId)
+        .then( producto => {
+          res.render('producto/productoEdit', { producto ,tiendaId, errors: error.errors})
+        })
+        .catch(next)
+
       } else {
         next(error);
       }
@@ -263,5 +279,36 @@ module.exports.productoDelete = (req, res, next) => {
     deleteProductLikeComm(req.params.productoId)
     res.redirect(`/tienda/${req.params.tiendaId}`)
 }
+
+
+
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
+// Show your (user) tienda
+module.exports.yourTienda = (req, res, next) => {
+  const userId = req.params.userId
+  Tienda.findOne({ownerId : userId})
+  .then((tienda)=>{
+    const tiendaId = tienda.id
+
+    if (tienda) {
+      Producto.find({tienda:tiendaId})
+      .then((pro)=> {
+        if (req.user){
+          Like.find({ user: req.user.id})
+          .then((userlikes)=> {
+            return Like.find()
+            .then((allLikes)=> res.render('tienda/tienda', {tienda,pro,userlikes,allLikes}))              
+          }) 
+        }
+        else {res.render('tienda/tienda', {tienda,pro})}       
+      })
+      .catch(next)
+    } else { res.redirect('/');}
+
+  })
+  .catch(err => next(err))
+}
+
 
 // -------------------------------------------------------------------------------

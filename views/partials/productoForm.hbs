@@ -8,12 +8,14 @@
       <h3 class="mb-2 small">Add product</h3>
       <form action="/producto/{{tiendaId}}/create"  method="POST">
     {{/if}}
+    
       {{!-- NAME --}}
       <div class="form-group mb-1">
         <label for="name">Name</label>
         <input name="name" type="text" id="name" placeholder="Enter name"
           class="form-control {{#if errors.name}}is-invalid{{/if}}" 
           value="{{ producto.name }}"
+          required
         >
         {{#if errors.name}}
           <div class="invalid-feedback">
@@ -22,19 +24,25 @@
         {{/if}}
       </div>
 
+
       {{!-- DESCRIPCION --}}
+      <p>{{ producto.description }}</p>
       <div class="form-group mb-1">
         <label for="description">description</label>
-        <input name="description" type="text" id="description" placeholder="Enter description"
+        <textarea 
+          name="description" type="text" id="description" placeholder="Enter description"
           class="form-control {{#if errors.description}}is-invalid{{/if}}" 
-          value="{{ producto.description }}"
-        >
+          {{!-- value="{{ producto.description }}" --}}
+          required
+          rows="4">{{producto.description }}</textarea>
+        
         {{#if errors.description}}
           <div class="invalid-feedback">
             {{errors.description.message}}
           </div>
         {{/if}}
       </div>
+
 
       {{!-- PRECIO --}}
       <div class="form-group mb-1">
@@ -45,7 +53,7 @@
         >
         {{#if errors.precio}}
           <div class="invalid-feedback">
-            {{errors.precio.message}}
+            price is required
           </div>
         {{/if}}
       </div>
@@ -56,6 +64,7 @@
         <input name="image1" type="text" id="image1" placeholder="Enter image1"
           class="form-control {{#if errors.image1}}is-invalid{{/if}}" 
           value="{{ producto.image1 }}"
+          required
         >
         {{#if errors.image1}}
           <div class="invalid-feedback">
@@ -64,22 +73,23 @@
         {{/if}}
       </div>
 
-      {{!-- IMAGE 2--}}
-      {{!-- <div class="form-group mb-1">
-        <label for="image2">image2</label>
-        <input name="image2" type="text" id="image2" placeholder="Enter image2"
-          class="form-control {{#if errors.image2}}is-invalid{{/if}}" 
-          value="{{ producto.image2 }}"
-        >
-        {{#if errors.image2}}
-          <div class="invalid-feedback">
-            {{errors.image2.message}}
-          </div>
-        {{/if}}
-      </div> --}}
-
       <button type="submit" class="btn-brand-1 mt-3">Send</button>
 
     </form>
   </div>
 </div>
+
+
+{{!-- IMAGE 2--}}
+{{!-- <div class="form-group mb-1">
+  <label for="image2">image2</label>
+  <input name="image2" type="text" id="image2" placeholder="Enter image2"
+    class="form-control {{#if errors.image2}}is-invalid{{/if}}" 
+    value="{{ producto.image2 }}"
+  >
+  {{#if errors.image2}}
+    <div class="invalid-feedback">
+      {{errors.image2.message}}
+    </div>
+  {{/if}}
+</div> --}}

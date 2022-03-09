@@ -8,12 +8,12 @@ const tiendaSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Name is required'],
-    minlength: [3, 'Enter at least 10 characters ']
+    minlength: [3, 'Enter at least 3 characters ']
   },
   description: {
     type: String,
-    //minlength: [10, 'Enter at least 10 characters '],
-    default : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+    minlength: [10, 'Enter at least 10 characters '],
+    required : [true, 'A description is required']
   },
   categories: {
     type: [String],

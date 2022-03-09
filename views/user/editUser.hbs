@@ -80,10 +80,12 @@
 
 
                 {{#ifDueñoisOff dueño = currentUser.dueño}}
-                <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
-                    {{!-- <label for="abretienda" class="label-createTienda mt-5"> Create a new shop</label> --}}
+                <a href="/tienda/create">Open your Shop</a>
+                
+                {{!-- <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
+                    <label for="abretienda" class="label-createTienda mt-5"> Create a new shop</label>
                     <button type="submit" class="btn-brand-2 input-createTienda">Open your Shop!</button>
-                </form> 
+                </form>  --}}
                 
                 {{/ifDueñoisOff}}
 

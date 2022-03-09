@@ -41,9 +41,38 @@
             <a href="/producto/{{prod.id}}/edit/{{prod.tienda}}" class="btn-brand-1"> edit </a>               
         </div>
 
-        <form method="POST" action="/producto/{{prod.id}}/delete/{{prod.tienda}}">
+
+        {{!-- DELETE PRODUCTO --}}
+        <button type="button" class="btn-brand-1 delete-producto-button" data-bs-toggle="modal" data-bs-target="#delete-productoModal">
+        Delete 
+        </button>
+
+        {{!-- DELETE PRODUCTO MODAL--}}
+        <div class="modal fade" id="delete-productoModal" tabindex="-1" aria-labelledby="delete-productoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-productoModalLabel">Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                Are you Sure? 
+            </div>
+
+            <div class="modal-footer">
+                    <form method="POST" action="/producto/{{prod.id}}/delete/{{prod.tienda}}">
+                    <button type="submit" class="btn-brand-1">Delete</button>
+                </form> 
+            </div>
+
+        </div>
+        </div>
+        </div>
+        {{!-- 
             <button type="submit" class="btn-brand-2">Delete</button>
-        </form>   
+        </form>    --}}
         {{/ifIsDueño}}
 
     </div>
