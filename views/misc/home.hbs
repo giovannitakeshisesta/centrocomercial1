@@ -13,9 +13,10 @@
     </div>
 
     {{#ifDueñoisOff dueño=currentUser.dueño}}
-    <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
+    <a href="/tienda/create">Open your Shop</a>
+    {{!-- <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
         <button type="submit" class="btn-brand-2 input-createTienda">Open your Shop!</button>
-    </form> 
+    </form>  --}}
     {{/ifDueñoisOff }}
   </div>
 

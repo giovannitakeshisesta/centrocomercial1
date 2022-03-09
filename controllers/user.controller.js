@@ -160,14 +160,14 @@ module.exports.editEmail = (req, res, next) => {
 //-------------------------------------------------------------------------------
 // USER ABRE TIENDA
 
-module.exports.abretienda = (req, res, next) => {
-let dueño = {dueño : "on"}
-User.findByIdAndUpdate(req.params.userId,dueño)
-    .then((user) => {
-    res.redirect('/tienda/create')
-    })
-    .catch(next)
-}
+// module.exports.abretienda = (req, res, next) => {
+// let dueño = {dueño : "on"}
+// User.findByIdAndUpdate(req.params.userId,dueño)
+//     .then((user) => {
+//     res.redirect('/tienda/create')
+//     })
+//     .catch(next)
+// }
 
 //-------------------------------------------------------------------------------
 // USER DELETE

@@ -38,7 +38,7 @@ router.post('/editUser/:userId/editUserImage',  myMw.isTheUser, upload.single('i
 router.post('/editUser/:userId/editEmail',      myMw.isTheUser, user.sendEmail)
 router.get ('/editUser/editmail/:token/:email', myMw.isNotAuth, user.editEmail)
 router.post('/editUser/:userId/editPw',         myMw.isTheUser, user.editPw)
-router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
+//router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 
 //----------------------------------------------------------------------
