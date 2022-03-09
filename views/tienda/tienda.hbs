@@ -6,11 +6,36 @@
         <a href="{{tienda.officialWeb}}" class="officialWeb mt-4">{{tienda.officialWeb}}</a>
         <div id="owner-buttons">
             {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-                <a href="/tienda/{{tienda.id}}/edit" class="btn-brand-1 mt-1"> edit tienda</a>
+                <a href="/tienda/{{tienda.id}}/edit" class="btn-brand-1 mt-1"> Edit Shop</a>
 
-                <form method="POST" action="/tienda/{{tienda.id}}/delete">
-                    <button type="submit" class="btn-brand-2">Delete</button>
-                </form> 
+                {{!-- DELETE TIENDA --}}
+                <button type="button" class="btn-brand-1 delete-tienda-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete shop
+                </button>
+
+                {{!-- DELETE TIENDA MODAL--}}
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Shop</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you Sure? 
+                    </div>
+
+                    <div class="modal-footer">
+                         <form method="POST" action="/tienda/{{tienda.id}}/delete">
+                            <button type="submit" class="btn-brand-1">Delete</button>
+                        </form> 
+                    </div>
+
+                </div>
+                </div>
+                </div>
             {{/ifIsDueño}}
     </div>
     </div>
@@ -28,28 +53,25 @@
 
 <!-- Swiper Tiendas -->
 <div id='section-tiendas' class="pt-5 pb-5 mt-5">
-  <h3 class="pb-3 small container">PRODUCTOS</h3>
-
+    {{#if pro}}
+    <h3 class="pb-3 small container">PRODUCTOS</h3>
+    {{/if}}
 
     <div class="container">
         {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=tienda.ownerId}}
-            <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1 mb-5">añade producto </a>
+            <a href="/producto/{{tienda.id}}/create" class="createProduct btn-brand-1 mt-1 mb-5">Add product</a>
         {{/ifIsDueño}}
     </div>
 
     <div class="swiper mySwiper container">
-      <div class="swiper-wrapper">
+    <div class="swiper-wrapper">
 
         {{#each pro as | producto |}}
             <div class="swiper-slide product-slide">
                 <div class="head-product">
                     <p>{{producto.name}}</p> 
-                        {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
                 </div>
-                {{!-- <div class="footer-product"> --}}
-                    {{!-- <p>{{producto.description}}</p>  --}}
-                        {{!-- <img class="logoCircle" src="{{producto.image2}}" alt=""> --}}
-                {{!-- </div>     --}}
+        
                 <a href='/producto/{{producto.id}}' class="tiendalink-home" style="background: url({{producto.image1}});"></a>
 
                 {{!-- product like --}}
@@ -68,11 +90,7 @@
             </div>
         {{/each}}
 
-
-
-        
-        
-      </div>
+    </div>
     </div>
 </div>
 

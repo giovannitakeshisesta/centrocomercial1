@@ -18,7 +18,7 @@ module.exports.home = (req, res, next) => {
     .catch((error) => next(error));
 };
 
-
+// -------------------------------------------------------------------------------
 //  SHOW TIENDA PAGE
 
 module.exports.tienda = (req, res, next) => {
@@ -265,3 +265,30 @@ module.exports.productoDelete = (req, res, next) => {
 }
 
 // -------------------------------------------------------------------------------
+
+
+// Show your (user) tienda
+module.exports.yourTienda = (req, res, next) => {
+  const userId = req.params.userId
+  Tienda.findOne({ownerId : userId})
+  .then((tienda)=>{
+    const tiendaId = tienda.id
+
+    if (tienda) {
+      Producto.find({tienda:tiendaId})
+      .then((pro)=> {
+        if (req.user){
+          Like.find({ user: req.user.id})
+          .then((userlikes)=> {
+            return Like.find()
+            .then((allLikes)=> res.render('tienda/tienda', {tienda,pro,userlikes,allLikes}))              
+          }) 
+        }
+        else {res.render('tienda/tienda', {tienda,pro})}       
+      })
+      .catch(next)
+    } else { res.redirect('/');}
+
+  })
+  .catch(err => next(err))
+}

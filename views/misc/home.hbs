@@ -6,17 +6,26 @@
       <span class="montserrat color-brand">exclusive</span> products <span class="color-brand">&</span><br>
       <span class="">trendy</span> brands
     </h1>
+
     <div id="hero-button mt-4">
       <a href="/login" class="btn-brand-1">LOGIN</a>
       <a href="/map" class="btn-brand-2">CONTACT</a>
     </div>
+
+    {{#ifDueñoisOff dueño=currentUser.dueño}}
+    <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
+        <button type="submit" class="btn-brand-2 input-createTienda">Open your Shop!</button>
+    </form> 
+    {{/ifDueñoisOff }}
   </div>
+
   <div class="social-media d-flex justify-content-between">
     <a href="#instagram">Instagram</a>
     <a href="#facebook">Facebook</a>
     <a href="#linkedin">Linkedin</a>
     <a href="#twitter">Twitter</a>
   </div>
+
   <div class="mouse_scroll">
 		<div>
 			<span class="m_scroll_arrows unu"></span>
