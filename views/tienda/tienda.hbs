@@ -72,7 +72,7 @@
                     <p>{{producto.name}}</p> 
                 </div>
         
-                <a href='/producto/{{producto.id}}' class="tiendalink-home" style="background: url({{producto.image1}});"></a>
+                <a href='/producto/{{producto.id}}' class="tiendalink-home {{#if ../currentUser}}noFullHeight{{/if}}" style="background: url({{producto.image1}});"></a>
 
                 {{!-- product like --}}
                 {{#if ../currentUser}}
