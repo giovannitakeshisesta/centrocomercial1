@@ -1,7 +1,5 @@
 
-const httpClient = axios.create({
-  baseURL: AXIOS_URI ||'http://localhost:3000'
-})
+const httpClient = axios.create({})
 
 
 
