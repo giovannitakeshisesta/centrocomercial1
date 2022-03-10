@@ -52,9 +52,9 @@ router.post('/comment/delete/:commentId/:productId/:userId',myMw.isTheUser, user
 // ------- OWNER ROUTES -------
 // Tienda 
 router.get ('/tienda/create',           myMw.isAuth , misc.tiendaCreate)
-router.post('/tienda/create',           myMw.isAuth , upload.single('image'), misc.tiendaDoCreate)
+router.post('/tienda/create',           myMw.isAuth , upload.any('image','logo'), misc.tiendaDoCreate)
 router.get ('/tienda/:tiendaId/edit',   myMw.isDueño, misc.tiendaEdit)
-router.post('/tienda/:tiendaId/edit',   myMw.isDueño, upload.single('image'), misc.tiendaDoEdit)
+router.post('/tienda/:tiendaId/edit',   myMw.isDueño, upload.any('image','logo'), misc.tiendaDoEdit)
 router.post('/tienda/:tiendaId/delete', myMw.isDueño, misc.tiendaDelete)
 router.get('/tienda/your/:userId',     misc.yourTienda)
 
@@ -65,9 +65,9 @@ router.get('/tienda/',                  misc.tiendaDesing)
 
 // Productos 
 router.get ('/producto/:tiendaId/create',             myMw.isDueño, misc.productoCreate)
-router.post('/producto/:tiendaId/create',             myMw.isDueño, misc.productoDoCreate)
+router.post('/producto/:tiendaId/create',             myMw.isDueño, upload.single('image1'), misc.productoDoCreate)
 router.get ('/producto/:productoId/edit/:tiendaId',   myMw.isDueño, misc.productoEdit)
-router.post('/producto/:productoId/edit/:tiendaId',   myMw.isDueño, misc.productoDoEdit)
+router.post('/producto/:productoId/edit/:tiendaId',   myMw.isDueño, upload.single('image1'), misc.productoDoEdit)
 router.post('/producto/:productoId/delete/:tiendaId', myMw.isDueño, misc.productoDelete)
 
 
