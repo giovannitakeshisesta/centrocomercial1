@@ -26,9 +26,8 @@
 
 
       {{!-- DESCRIPCION --}}
-      <p>{{ producto.description }}</p>
       <div class="form-group mb-1">
-        <label for="description">description</label>
+        <label for="description" class="description-edit mt-3 mb-2 mt-0">description</label>
         <textarea 
           name="description" type="text" id="description" placeholder="Enter description"
           class="form-control {{#if errors.description}}is-invalid{{/if}}" 
@@ -60,8 +59,8 @@
 
       {{!-- IMAGE 1 --}}
 
-      <div class="form-group input-contain input-contain mt-5 mb-4 mt-0">
-        <label for="image1" class="form-label drag-label">image1</label>
+      <div class="form-group input-contain input-contain mt-3 mb-4 mt-0">
+        <label for="image1" class="form-label drag-label">Image</label>
         <input name="image1" type="file" id="image1"
         accept=".jpg, .png"
         class="form-control input-material drag-input" 

@@ -1,111 +1,117 @@
 <div id="register" class="d-flex justify-content-center align-items-center">
-  <div class="form-block">
-    <h3 class="mb-4">Register</h3>
-    <form method="POST" action="/register">
 
-       {{!-- Name --}}
-      <div class="form-group">
-        <div class="input-contain mt-3 mb-4 mt-0">
-          <input 
-            type="text" 
-            id="fname"
-            name="name"
-            value="{{user.name}}"
-            aria-labelledby="placeholder-fname"
-            class="form-control {{#if errors.name}} is-invalid {{/if}} input-material"
-            required
-          >
-          <label class="placeholder-text" for="name" id="placeholder-fname">
-              <div class="text">Nombre</div>
-          </label>
-          {{#if errors.name }}
-            <span class="invalid-input">*{{errors.name}}</span>
-          {{else}}
-            <span>*Required</span>
-          {{/if}}
+  <div class="d-flex justify-content-end login-form-block login-form-block_register">
+    <div class="form-block ">
+      <h3 class="mb-4">Register</h3>
+      <form method="POST" action="/register">
+
+        {{!-- Name --}}
+        <div class="form-group">
+          <div class="input-contain mt-3 mb-4 mt-0">
+            <input 
+              type="text" 
+              id="fname"
+              name="name"
+              value="{{user.name}}"
+              aria-labelledby="placeholder-fname"
+              class="form-control {{#if errors.name}} is-invalid {{/if}} input-material"
+              required
+            >
+            <label class="placeholder-text" for="name" id="placeholder-fname">
+                <div class="text">Nombre</div>
+            </label>
+            {{#if errors.name }}
+              <span class="invalid-input">*{{errors.name}}</span>
+            {{else}}
+              <span>*Required</span>
+            {{/if}}
+          </div>
         </div>
-      </div>
 
-      {{!-- Email --}}
-      <div class="form-group mt-5">
-        <div class="input-contain mt-3 mb-4">
-          <input 
-            id="email" 
-            value="{{user.email}}"
-            name="email" 
-            type="email" 
-            autocomplete="off" 
-            aria-labelledby="placeholder-fname"
-            class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
-          >
-          <label class="placeholder-text" for="email" id="placeholder-fname">
-            <div class="text">Email</div>
-          </label>
-          {{#if errors.email }}
-            <span class="invalid-input">*{{errors.email}}</span>
-          {{else}}
-            <span>*Required</span>
-          {{/if}}
+        {{!-- Email --}}
+        <div class="form-group mt-5">
+          <div class="input-contain mt-3 mb-4">
+            <input 
+              id="email" 
+              value="{{user.email}}"
+              name="email" 
+              type="email" 
+              autocomplete="off" 
+              aria-labelledby="placeholder-fname"
+              class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
+            >
+            <label class="placeholder-text" for="email" id="placeholder-fname">
+              <div class="text">Email</div>
+            </label>
+            {{#if errors.email }}
+              <span class="invalid-input">*{{errors.email}}</span>
+            {{else}}
+              <span>*Required</span>
+            {{/if}}
+          </div>
         </div>
-      </div>
 
-      {{!-- Password --}}
-      <div class="form-group mt-5">
-        <div class="input-contain mt-3 mb-4">
-          <input 
+        {{!-- Password --}}
+        <div class="form-group mt-5">
+          <div class="input-contain mt-3 mb-4">
+            <input 
+              id="password"
+              value=""
+              name="password"
+              type="password"
+              autocomplete="off" 
+              aria-labelledby="placeholder-fname"
+              class="form-control {{#if errors.password}}is-invalid{{/if}} input-material"
+            >
+            <label class="placeholder-text" for="password" id="placeholder-fname">
+              <div class="text">Password</div>
+            </label>
+            {{#if errors.password }}
+              <span class="invalid-input">*{{errors.password}}</span>
+            {{else}}
+              <span>*Required</span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- <div class="input-group mb-3">
+          <input
             id="password"
-            value=""
             name="password"
             type="password"
-            autocomplete="off" 
-            aria-labelledby="placeholder-fname"
-            class="form-control {{#if errors.password}}is-invalid{{/if}} input-material"
+            class="form-control {{#if errors.password}}is-invalid{{/if}}"
+            placeholder="Password"
+            required
           >
-          <label class="placeholder-text" for="password" id="placeholder-fname">
-            <div class="text">Password</div>
-          </label>
-          {{#if errors.password }}
-            <span class="invalid-input">*{{errors.password}}</span>
-          {{else}}
-            <span>*Required</span>
+          <button class="btn btn-outline-secondary password-toggle c-dark" type="button">
+            <i class="fa fa-eye-slash fa-fw"></i>
+          </button>
+
+          {{#if errors.password}}
+            <div class="invalid-feedback">{{errors.password}}</div>
           {{/if}}
-        </div>
-      </div>
+        </div> --}}
 
-      {{!-- <div class="input-group mb-3">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          class="form-control {{#if errors.password}}is-invalid{{/if}}"
-          placeholder="Password"
-          required
-        >
-        <button class="btn btn-outline-secondary password-toggle c-dark" type="button">
-          <i class="fa fa-eye-slash fa-fw"></i>
-        </button>
+        {{!-- Dueño  de momento no lo usamos--}}
+        {{!-- <div class="form-group mb-3">
+          <input
+            id="dueño"
+            name="dueño"
+            type="checkbox"
+            class=""
+          >
+          <label class="open-tienda" for="dueño">Vas a abrir una tienda?</label>
+        </div> --}}
 
-        {{#if errors.password}}
-          <div class="invalid-feedback">{{errors.password}}</div>
-        {{/if}}
-      </div> --}}
+        {{!-- Submit --}}
+        <button type="submit" class="btn-brand-1 mt-3">Submit</button>
 
-      {{!-- Dueño  de momento no lo usamos--}}
-      {{!-- <div class="form-group mb-3">
-        <input
-          id="dueño"
-          name="dueño"
-          type="checkbox"
-          class=""
-        >
-        <label class="open-tienda" for="dueño">Vas a abrir una tienda?</label>
-      </div> --}}
+      </form>
+    </div>
 
-      {{!-- Submit --}}
-      <button type="submit" class="btn-brand-1 mt-3">Submit</button>
 
-    </form>
   </div>
+    <img src="https://res.cloudinary.com/dly7e46yt/image/upload/v1646947083/ironhack/multer-example/hombreShopping_phvvz2.jpg" alt="">
 </div>
 
 

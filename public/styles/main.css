@@ -140,6 +140,43 @@ form {
     margin-right: 7px;
 }
 
+#login img,
+#register img {
+    width: 45%;
+    object-fit: cover;
+    -webkit-animation-name: slideInLeft;
+    animation-name: slideInLeft;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+#register img {
+    -webkit-animation-name: slideInRight;
+    animation-name: slideInRight;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+#login .form-block {
+    
+}
+
+.login-form-block {
+    width: 55%;
+    padding-left: 10%;
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+.login-form-block_register {
+    padding-left: 0;
+    padding-right: 10%;
+}
+
+
 button {
     background-color: transparent !important;
 }
@@ -198,7 +235,13 @@ button {
     font-size: 18px;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
 
+.big-description {
+    font-size: 20px !important;
+}
 
 /* ----------------- */
 /* NAV */
@@ -272,6 +315,7 @@ nav {
     color: #acff00;
 }
 
+
 .logo-tienda {
     position: absolute;
     width: 300px;
@@ -337,7 +381,7 @@ nav {
 }
 
 .position-fixed.top-0.end-0.p-3 {
-    top: 83% !important;
+    top: 80% !important;
     transition: 0.2s ease;
 }
 
@@ -546,6 +590,11 @@ footer .container {
     background-position: center !important;
 }
 
+.tiendalink-home_alltiendas {
+
+}
+
+
 .tiendalink-home.noFullHeight {
     height: 80%;
 }
@@ -569,6 +618,41 @@ footer .container {
     font-family: 'Montserrat';
 }
 
+.all-shops-block {
+    overflow: hidden;
+    margin-bottom: 200px;
+}
+
+.all-shops {
+    position: relative;
+    height: 700px;
+    width: 100%;
+    z-index: 99;
+    transition: 1s ease;
+}
+
+.all-shops:last-child {
+    margin-bottom: 0;
+}
+
+.all-shops:hover {
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+.shops-h1 {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.shops-gidu {
+    font-size: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
 
 /* ------------------------------- */
 /* INPUTS - Material Desing */
@@ -586,7 +670,8 @@ footer .container {
     background: #000;
     color: #fff !important;
 }
-input:focus{
+input:focus,
+textarea:focus {
     outline: none;
     border-color: #acff00;
 }
@@ -631,6 +716,12 @@ input, .placeholder-text{
     bottom: -20px;
     left: 20px;
     color: #6c757d;
+}
+
+label.form-label.drag-label,
+.description-edit {
+    color: #6c757d;
+    font-size: 1rem;
 }
 
 .form-control:focus {
@@ -692,7 +783,7 @@ input.drag-input {
     color: #6c757d !important;
 }
 
-input {
+input, textarea {
     background: transparent !important;
 }
 
@@ -844,6 +935,21 @@ input {
 
 .image-delete {
     position: relative;
+}
+
+.map-info {
+    width: 35%;
+}
+
+.map-google {
+    width: 63%;
+}
+
+.map-title {
+    font-size: 20px !important;
+    color: #acff00 !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 700;
 }
 
 /* ------------------------------- */

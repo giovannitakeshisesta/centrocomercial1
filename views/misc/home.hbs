@@ -12,9 +12,9 @@
       <a href="/map" class="btn-brand-2">CONTACT</a>
     </div>
 
-    {{#ifDueñoisOff dueño=currentUser.dueño}}
+    {{!-- {{#ifDueñoisOff dueño=currentUser.dueño}}
       <a href="/tienda/create">Open your Shop</a>
-    {{/ifDueñoisOff }}
+    {{/ifDueñoisOff }} --}}
   </div>
 
   <div class="social-media d-flex justify-content-between">
@@ -56,7 +56,7 @@
 
 <!-- Swiper Tiendas -->
 <div id='section-tiendas' class="pt-5 pb-5">
-  <h3 class="container pb-3 small">Tiendas</h3>
+  <h3 class="container pb-3 small">Shops</h3>
     <div class="swiper mySwiper container">
       <div class="swiper-wrapper">
       {{#each tiendas as |tienda|}}      

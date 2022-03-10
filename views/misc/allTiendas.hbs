@@ -1,10 +1,19 @@
 
-<BR></BR>
-<BR></BR>
-<h1>ALL THE FUCKING TIENDAS</h1>
 
-{{#each tiendas as |tienda|}}
-    <div class="swiper-slide tienda-slide" style="background: url({{tienda.image}});">
-        <a class="tiendalink-home" href="/tienda/{{tienda.id}}"></a>
-    </div>
-{{/each}}
+<div id="shops" class="d-flex justify-content-center align-items-center form-page-block">
+  <div class="container">
+
+        <h1 class="shops-h1">ALL <span class="montserrat color-brand mb-5">SHOPS</span>!</h1>
+
+        <p class="logo color-brand shops-gidu">GIDU</p>
+
+        {{#each tiendas as |tienda|}}
+          <div class="all-shops-block">
+              <div class="all-shops" style="background: url({{tienda.image}});">
+                  <a class="tiendalink-home tiendalink-home_alltiendas" href="/tienda/{{tienda.id}}"></a>
+              </div>
+          </div>
+        {{/each}}
+
+  </div>
+</div>

@@ -8,7 +8,7 @@
       </p>
     </a>
     <div id="nav-buttons">
-      <ul class="d-flex">
+      <ul class="d-flex align-items-center">
 
         {{#if currentUser}}
             {{#ifDueñoisOn dueño=currentUser.dueño}}
@@ -17,7 +17,7 @@
               </li>
             {{else}}
               <li class="nav-item">
-                <a class="nav-link" href="/tienda/create">Open your shop!</a>
+                <a class="nav-link nav-link btn-brand-3" href="/tienda/create">Open your shop</a>
               </li>
             {{/ifDueñoisOn }}
 

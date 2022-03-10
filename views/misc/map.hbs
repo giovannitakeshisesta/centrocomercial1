@@ -1,15 +1,24 @@
 <div id="mapsMainDiv">
     <div class="container">
-        <div class=" row " >
+        <div class="d-flex justify-content-between" >
         
-            <div class="col-lg-4 col-sm-12">
-                <h4>How to get here</h4>
-                <p>You can find us at the old Matadero in Madrid.</p>
-                <p>Pl. de Legazpi, 8, 28045 Madrid</p>
-                <p>Opening Hours: 10-20 every day</p>
+            <div class="map-info">
+                <h3 class="uppercase">How to get <span class="color-brand">here</span></h3>
+                <p class="big-description">You can find us at the old Matadero in Madrid.</p>
+
+                <div>
+                    <p class="map-title">Direction</p>
+                    <p>Pl. de Legazpi, 8, 28045 Madrid</p>
+                </div>
+
+                <div>
+                    <p class="map-title">Opening Hours</p>
+                    <p>10-20 every day</p>
+                </div>
+
             </div>
         
-            <div class="col-lg-8 col-sm-12">
+            <div class="map-google">
                 {{!-- Google maps --}}
                 <div class="mapsForm " >
                     <input

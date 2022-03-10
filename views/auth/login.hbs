@@ -1,71 +1,77 @@
-<div id="login" class="d-flex justify-content-center align-items-center form-page-block">
-  <div class="form-block">
-    <h3 class="mb-4">Login</h3>
-    <form method="POST" action="/login">
+<div id="login" class="d-flex justify-content-center  form-page-block d-flex justify-content-between">
 
-      {{!-- Email --}}
-      <div class="form-group">
-        <div class="input-contain mt-3 mb-4">
-          <input 
-            id="email" 
-            value="{{user.email}}"
-            name="email" 
-            type="email" 
-            autocomplete="off" 
-            aria-labelledby="placeholder-fname"
-            class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
-          >
-          <label class="placeholder-text" for="email" id="placeholder-fname">
-            <div class="text">Email</div>
-          </label>
-          {{#if errorMessage }}
-            <span class="invalid-input">*{{errorMessage}}</span>
-          {{else}}
-            <span>*Required</span>
-          {{/if}}
-        </div>
-      </div>
+  <img src="https://res.cloudinary.com/dly7e46yt/image/upload/v1646946514/ironhack/multer-example/mujerShopping_snxglp.jpg" alt="">
 
-      {{!-- Password --}}
-      <div class="form-group mt-5">
-        <div class="input-contain mt-3 mb-4">
-          <input 
-            id="password"
-            value=""
-            name="password"
-            type="password"
-            autocomplete="off" 
-            aria-labelledby="placeholder-fname"
-            class="form-control {{#if errorMessage}}is-invalid{{/if}} input-material"
-          >
-          <label class="placeholder-text" for="password" id="placeholder-fname">
-            <div class="text">Password</div>
-          </label>
-          {{#if errorMessage }}
-            <span class="invalid-input">*{{errorMessage}}</span>
-          {{else}}
-            <span>*Required</span>
-          {{/if}}
+  <div class="d-flex justify-content-start login-form-block">
+    <div class="form-block">
+      <h3 class="mb-4">Login</h3>
+      <form method="POST" action="/login">
+
+        {{!-- Email --}}
+        <div class="form-group">
+          <div class="input-contain mt-3 mb-4">
+            <input 
+              id="email" 
+              value="{{user.email}}"
+              name="email" 
+              type="email" 
+              autocomplete="off" 
+              aria-labelledby="placeholder-fname"
+              class="form-control {{#if errors.email}}is-invalid{{/if}} input-material"
+            >
+            <label class="placeholder-text" for="email" id="placeholder-fname">
+              <div class="text">Email</div>
+            </label>
+            {{#if errorMessage }}
+              <span class="invalid-input">*{{errorMessage}}</span>
+            {{else}}
+              <span>*Required</span>
+            {{/if}}
+          </div>
         </div>
 
-      {{!-- Submit --}}
-      <button type="submit" class="btn-brand-1 mt-2 mb-3">Submit</button>
+        {{!-- Password --}}
+        <div class="form-group mt-5">
+          <div class="input-contain mt-3 mb-4">
+            <input 
+              id="password"
+              value=""
+              name="password"
+              type="password"
+              autocomplete="off" 
+              aria-labelledby="placeholder-fname"
+              class="form-control {{#if errorMessage}}is-invalid{{/if}} input-material"
+            >
+            <label class="placeholder-text" for="password" id="placeholder-fname">
+              <div class="text">Password</div>
+            </label>
+            {{#if errorMessage }}
+              <span class="invalid-input">*{{errorMessage}}</span>
+            {{else}}
+              <span>*Required</span>
+            {{/if}}
+          </div>
 
-      {{!-- Google Login --}}
-      <div>
-        <a 
-        href="/login/google" class="btn mb-3 btn-social btn-outline-primary btn-brand-google">
-        <i class="fa fa-google icon-login"></i>Sign in with Google
-        </a>
+        {{!-- Submit --}}
+        <button type="submit" class="btn-brand-1 mt-2 mb-3">Submit</button>
+
+        {{!-- Google Login --}}
+        <div>
+          <a 
+          href="/login/google" class="btn mb-3 btn-social btn-outline-primary btn-brand-google">
+          <i class="fa fa-google icon-login"></i>Sign in with Google
+          </a>
+        </div>
+        <div>
+          <a 
+          href="/login/gitHub" class="btn  btn-social btn-outline-primary btn-brand-google">
+          <i class="fa fa-github icon-login"></i>Sign in with Git Hub
+          </a>
+        </div>
+      </form>
       </div>
-      <div>
-        <a 
-        href="/login/gitHub" class="btn  btn-social btn-outline-primary btn-brand-google">
-        <i class="fa fa-github icon-login"></i>Sign in with Git Hub
-        </a>
-      </div>
-    </form>
-    </div>
+  </div>
+ 
   </div>
 </div>
 
