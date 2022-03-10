@@ -3,10 +3,10 @@
 
     {{#if edit }}
       <h3 class="mb-2 small">Edit product</h3>
-      <form action="/producto/{{producto.id}}/edit/{{tiendaId}}" method="POST">
+      <form action="/producto/{{producto.id}}/edit/{{tiendaId}}" method="POST" enctype="multipart/form-data">
     {{else}}
       <h3 class="mb-2 small">Add product</h3>
-      <form action="/producto/{{tiendaId}}/create"  method="POST">
+      <form action="/producto/{{tiendaId}}/create"  method="POST" enctype="multipart/form-data">
     {{/if}}
     
       {{!-- NAME --}}
@@ -59,7 +59,16 @@
       </div>
 
       {{!-- IMAGE 1 --}}
-      <div class="form-group mb-1">
+
+      <div class="form-group input-contain input-contain mt-5 mb-4 mt-0">
+        <label for="image1" class="form-label drag-label">image1</label>
+        <input name="image1" type="file" id="image1"
+        accept=".jpg, .png"
+        class="form-control input-material drag-input" 
+        >
+      </div>
+
+      {{!-- <div class="form-group mb-1">
         <label for="image1">image1</label>
         <input name="image1" type="text" id="image1" placeholder="Enter image1"
           class="form-control {{#if errors.image1}}is-invalid{{/if}}" 
@@ -71,7 +80,7 @@
             {{errors.image1.message}}
           </div>
         {{/if}}
-      </div>
+      </div> --}}
 
       <button type="submit" class="btn-brand-1 mt-3">Send</button>
 
