@@ -49,22 +49,37 @@ module.exports.tiendaCreate = (req, res, next) => {
 };
 
 
+
+const logofunction = (imageArr) => {
+  if(imageArr.some(el => el.fieldname === "logo")){
+    return (imageArr.filter(el => el.fieldname === "logo"))[0].path
+  }
+}
+
+const imagefunction = (imageArr) => {
+  if(imageArr.some(el => el.fieldname === "image")){
+    return (imageArr.filter(el => el.fieldname === "image"))[0].path
+  }
+}
+
 //  TIENDA CREATE - POST FORM
 module.exports.tiendaDoCreate = (req, res, next) => {
-  console.log("body", req.body)
-  //console.log("muulter", req.file)
-  req.file? req.body.image = req.file.path : req.body.image = undefined;
+  //console.log("body", req.body)
+  //console.log("muulter", req.files)
+  const imageArr = req.files
   
+  req.body.logo =  logofunction(imageArr)
+  req.body.image = imagefunction(imageArr)
+
   const tienda = new Tienda({
     ownerId: req.user.id,
     name: req.body.name,
     description: req.body.description,
-    categories: req.body.categories,
-    officialWeb: req.body.officialWeb,
     logo: req.body.logo     || undefined,
-    image1: req.body.image1 || undefined,
-    image2: req.body.image2 || undefined,
-    image : req.body.image 
+    image : req.body.image  || undefined
+    //officialWeb: req.body.officialWeb,
+    // image1: req.body.image1 || undefined,
+    // image2: req.body.image2 || undefined,
   });
 
   tienda
@@ -105,22 +120,25 @@ module.exports.tiendaDesing = (req, res, next) => {
 
 module.exports.tiendaDoEdit = (req, res, next) => {
   let tiendaId = req.params.tiendaId;
-
+  
   Tienda.findById(tiendaId)
     .then((tienda) => {
+      let oldLogo = tienda.logo
       let oldImage = tienda.image
-      //console.log(oldImage,req.file)
-      if (req.file){
-        req.body.image  = req.file.path
-      } else {
-        req.body.image  = oldImage
-      }
+
+      const imageArr = req.files
+      if (logofunction(imageArr))   {req.body.logo =  logofunction(imageArr)}
+      else {req.body.Logo  = oldLogo}
+
+      if (imagefunction(imageArr))  {req.body.image = imagefunction(imageArr)}
+      else {req.body.image  = oldImage}
+
       return Tienda.findByIdAndUpdate(tiendaId, req.body, { runValidators: true, new: true })
       .then((tienda) => res.redirect(`/tienda/${tienda.id}`))
 
     })
     .catch((error) => {
-      console.log("ASDASDASDASDASDASD",error)
+      //console.log("ASDASDASDASDASDASD",error)
       if (error instanceof mongoose.Error.ValidationError) {
         Tienda.findById(tiendaId)
         .then((tienda) => {
@@ -169,7 +187,9 @@ module.exports.productoCreate = (req, res, next) => {
 module.exports.productoDoCreate = (req, res, next) => {
   let tiendaId = req.params.tiendaId
   console.log(tiendaId, req.body)
-
+  
+  if (req.file){req.body.image1 = req.file.path}
+  
   const producto = new Producto({
     ownerId: req.user.id,
     tienda : tiendaId,
@@ -177,7 +197,7 @@ module.exports.productoDoCreate = (req, res, next) => {
     description: req.body.description,
     precio: req.body.precio,
     image1: req.body.image1 || undefined,
-    image2: req.body.image2|| undefined
+    //image2: req.body.image2|| undefined
   });
 
   producto
@@ -244,9 +264,15 @@ module.exports.productoEdit = (req, res, next) => {
 module.exports.productoDoEdit = (req, res, next) => {
   let productoId = req.params.productoId
   let tiendaId = req.params.tiendaId
+  console.log(req.file)
+  Producto.findById(productoId)
+  .then( producto => {
+    let oldImage1 = producto.image1
 
-  Producto.findByIdAndUpdate(productoId, req.body, { runValidators: true, new: true } )
-  
+    if (req.file){ req.body.image1 = req.file.path}
+    else {req.body.image1 =  oldImage1}
+    console.log(req.file)
+    return Producto.findByIdAndUpdate(productoId, req.body, { runValidators: true, new: true } )
     .then(() => { res.redirect(`/producto/${productoId}`)})
 
     .catch((error) => {
@@ -261,6 +287,11 @@ module.exports.productoDoEdit = (req, res, next) => {
         next(error);
       }
     });
+  })
+  .catch(next)
+  
+
+  
 }
 
 // -------------------------------------------------------------------------------
