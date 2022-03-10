@@ -21,9 +21,7 @@
               </li>
             {{/ifDueñoisOn }}
 
-            <li class="nav-item">
-                <a class="nav-link" href="/editUser">Profile</a>
-            </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>
@@ -36,13 +34,22 @@
               <a class="nav-link" href="/login">Login</a>
             </li>
         {{/if}}
-        <li class="nav-item">
-          <a class="nav-link" href="/map">Contact</a>
-        </li>
-
+        
         <li class="nav-item">
           <a class="nav-link" href="/allTiendas">Tiendas</a>
-        </li>        
+        </li> 
+
+        <li class="nav-item">
+          <a class="nav-link" href="/map">Contacts</a>
+        </li>     
+
+        {{#if currentUser}}
+        <li class="nav-item">
+            <a class="nav-link" href="/editUser">
+              <img src="{{currentUser.image}}" style="height: 50px;" alt="user image navbar">
+            </a>
+        </li> 
+        {{/if}}
 
       </ul>
     </div>
