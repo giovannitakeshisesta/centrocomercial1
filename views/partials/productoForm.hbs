@@ -5,7 +5,7 @@
       <h3 class="mb-2 small">Edit product</h3>
       <form action="/producto/{{producto.id}}/edit/{{tiendaId}}" method="POST" enctype="multipart/form-data">
     {{else}}
-      <h3 class="mb-2 small">Add product</h3>
+      <h3 class="mb-2 small">Add <span class="montserrat color-brand">product</span></h3>
       <form action="/producto/{{tiendaId}}/create"  method="POST" enctype="multipart/form-data">
     {{/if}}
     

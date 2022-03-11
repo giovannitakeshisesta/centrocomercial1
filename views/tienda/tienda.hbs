@@ -1,5 +1,8 @@
 <div id="tienda">
-    <div class="tiendaImg" style="background: url('{{tienda.image}}')"></div>
+    <div class="tiendaImg-block">
+        <div class="tiendaImg" style="background: url('{{tienda.image}}')"></div>
+        
+    </div>
     <div class="tienda-info">
         <h3>{{tienda.name}}</h3>
         <p class="description">{{tienda.description}}</p>
@@ -54,7 +57,7 @@
 <!-- Swiper Tiendas -->
 <div id='section-tiendas' class="pt-5 pb-5 mt-5">
     {{#if pro}}
-    <h3 class="pb-3 small container">PRODUCTOS</h3>
+    <h3 class="pb-3 small container">PRODUCTS</h3>
     {{/if}}
 
     <div class="container">
@@ -98,7 +101,7 @@
 
 <script>
 
-    let tienda_imgs = document.querySelectorAll('.tiendaImg')
+    let tienda_imgs = document.querySelectorAll('.tiendaImg-block')
     tienda_imgs.forEach(element => {
         setTimeout( () => {
             element.classList.add('active')
