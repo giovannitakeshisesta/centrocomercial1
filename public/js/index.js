@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   function onClickAddRemoveOne(event) {
     const button = event.currentTarget;
-    const p = button.querySelector('p');
+    const p = button.querySelector('.pe-none');
     //console.log(button.classList)
     //console.log(p)
     if (button.classList.contains("icon-liked") ){

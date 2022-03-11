@@ -937,6 +937,7 @@ input, textarea {
     margin-bottom: 50px;
 }
 
+
 .userlikes-title {
     margin-top: 80px;
 }
@@ -998,16 +999,22 @@ input, textarea {
 
 .like-button p{
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+    top: 20px;
+    left: 20px;
+    color: #000;
 }
 
 .like-button {
     position: absolute;
-    top: 20px;
+    width: 100%;
+    top: 0px;
+    /* right: 20px; */
+}
+
+.like-button::before {
+    position: absolute;
     right: 20px;
+    top: 20px;
 }
 
 
