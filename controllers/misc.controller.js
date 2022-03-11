@@ -77,7 +77,7 @@ module.exports.tiendaDoCreate = (req, res, next) => {
     description: req.body.description,
     logo: req.body.logo     || undefined,
     image : req.body.image  || undefined
-    officialWeb: req.body.officialWeb,
+    //officialWeb: req.body.officialWeb,
     // image1: req.body.image1 || undefined,
     // image2: req.body.image2 || undefined,
   });
