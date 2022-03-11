@@ -79,7 +79,6 @@
 
                 {{!-- product like --}}
                 {{#if ../currentUser}}
-                <div class="divLike">
                     <button class="
                         like-button border-0
                         fa fa-heart fa-2x
@@ -88,7 +87,7 @@
                         >
                         <p class="pe-none" style="opacity: 0;">{{countLikes allLikes=../allLikes producto = producto.id}}</p>
                     </button>
-                </div>
+
                 {{/if}}
             </div>
         {{/each}}

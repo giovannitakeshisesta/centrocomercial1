@@ -32,7 +32,7 @@ h4 {
 
 .tienda-info h3 {
     text-transform: uppercase;
-    width: 45%;
+    width: 65%;
 }
 
 h3.small {
@@ -326,7 +326,7 @@ nav {
 
 .logo-tienda {
     position: absolute;
-    width: 300px;
+    width: 200px;
     bottom: 0;
     left: 0;
     object-fit: contain;  
@@ -337,7 +337,7 @@ nav {
     animation-delay: 1.5s;
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
-    height: 200px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -604,7 +604,7 @@ footer .container {
 
 
 .tiendalink-home.noFullHeight {
-    height: 87%;
+    height: 100%;
 }
 
 .tienda-slide:hover {
@@ -626,9 +626,15 @@ footer .container {
     font-family: 'Montserrat';
 }
 
+.officialWeb:hover {
+    color: #8ace01;
+}
+
 .all-shops-block {
     overflow: hidden;
     margin-bottom: 200px;
+    background-size: cover !important;
+    background-position: center !important;
 }
 
 .all-shops {
@@ -767,7 +773,7 @@ form {
 
 #register, .form-page-block {
     width: 100vw;
-    padding-top: 200px;
+    padding-top: 150px;
     /* height: 100vh; */
 }
 
@@ -822,7 +828,7 @@ input, textarea {
     height: 100%;
     bottom: 0;
     background-position: center !important;
-    background-size: cover !important;
+    ç
 }
 
 .active {
@@ -996,6 +1002,12 @@ input, textarea {
     color: white;
 }
 
+.like-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 
 /* ------------------------------- */
 /* PRODUCT - PAGE 
@@ -1024,6 +1036,10 @@ input, textarea {
     font-size: 50px;
     color: #acff00;
     margin-bottom: 5px;
+}
+
+.producto-title {
+    padding-right: 30px;
 }
 
 .producto-price {

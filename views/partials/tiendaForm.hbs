@@ -2,10 +2,10 @@
   <div class="form-block">
     
     {{#if edit }}
-      <h3 class="mb-4 small">Edit Shop</h3>
+      <h3 class="mb-4 small">Edit <span class="montserrat color-brand">Shop</span></h3>
       <form action="/tienda/{{tienda.id}}/edit" method="POST" enctype="multipart/form-data" class="form">
     {{else}}
-      <h3 class="mb-4 small">Create Shop</h3>
+      <h3 class="mb-4 small">Create <span class="montserrat color-brand">Shop</span></h3>
       <form action="/tienda/create"             method="POST" enctype="multipart/form-data" class="form">
     {{/if}}
 
