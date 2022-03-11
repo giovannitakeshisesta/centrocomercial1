@@ -70,14 +70,13 @@ module.exports.tiendaDoCreate = (req, res, next) => {
   
   req.body.logo =  logofunction(imageArr)
   req.body.image = imagefunction(imageArr)
-
   const tienda = new Tienda({
     ownerId: req.user.id,
     name: req.body.name,
     description: req.body.description,
     logo: req.body.logo     || undefined,
-    image : req.body.image  || undefined
-    //officialWeb: req.body.officialWeb,
+    image : req.body.image  || undefined,
+    officialWeb: req.body.officialWeb,
     // image1: req.body.image1 || undefined,
     // image2: req.body.image2 || undefined,
   });
@@ -85,7 +84,11 @@ module.exports.tiendaDoCreate = (req, res, next) => {
   tienda
     .save()
     .then(()=> { return User.findByIdAndUpdate(req.user, {dueño : "on"}) })
-    .then(() => res.redirect('/'))
+    .then(()=> { return Tienda.findOne({ownerId : req.user.id}) })
+    .then((tienda) => {
+      console.log(tienda.id)
+      res.redirect(`/tienda/${tienda.id}`)
+    })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         console.log(error)
