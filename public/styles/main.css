@@ -633,8 +633,7 @@ footer .container {
 .all-shops-block {
     overflow: hidden;
     margin-bottom: 200px;
-    background-size: cover !important;
-    background-position: center !important;
+  
 }
 
 .all-shops {
@@ -643,6 +642,9 @@ footer .container {
     width: 100%;
     z-index: 99;
     transition: 1s ease;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
 .all-shops:last-child {
