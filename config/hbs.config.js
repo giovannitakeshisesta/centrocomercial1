@@ -1,6 +1,10 @@
 const hbs = require('hbs')
 hbs.registerPartials('./views/partials')
-// check if the key "ownerId" of the tienda  === currentUser Id
+
+
+/**
+ *  check if the key "ownerId" of the tienda  === currentUser Id
+ */
 hbs.registerHelper('ifIsDueño', function (options) {
     const { tiendaOwnerId, dueñoId } = options.hash;
     if (tiendaOwnerId && dueñoId && tiendaOwnerId==dueñoId) {
@@ -11,7 +15,9 @@ hbs.registerHelper('ifIsDueño', function (options) {
   })
 
 
-// check if the user key "dueño" has "on" value
+/** 
+ * check if the user key "dueño" has "on" value
+ */
 hbs.registerHelper('ifDueñoisOn', function (options) {
   const { dueño } = options.hash;
   if (dueño && dueño === 'on') {
@@ -22,7 +28,9 @@ hbs.registerHelper('ifDueñoisOn', function (options) {
 })
 
 
-// check if the user key "dueño" has "off" value
+/**
+ * check if the user key "dueño" has "off" value
+ */ 
 hbs.registerHelper('ifDueñoisOff', function (options) {
   const { dueño } = options.hash;
   if (dueño && dueño === 'off') {
@@ -33,7 +41,9 @@ hbs.registerHelper('ifDueñoisOff', function (options) {
 })
 
 
-// show in red the likes of the current user
+/**
+ * show in red the likes of the current user
+ */ 
 hbs.registerHelper('userLikedProduct', function (options) {
   const { producto, likes } = options.hash;
   if (producto && likes && likes.some(like => like.producto == producto)) {
@@ -44,7 +54,9 @@ hbs.registerHelper('userLikedProduct', function (options) {
 })
 
 
-// count all likes of each product
+/**
+ * count all likes of each product
+ */
 hbs.registerHelper('countLikes', function (options) {
   const { producto , allLikes} = options.hash;
   if (producto && allLikes) {
@@ -54,7 +66,9 @@ hbs.registerHelper('countLikes', function (options) {
 })
 
 
-// check if the comment is of the current User
+/**
+ * check if the comment is of the current User
+ */
 hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
   const { idUserWhoCommented , currentUserId} = options.hash;
   if (idUserWhoCommented && currentUserId && idUserWhoCommented===currentUserId){
@@ -65,7 +79,9 @@ hbs.registerHelper('ifCommentOfTheCurrentUser', function (options) {
 })
 
 
-// chek if the current User has already posted a comment, if so, dont show the link
+/**
+ * chek if the current User has already posted a comment, if so, dont show the link
+ */
 hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
   const { allInfo , currentUser} = options.hash;
   let ccc = allInfo.map (el => el.user.id).some(el => el===currentUser)
@@ -77,8 +93,9 @@ hbs.registerHelper('ifNoCommentOfCurrenUser', function (options) {
 })
 
 
-
-// chek if the current User has logged with socials, if so, dont show the link
+/**
+ * chek if the current User has logged with socials, if so, dont show the link
+ */
 hbs.registerHelper('ifLoginSocial', function (options) {
   const { social} = options.hash;
   if (!social){

@@ -15,7 +15,6 @@ const passport      = require('passport');
 const flash         = require('connect-flash');
 
 
-
 //  ---------------------- Middlewares ----------------------
 const app = express();
 
