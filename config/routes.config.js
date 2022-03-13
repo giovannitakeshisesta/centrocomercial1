@@ -36,8 +36,10 @@ router.get('/auth/github/callback' , myMw.isNotAuth, auth.doLoginGitHub)
 router.get ('/editUser',                        myMw.isAuth,    user.renderEditUser)
 router.post('/editUser/:userId/editName',       myMw.isTheUser, user.editUserName)
 router.post('/editUser/:userId/editUserImage',  myMw.isTheUser, upload.single('image'), user.editUserImage)
-router.post('/editUser/:userId/editEmail',      myMw.isTheUser, user.sendEmail)
-router.get ('/editUser/editmail/:token/:email', myMw.isNotAuth, user.editEmail)
+
+router.post('/editUser/:userId/editEmail/:oldEmail',      myMw.isTheUser, user.sendEmail)
+router.get ('/editUser/editmail/:token/:newEmail', myMw.isNotAuth, user.editEmail)
+
 router.post('/editUser/:userId/editPw',         myMw.isTheUser, user.editPw)
 //router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
