@@ -9,6 +9,7 @@ module.exports.isNotAuth = (req, res, next) => {
   } 
 }
 
+
 // -----------------------------------------------//
 // check if there is a current user
 module.exports.isAuth = (req, res, next) => {
@@ -20,6 +21,7 @@ module.exports.isAuth = (req, res, next) => {
     res.redirect('/login')
   }
 }
+
 
 // -----------------------------------------------//
 // check if is the current user sending the POST request

@@ -2,7 +2,9 @@ const nodemailer = require('nodemailer');
 const templActivation = require('./mailActivation');
 const templChangeMail = require('./mailChange');
 
-// create reusable transporter object using the default SMTP transport
+/**
+ * create reusable transporter object using the default SMTP transport 
+ */
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -11,8 +13,8 @@ const transporter = nodemailer.createTransport({
   }
 })
 
+
 //-----------------//   ACTIVATE ACCOUNT  //----------------//
-// `http://localhost:${process.env.PORT || 3000}`}/activate/${token}" 
 module.exports.sendActivationEmail = (email,token) => {
   transporter.sendMail({
     from: `Giovanni !!!!! <${process.env.NM_USER}>`,
@@ -22,8 +24,8 @@ module.exports.sendActivationEmail = (email,token) => {
   })
 }
 
+
 //-----------------//    CHANGE EMAIL     //----------------//
-// /editUser/editmail/${token}/${email}" 
 module.exports.sendChangeEmail = (oldEmail, newEmail, token) => {
   transporter.sendMail({
     from: `Giovanni !!!!! <${process.env.NM_USER}>`,

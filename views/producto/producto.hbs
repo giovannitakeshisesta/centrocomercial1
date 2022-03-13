@@ -10,6 +10,7 @@
                     <p class="producto-price">{{prod.precio}}€</p>
                 </div>
                 <p class="producto-description">{{prod.description}}</p>
+
                 {{#if currentUser}}  
                     <b><span class="rating-title">Rating:</span> <span id="averageStars"></span></b>
                     <p id="avRatingToIndexJs" hidden>{{averageRating}}</p>
@@ -19,11 +20,10 @@
                         comment
                     </a>
                     {{/ifNoCommentOfCurrenUser}}
-
-
                 {{/if}}
+
                 <a href="/tienda/{{prod.tienda}}" class="btn-brand-2 input-createTienda btn-brand-2_width">back to the shop</a>
-                  <div class="mouse_scroll mouse_scroll_producto">
+                <div class="mouse_scroll mouse_scroll_producto">
                     <div>
                         <span class="m_scroll_arrows unu"></span>
                         <span class="m_scroll_arrows doi"></span>
@@ -34,51 +34,49 @@
         </div>
 
 
-    <div class="editDelete-product">
+        <div class="editDelete-product">
 
-        {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=prod.ownerId}}
-        <div>
-            <a href="/producto/{{prod.id}}/edit/{{prod.tienda}}" class="btn-brand-1"> edit </a>               
-        </div>
-
-
-        {{!-- DELETE PRODUCTO --}}
-        <button type="button" class="btn-brand-1 delete-producto-button" data-bs-toggle="modal" data-bs-target="#delete-productoModal">
-        Delete 
-        </button>
-
-        {{!-- DELETE PRODUCTO MODAL--}}
-        <div class="modal fade" id="delete-productoModal" tabindex="-1" aria-labelledby="delete-productoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="delete-productoModalLabel">Delete Product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            {{#ifIsDueño dueñoId=currentUser.id tiendaOwnerId=prod.ownerId}}
+            <div>
+                <a href="/producto/{{prod.id}}/edit/{{prod.tienda}}" class="btn-brand-1"> edit </a>               
             </div>
 
-            <div class="modal-body">
-                Are you Sure? 
-            </div>
 
-            <div class="modal-footer">
+            {{!-- DELETE PRODUCTO --}}
+            <button type="button" class="btn-brand-1 delete-producto-button" data-bs-toggle="modal" data-bs-target="#delete-productoModal">
+            Delete 
+            </button>
+
+            {{!-- DELETE PRODUCTO MODAL--}}
+            <div class="modal fade" id="delete-productoModal" tabindex="-1" aria-labelledby="delete-productoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-productoModalLabel">Delete Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    Are you Sure? 
+                </div>
+
+                <div class="modal-footer">
                     <form method="POST" action="/producto/{{prod.id}}/delete/{{prod.tienda}}">
-                    <button type="submit" class="btn-brand-1">Delete</button>
-                </form> 
+                        <button type="submit" class="btn-brand-1">Delete</button>
+                    </form> 
+                </div>
+
             </div>
+            </div>
+            </div>
+            {{!-- 
+                <button type="submit" class="btn-brand-2">Delete</button>
+            </form>    --}}
+            {{/ifIsDueño}}
 
         </div>
-        </div>
-        </div>
-        {{!-- 
-            <button type="submit" class="btn-brand-2">Delete</button>
-        </form>    --}}
-        {{/ifIsDueño}}
-
     </div>
-    </div>
-
-
 
 
     {{!-- -------------------------- --}}
@@ -86,7 +84,6 @@
     {{!-- -------------------------- --}}
 
     {{#if currentUser}}  
-
 
         {{!-- add comment - modal--}}
         <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
@@ -119,6 +116,7 @@
         {{!--  COMMENTS SECTION--}}
         <div class="comment-block">
             {{#each prod.comments as | comm |}}
+            
             <div class="border col-4 comment-block-element">
 
                 {{!-- display user image,name,rating,comment --}}
@@ -129,7 +127,6 @@
                     </div>
                     <p class="text-break mt-3 comment-block-description">{{comm.comment}}</p>
                     <p class="userRatingToIndexJs" >{{comm.rating}}</p>
-
                 </div>
                             
                 {{!-- EDIT - DELETE COMMENT --}}
@@ -200,9 +197,9 @@
                     </div>
                     </div>
 
-
                 </div>
                 {{/ifCommentOfTheCurrentUser}}
+
             </div>
                 
             {{/each}}

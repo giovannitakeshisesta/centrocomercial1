@@ -27,8 +27,8 @@ router.get('/login/google',         myMw.isNotAuth, passport.authenticate('googl
 router.get('/auth/google/callback', myMw.isNotAuth, auth.doLoginGoogle)
 
 // ------- LOGIN GIT HUB -------
-router.get('/login/gitHub',          myMw.isNotAuth, passport.authenticate('GitHubStrategy'))
-router.get('/auth/github/callback' , myMw.isNotAuth, auth.doLoginGitHub)
+router.get('/login/gitHub',         myMw.isNotAuth, passport.authenticate('GitHubStrategy'))
+router.get('/auth/github/callback', myMw.isNotAuth, auth.doLoginGitHub)
 
 
 //----------------------------------------------------------------------
@@ -36,12 +36,9 @@ router.get('/auth/github/callback' , myMw.isNotAuth, auth.doLoginGitHub)
 router.get ('/editUser',                        myMw.isAuth,    user.renderEditUser)
 router.post('/editUser/:userId/editName',       myMw.isTheUser, user.editUserName)
 router.post('/editUser/:userId/editUserImage',  myMw.isTheUser, upload.single('image'), user.editUserImage)
-
-router.post('/editUser/:userId/editEmail/:oldEmail',      myMw.isTheUser, user.sendEmail)
-router.get ('/editUser/editmail/:token/:newEmail', myMw.isNotAuth, user.editEmail)
-
+router.post('/editUser/:userId/editEmail/:oldEmail',myMw.isTheUser, user.sendEmail)
+router.get ('/editUser/editmail/:token/:newEmail',  myMw.isNotAuth, user.editEmail)
 router.post('/editUser/:userId/editPw',         myMw.isTheUser, user.editPw)
-//router.post('/editUser/:userId/abreTienda',     myMw.isTheUser, user.abretienda)
 router.post('/editUser/:userId/delete',         myMw.isTheUser, user.userDelete)
 
 //----------------------------------------------------------------------
@@ -59,11 +56,7 @@ router.post('/tienda/create',           myMw.isAuth , upload.any('image','logo')
 router.get ('/tienda/:tiendaId/edit',   myMw.isDueño, misc.tiendaEdit)
 router.post('/tienda/:tiendaId/edit',   myMw.isDueño, upload.any('image','logo'), misc.tiendaDoEdit)
 router.post('/tienda/:tiendaId/delete', myMw.isDueño, misc.tiendaDelete)
-router.get('/tienda/your/:userId',     misc.yourTienda)
-
-
-// routa para generar diseño sin claves cloudinari - edu
-router.get('/tienda/',                  misc.tiendaDesing)
+router.get('/tienda/your/:userId',      misc.yourTienda)
 
 
 // Productos 
@@ -77,11 +70,10 @@ router.post('/producto/:productoId/delete/:tiendaId', myMw.isDueño, misc.produc
 //----------------------------------------------------------------------
 // ------- MISC ROUTES -------
 router.get('/',  misc.home)
-router.get('/allTiendas',  misc.allTiendas)
-
+router.get('/allTiendas',           misc.allTiendas)
 router.get('/tienda/:tiendaId',     misc.tienda)
 router.get('/producto/:productoId', misc.producto)
-router.get('/map', (req, res, next) => {  res.render('misc/map')})
+router.get('/map', (req, res, next) => {res.render('misc/map')})
 
 
 module.exports = router 

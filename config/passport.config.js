@@ -6,6 +6,7 @@ const GitHubStrategy = require('passport-github').Strategy;
 
 const User = require('../models/user.model');
 
+
 //-------------- passport -------------- 
 passport.serializeUser((user, next) => {
   next(null, user.id)
@@ -18,6 +19,7 @@ passport.deserializeUser((id, next) => {
     })
     .catch(err => next(err))
 })
+
 
 //-------------- local strategy -------------- 
 passport.use('local-strategy', new LocalStrategy(
@@ -106,7 +108,7 @@ passport.use('google-auth', new GoogleStrategy(
 passport.use('GitHubStrategy', new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.GITHUB_REDIRECT_URI || "/auth/github/callback"
+    callbackURL: process.env.GITHUB_REDIRECT_URI || `/auth/github/callback`
   },
   (accessToken, refreshToken, profile, next)=> {
     loginSocial(profile,next)

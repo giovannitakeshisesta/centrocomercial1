@@ -4,7 +4,9 @@
 
   <div class="d-flex justify-content-start login-form-block">
     <div class="form-block">
+
       <h3 class="mb-4">Login</h3>
+      
       <form method="POST" action="/login">
 
         {{!-- Email --}}
@@ -51,6 +53,7 @@
               <span>*Required</span>
             {{/if}}
           </div>
+        </div>  
 
         {{!-- Submit --}}
         <button type="submit" class="btn-brand-1 mt-2 mb-3">Submit</button>
@@ -62,16 +65,18 @@
           <i class="fa fa-google icon-login"></i>Sign in with Google
           </a>
         </div>
+
+        {{!-- Git hub Login --}}
         <div>
           <a 
           href="/login/gitHub" class="btn  btn-social btn-outline-primary btn-brand-google">
           <i class="fa fa-github icon-login"></i>Sign in with Git Hub
           </a>
         </div>
+
       </form>
-      </div>
-  </div>
- 
+      
+    </div>
   </div>
 </div>
 

@@ -85,7 +85,7 @@ userSchema.pre('save', function(next) {
 
 // edit password
 userSchema.pre('findOneAndUpdate', function (next) {
-  console.log('entro en update', this._update.password)
+  //console.log('entro en update', this._update.password)
   if (this._update.password) {
       bcrypt
       .hash(this._update.password, SALT_ROUNDS)

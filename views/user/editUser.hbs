@@ -77,18 +77,6 @@
                 </div>
                 {{/ifLoginSocial}}
 
-
-
-                {{#ifDueñoisOff dueño = currentUser.dueño}}
-                {{!-- <a href="/tienda/create">Open your Shop</a> --}}
-                
-                {{!-- <form method="POST" action="/editUser/{{currentUser.id}}/abreTienda">
-                    <label for="abretienda" class="label-createTienda mt-5"> Create a new shop</label>
-                    <button type="submit" class="btn-brand-2 input-createTienda">Open your Shop!</button>
-                </form>  --}}
-                
-                {{/ifDueñoisOff}}
-
             </div>
 
             {{!-- IMAGE + DELETE COLUMN --}}
@@ -129,7 +117,6 @@
                 </div>
 
 
-
                 {{!-- DELETE ACCOUNT --}}
                 <button type="button" class="btn-brand-1 delete-account-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Delete account
@@ -168,22 +155,15 @@
             <h3 class="small mb-3 userlikes-title">Products you like</h3>
             
             <div class="productos-liked d-flex">
-
                 {{#each user.likes}}
-
                     <div class="productos-liked_element">
                         <a href="/producto/{{this.producto.id}}">
                             <img src="{{this.producto.image1}}" alt="">
                         </a>
-                    </div>
-
-                    {{!-- <p>tienda: {{this.producto.tienda.name}}, producto : {{this.producto.name}}</p> --}}
-                    {{!-- <a href="/tienda/{{this.producto.tienda.id}}">
-                        <img src="{{this.producto.tienda.logo}}" class="logoCircle" alt="">
-                    </a> --}}
-        
+                    </div>        
                 {{/each}}
             </div>
+
         </div>
         {{/if}}
 

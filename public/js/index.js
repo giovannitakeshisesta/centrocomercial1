@@ -1,3 +1,6 @@
+// ----------------------------------------------
+// ! a que sirve ?? 
+
 let inputs_element = document.querySelectorAll(".input-material");
 inputs_element.forEach(element => {
     element.addEventListener("keyup", () => {
@@ -5,7 +8,10 @@ inputs_element.forEach(element => {
     })
 });
 
+
+// ----------------------------------------------
 // login eye toggler
+
 document.addEventListener('DOMContentLoaded', () => {
   function onClickPasswordToggle(event) {
     const button = event.currentTarget;
@@ -24,8 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.password-toggle')
     .forEach(button => button.addEventListener('click', onClickPasswordToggle));
 })
+
+
 // ----------------------------------------------
 // when like button is pressed the number increase or decrease(not in the database)
+
 document.addEventListener('DOMContentLoaded', () => {
   function onClickAddRemoveOne(event) {
     const button = event.currentTarget;
@@ -42,9 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.like-button')
     .forEach(button => button.addEventListener('click', onClickAddRemoveOne));
 })
+
+
 // ---------------------- RATING STARS------------------------
 // when the page product is loaded, we receive from the controller, the averageRating
 // here we convert the number in stars
+
 function numberToStars(rating) {
 
   // Round to nearest half
@@ -65,14 +77,15 @@ function numberToStars(rating) {
   return output.join('');
 }
 
-
+// ----------------------------------------------
 // average rating of the product displayed on product page comments
+
 const averageRating = document.getElementById("avRatingToIndexJs")?.innerHTML;
 if(averageRating) {
   document.getElementById("averageStars").innerHTML = numberToStars(averageRating);
 }
 
-
+// ----------------------------------------------
 // each user rating displayed on product page comments
 const elements = document.querySelectorAll(".userRatingToIndexJs");
 

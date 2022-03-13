@@ -1,20 +1,19 @@
-
 // Google maps
 
 function initMap() {
-    const Matadero = { lat: 40.391, lng: -3.6978 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-        mapTypeControl: false,
-        center: Matadero,
-        zoom: 13,
-    });
+  const Matadero = { lat: 40.391, lng: -3.6978 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    mapTypeControl: false,
+    center: Matadero,
+    zoom: 13,
+  });
 
-    const marker = new google.maps.Marker({
-        position: Matadero,
-        map: map
-    });
+  const marker = new google.maps.Marker({
+    position: Matadero,
+    map: map
+  });
 
-    new AutocompleteDirectionsHandler(map);
+  new AutocompleteDirectionsHandler(map);
 }
 
 class AutocompleteDirectionsHandler {
@@ -67,6 +66,7 @@ class AutocompleteDirectionsHandler {
       this.route();
     });
   }
+
   setupPlaceChangedListener(autocomplete, mode) {
     autocomplete.bindTo("bounds", this.map);
     autocomplete.addListener("place_changed", () => {
@@ -84,6 +84,7 @@ class AutocompleteDirectionsHandler {
       this.route();
     });
   }
+
   route() {
     if (!this.originPlaceId) {
       return;
@@ -106,6 +107,7 @@ class AutocompleteDirectionsHandler {
       }
     );
   }
+  
 }
 
 

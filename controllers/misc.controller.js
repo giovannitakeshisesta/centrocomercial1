@@ -15,6 +15,15 @@ module.exports.home = (req, res, next) => {
     .catch((error) => next(error));
 };
 
+// -------------------------------------------------------------------------------
+//  SHOW ALL TIENDAS PAGE
+
+module.exports.allTiendas = (req, res, next) => {
+  Tienda.find()
+    // .sort({ createdAt: 'desc' })
+    .then((tiendas) => res.render('misc/allTiendas', { tiendas }))
+    .catch((error) => next(error));
+};
 
 // -------------------------------------------------------------------------------
 //  SHOW ONE TIENDA PAGE
@@ -47,7 +56,6 @@ module.exports.tienda = (req, res, next) => {
 module.exports.tiendaCreate = (req, res, next) => {
   res.render('tienda/tiendaCreate')
 };
-
 
 
 const logofunction = (imageArr) => {
@@ -114,10 +122,6 @@ module.exports.tiendaEdit = (req, res, next) => {
     .catch(next)
 };
 
-module.exports.tiendaDesing = (req, res, next) => {
-  res.render('tienda/tiendaDesing');
-}
-
 
 // TIENDA EDIT - POST FORM
 
@@ -173,7 +177,6 @@ module.exports.tiendaDelete = (req, res, next) => {
   .then(()=> res.redirect('/'))
   .catch(next)
 }
-
 
 
 // -------------------------------------------------------------------------------
@@ -267,14 +270,13 @@ module.exports.productoEdit = (req, res, next) => {
 module.exports.productoDoEdit = (req, res, next) => {
   let productoId = req.params.productoId
   let tiendaId = req.params.tiendaId
-  console.log(req.file)
+
   Producto.findById(productoId)
   .then( producto => {
     let oldImage1 = producto.image1
 
     if (req.file){ req.body.image1 = req.file.path}
     else {req.body.image1 =  oldImage1}
-    console.log(req.file)
     return Producto.findByIdAndUpdate(productoId, req.body, { runValidators: true, new: true } )
     .then(() => { res.redirect(`/producto/${productoId}`)})
 
@@ -292,12 +294,11 @@ module.exports.productoDoEdit = (req, res, next) => {
     });
   })
   .catch(next)
-  
-
-  
 }
 
 // -------------------------------------------------------------------------------
+// PRODUCTO DELETE,like,comments
+
 const deleteProductLikeComm = (productoId)=>{
   Producto.findByIdAndDelete(productoId)
   .then(() => {return Like.deleteMany({producto: productoId })})  
@@ -306,19 +307,16 @@ const deleteProductLikeComm = (productoId)=>{
 }
 
 
-// PRODUCTO DELETE,like,comments
-
 module.exports.productoDelete = (req, res, next) => {
- 
     deleteProductLikeComm(req.params.productoId)
     res.redirect(`/tienda/${req.params.tiendaId}`)
 }
 
 
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
+// SHOW YOUR (USER) TIENDA
 
-// -------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------
-// Show your (user) tienda
 module.exports.yourTienda = (req, res, next) => {
   const userId = req.params.userId
   Tienda.findOne({ownerId : userId})
@@ -345,12 +343,4 @@ module.exports.yourTienda = (req, res, next) => {
 }
 
 
-// -------------------------------------------------------------------------------
-
-module.exports.allTiendas = (req, res, next) => {
-  Tienda.find()
-    // .sort({ createdAt: 'desc' })
-    .then((tiendas) => res.render('misc/allTiendas', { tiendas }))
-    .catch((error) => next(error));
-};
 
