@@ -75,7 +75,17 @@ h5.dark {
     letter-spacing: 1.2px;
     text-transform: uppercase;
     border: none;
+    transition: 0.2 ease;
+    border: 1px solid;
 }
+
+.btn-brand-1:hover {
+    background: #000 !important;
+    color: #acff00;
+    border: 1px solid;
+    transition: 0.2 ease;
+}
+
 
 .btn-brand-1_width {
     width: fit-content;
@@ -96,13 +106,14 @@ h5.dark {
     text-transform: uppercase;
     border: none;
     transition: .5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .btn-brand-2:hover {
     background: #acff00;
     color: #000;
+    border-radius: 50px;
 }
 
 .btn-brand-3 {
@@ -326,7 +337,7 @@ nav {
 
 .logo-tienda {
     position: absolute;
-    width: 200px;
+    width: 300px;
     bottom: 0;
     left: 0;
     object-fit: contain;  
