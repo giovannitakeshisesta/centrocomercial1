@@ -1,10 +1,441 @@
-[
-  {
-    "name": "producto 1",
-    "precio": 123
+[{
+  "_id": {
+    "$oid": "622b8aad5a6fcac9d356c901"
   },
-  {
-    "name": "producto 2 ",
-    "precio": 456
-  }
-]
+  "ownerId": "622b86a4ee296af903f61b54",
+  "name": "Monolith ",
+  "description": "Unique and bold, this shoe emphasizes the concept of duality, which is essential in the aesthetics of the brand. ",
+  "precio": 850,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647020717/ironhack/centro-comercial/qiojmdejhdands6auwjj.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b87b8ee296af903f61b5d"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T17:45:17.919Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T17:58:03.941Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b8f685a6fcac9d356c973"
+  },
+  "ownerId": "622b86a4ee296af903f61b54",
+  "name": "Jacket",
+  "description": "This snowboard jacket featuring a print inspired by arctic camouflage used in snowy landscapes, is made of technical fabric, a triple-layer bonded polyester material",
+  "precio": 950,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647021928/ironhack/centro-comercial/n7vpvuzvswirwyhh1cy2.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b87b8ee296af903f61b5d"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:05:28.807Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:05:28.807Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b90475a6fcac9d356c991"
+  },
+  "ownerId": "622b86a4ee296af903f61b54",
+  "name": "Brushed",
+  "description": "Minimalist elegance, a distinctive character and versatility meet in this shoulder bag with flap that reinterprets the geometric shape of the '90s in a modern, current way. ",
+  "precio": 2200,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647022148/ironhack/centro-comercial/gmhkelwexaki238jspol.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b87b8ee296af903f61b5d"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:09:11.655Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:09:11.655Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b90ea5a6fcac9d356c9a8"
+  },
+  "ownerId": "622b86a4ee296af903f61b54",
+  "name": "Fleece",
+  "description": "This soft, oversized jacket with alpine allure is made of soft recycled fleece, a breathable fabric with high thermal capacity produced from recycled polyester and wool. ",
+  "precio": 1880,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647022313/ironhack/centro-comercial/tvulacwdnbrfphjiq0zc.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b87b8ee296af903f61b5d"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:11:54.146Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:11:54.146Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b91c65a6fcac9d356c9bb"
+  },
+  "ownerId": "622b86a4ee296af903f61b54",
+  "name": "Cropped",
+  "description": "This cropped convertible down jacket, which can be transformed into a vest due to the removable sleeves, expresses versatile, modern allure. The design is made of innovative technical nylon, a high-performance fabric, and characterized by the Graphene®️ ",
+  "precio": 2700,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647022533/ironhack/centro-comercial/kjdd68zzkf0x87nm5atk.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b87b8ee296af903f61b5d"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:15:34.338Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:15:34.338Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b99205a6fcac9d356ca42"
+  },
+  "ownerId": "622b94ae5a6fcac9d356ca17",
+  "name": "Jacket",
+  "description": "Waterproof, breathable, seam-sealed DryVent™ 3L with stretch helps keep you dry",
+  "precio": 200,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647024438/ironhack/centro-comercial/yziuytnotx3t4nnsshvi.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b970d5a6fcac9d356ca21"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:46:56.307Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:47:19.181Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b9ac85a6fcac9d356ca7d"
+  },
+  "ownerId": "622b94ae5a6fcac9d356ca17",
+  "name": "Horizon",
+  "description": "The Horizon Breeze Brimmer Hat is an airy full-brim hat, with sweat-wicking FlashDry™ and UPF 40+ protection. It's perfect for long, memorable days in the summer sun. ",
+  "precio": 40,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647024840/ironhack/centro-comercial/jkuu2ycavcylv3lk0bgq.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b970d5a6fcac9d356ca21"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T18:54:00.604Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T18:54:00.604Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622b9d0388f0f0b58f77bc7b"
+  },
+  "ownerId": "622b94ae5a6fcac9d356ca17",
+  "name": "Atheletics",
+  "description": "Reflective elements ensure the wearer is seen and safe in low-light conditions.",
+  "precio": 35,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647025410/ironhack/centro-comercial/fcfet1jzop07oz5bapod.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622b970d5a6fcac9d356ca21"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:03:31.117Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:03:31.117Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba15b88f0f0b58f77bcac"
+  },
+  "ownerId": "622b9fdd88f0f0b58f77bc87",
+  "name": "INFINITY JACKET",
+  "description": "Built for rugged terrain and rough weather, our iconic shell jacket returns with responsibly made, trailblazing LIFA® INFINITY PRO™ technology.",
+  "precio": 500,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647026523/ironhack/centro-comercial/v2mr27d2c7pwnl1knyae.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba06b88f0f0b58f77bc8e"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:22:03.687Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:35:30.920Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba1cf88f0f0b58f77bcbb"
+  },
+  "ownerId": "622b9fdd88f0f0b58f77bc87",
+  "name": "RIDGE  JACKET",
+  "description": "A lightweight ski jacket designed with our innovative LIFA INFINITY™ fabric – the next level of environmentally responsible, waterproof/breathable tech.",
+  "precio": 550,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647026638/ironhack/centro-comercial/fvxufcsppszuvqv53tw6.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba06b88f0f0b58f77bc8e"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:23:59.172Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:36:27.922Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba24988f0f0b58f77bccf"
+  },
+  "ownerId": "622b9fdd88f0f0b58f77bc87",
+  "name": "SAILING JACKET",
+  "description": "Light, warm and waterproof LIFALOFT™ jacket made to perform under pressure.   \r\n\r\n",
+  "precio": 150,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647026760/ironhack/centro-comercial/wqalgauajdvf3zlapnno.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba06b88f0f0b58f77bc8e"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:26:01.460Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:37:44.231Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba2e488f0f0b58f77bce6"
+  },
+  "ownerId": "622b9fdd88f0f0b58f77bc87",
+  "name": "BIKINI TOP",
+  "description": "An athletic halter bikini top designed with input from lifeguards.",
+  "precio": 25,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647026915/ironhack/centro-comercial/k1ouhzwekrvyr5khwtyj.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba06b88f0f0b58f77bc8e"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:28:36.401Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:38:54.241Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba3d288f0f0b58f77bd03"
+  },
+  "ownerId": "622b9fdd88f0f0b58f77bc87",
+  "name": "NORDSJO PARKA",
+  "description": "This parka combines urban style with warm, waterproof/breathable protection inspired by professionals working in the Arctic. ",
+  "precio": 550,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647027153/ironhack/centro-comercial/ojr4lmxhsqmsxtptiyui.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba06b88f0f0b58f77bc8e"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:32:34.032Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:32:34.032Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba5c988f0f0b58f77bdb8"
+  },
+  "ownerId": "622ba27088f0f0b58f77bcdd",
+  "name": "Jacket",
+  "description": "This jacket, which packs into its own pocket, is made from recycled fabrics and PrimaLoft® ThermoPlume™ insulation to help keep you warm, dry and comfortable while reducing environmental impact.",
+  "precio": 250,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647027656/ironhack/centro-comercial/bndwk6s975w8lly47sxg.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba38488f0f0b58f77bcf0"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:40:57.579Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:40:57.579Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba65088f0f0b58f77bdc8"
+  },
+  "ownerId": "622ba27088f0f0b58f77bcdd",
+  "name": "Jersey",
+  "description": "Cut from soft cotton, this crewneck tee features our signature monogram printed at the front.",
+  "precio": 90,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647027791/ironhack/centro-comercial/ohqfkdrnuhsp6drra1hd.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba38488f0f0b58f77bcf0"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:43:12.099Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:43:12.099Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba6ca88f0f0b58f77bdd5"
+  },
+  "ownerId": "622ba27088f0f0b58f77bcdd",
+  "name": "T-Shirt",
+  "description": "Cut from soft cotton jersey, this t-shirt features an uneven stripe motif and several of our iconic emblems, including our signature embroidered Pony.",
+  "precio": 79,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647027913/ironhack/centro-comercial/t7tg7gq1fmt7h5ayfobz.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba38488f0f0b58f77bcf0"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:45:14.516Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:45:14.516Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba74c88f0f0b58f77bde4"
+  },
+  "ownerId": "622ba27088f0f0b58f77bcdd",
+  "name": "Polo",
+  "description": "On this cotton-blend sweatshirt, our iconic Polo Bear wears distressed denim, a Fair Isle jumper and a sport coat with a rakishly upturned collar.",
+  "precio": 190,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647028043/ironhack/centro-comercial/ykqgtvxafo68upfd7jpg.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba38488f0f0b58f77bcf0"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:47:24.270Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T19:47:24.270Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622ba9e788f0f0b58f77be15"
+  },
+  "ownerId": "622ba76388f0f0b58f77bded",
+  "name": "BUCKET BAG",
+  "description": "Crush it this season with tropical shades in elevated yet wearable styles, plus classic American sportswear featuring modern shapes and popping colours.",
+  "precio": 360,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647028817/ironhack/centro-comercial/fkytynvdzxbus3tsjghl.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba7e188f0f0b58f77bdfa"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T19:58:31.383Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T20:00:18.153Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622baab888f0f0b58f77be39"
+  },
+  "ownerId": "622ba76388f0f0b58f77bded",
+  "name": "STAINLESS STEEL WATCH",
+  "description": "Elevate your look with this stainless steel watch, which sparkles thanks to its crystal-embellished bezel and elegant carnation gold-toned accents.",
+  "precio": 150,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647028920/ironhack/centro-comercial/j7vceydbnk0c85wu8dg2.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba7e188f0f0b58f77bdfa"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T20:02:00.956Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T20:02:00.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622bab2288f0f0b58f77be44"
+  },
+  "ownerId": "622ba76388f0f0b58f77bded",
+  "name": "SLIM FIT POLO",
+  "description": "Nail a next-level look with this pure cotton pique polo, featuring signature detail cuffs and a flattering slim fit.",
+  "precio": 85,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647029025/ironhack/centro-comercial/hbq3pt6hnkuhamsvxcpd.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba7e188f0f0b58f77bdfa"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T20:03:46.218Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T20:03:46.218Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622bab9c88f0f0b58f77be53"
+  },
+  "ownerId": "622ba76388f0f0b58f77bded",
+  "name": "EMBROIDERY HOODY",
+  "description": "With striking logo embroidery on the front, this organic cotton-blend terry hoody delivers on everyday comfort and laidback style.",
+  "precio": 140,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647029148/ironhack/centro-comercial/wtyq8dphxtflhneqfybh.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622ba7e188f0f0b58f77bdfa"
+  },
+  "createdAt": {
+    "$date": "2022-03-11T20:05:48.720Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-11T20:05:48.720Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622c71c1da5289b5ef8df5d4"
+  },
+  "ownerId": "622c70a4da5289b5ef8df588",
+  "name": "Polo Shirt",
+  "description": "A signature design from the Lacoste wardrobe, this L.12.12 Polo Shirt in cotton petit piqué combines comfort and elegance. A chic, timeless essential, ideal for any occasion. ",
+  "precio": 80,
+  "image1": "https://res.cloudinary.com/dly7e46yt/image/upload/v1647079872/ironhack/centro-comercial/boan6zuav40squkvb2j1.png",
+  "image2": "https://www.clinicafeito.com/wp-content/uploads/2020/12/tshirt-2.jpg",
+  "tienda": {
+    "$oid": "622c718dda5289b5ef8df5b9"
+  },
+  "createdAt": {
+    "$date": "2022-03-12T10:11:13.194Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-12T10:11:13.194Z"
+  },
+  "__v": 0
+}]
