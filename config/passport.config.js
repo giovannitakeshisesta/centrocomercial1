@@ -40,7 +40,7 @@ passport.use('local-strategy', new LocalStrategy(
                 if (user.active) {
                   next(null, user)
                 } else {
-                  next(null, false, { error: 'You have to activate your account' })
+                  next(null, false, { error: 'You have to activate your account! check your inbox!' })
                 }
               }
             })
