@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   // node mailer, when mail confirmed the active key switch to active
   active: {
     type: Boolean,
-    default: true
+    default: false
   },// the token will be used only once in the authentication url
   activationToken: {
     type: String,
