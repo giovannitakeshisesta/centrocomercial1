@@ -29,7 +29,7 @@
                     <p class="account-name">email: {{currentUser.email}}</p>
                     <p>{{currentUser.provider}}</p>
                     {{#ifLoginSocial social = currentUser.provider}}
-                    <form method="POST" action="/editUser/{{currentUser.id}}/editEmail" class="d-flex">
+                    <form method="POST" action="/editUser/{{currentUser.id}}/editEmail/{{currentUser.email}}" class="d-flex">
                         <div class="form-group mb-1">
                             <input name="email" type="email" id="email" placeholder="Enter email"
                             class="form-control {{#if errors.email}}is-invalid{{/if}}" 

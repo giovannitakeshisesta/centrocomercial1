@@ -1,4 +1,4 @@
-module.exports.generateEmail = (token,email) => {
+module.exports.generateEmail = (token,newEmail) => {
     return `
     <!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -95,7 +95,7 @@ module.exports.generateEmail = (token,email) => {
                   
       <div
          style="font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:11px;line-height:1;text-align:left;color:#000000;"
-      ><span style="font-size: 11px">Example mailer</span></div>
+      ><span style="font-size: 11px">GIDU SHOPPING CENTER</span></div>
     
                 </td>
               </tr>
@@ -193,9 +193,9 @@ module.exports.generateEmail = (token,email) => {
              align="center" bgcolor="#c7896f" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#c7896f;" valign="middle"
           >
             <a
-               href="${process.env.HOST || `http://localhost:${process.env.PORT || 3000}`}/editUser/editmail/${token}/${email}" style="display:inline-block;background:#c7896f;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"
+               href="${process.env.HOST || `http://localhost:${process.env.PORT || 3000}`}editUser/editmail/${token}/${newEmail}" style="display:inline-block;background:#c7896f;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"
             >
-              Activate account
+              Change your email address!
             </a>
           </td>
         </tr>
@@ -266,7 +266,7 @@ module.exports.generateEmail = (token,email) => {
       <div
          style="font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;"
       ><p>Any questions, comments, concerns?</p>
-          <p>Contact our support staff at <a href="https://mjml.io" style="text-decoration: none; color: inherit;"><span style="font-weight: bold;">example@example.com</span></a></p></div>
+          <p>Contact our support staff at <a href="https://mjml.io" style="text-decoration: none; color: inherit;"><span style="font-weight: bold;">giovannitakeshisesta@gmail.com</span></a></p></div>
     
                 </td>
               </tr>

@@ -128,10 +128,12 @@ module.exports.editPw = (req, res, next) => {
 
 module.exports.sendEmail = (req, res, next) => {
     //console.log(req.body.email, req.params.userId)
+    let oldEmail = req.params.oldEmail
+    let newEmail = req.body.email
     User.findById(req.params.userId)
     .then((user)=> {
         //console.log("Chek your inbox! Logged out!",user.activationToken)
-        mailer.sendChangeEmail(req.body.email, user.activationToken)
+        mailer.sendChangeEmail(oldEmail, newEmail, user.activationToken)
         req.flash('flashMessage', `Chek your inbox! Logged out!   See you soon!`)
         req.logout();
         res.redirect('/');
@@ -142,12 +144,12 @@ module.exports.sendEmail = (req, res, next) => {
 // USER EDIT MAIL from email to  login
 
 module.exports.editEmail = (req, res, next) => {
-    //console.log(req.params.email, req.params.token)
+    //console.log(req.params.newEmail, req.params.token)
     const activationToken = req.params.token;
   
     User.findOneAndUpdate(
       { activationToken },
-      { email : req.params.email }
+      { email : req.params.newEmail }
     )
       .then(() => {
         req.flash('flashMessage', 'Email changed. Now Log In!')

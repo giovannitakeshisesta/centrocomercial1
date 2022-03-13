@@ -24,11 +24,11 @@ module.exports.sendActivationEmail = (email,token) => {
 
 //-----------------//    CHANGE EMAIL     //----------------//
 // /editUser/editmail/${token}/${email}" 
-module.exports.sendChangeEmail = (email, token) => {
+module.exports.sendChangeEmail = (oldEmail, newEmail, token) => {
   transporter.sendMail({
     from: `Giovanni !!!!! <${process.env.NM_USER}>`,
-    to: email,
+    to: oldEmail,
     subject: "Change email, click on the button",
-    html: templChangeMail.generateEmail(token,email)
+    html: templChangeMail.generateEmail(token,newEmail)
   })
 }
