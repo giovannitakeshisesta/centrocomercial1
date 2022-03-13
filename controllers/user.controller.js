@@ -146,10 +146,11 @@ module.exports.sendEmail = (req, res, next) => {
 module.exports.editEmail = (req, res, next) => {
     //console.log(req.params.newEmail, req.params.token)
     const activationToken = req.params.token;
+    const newEmail = req.params.newEmail
   
     User.findOneAndUpdate(
       { activationToken },
-      { email : req.params.newEmail }
+      { email : newEmail }
     )
       .then(() => {
         req.flash('flashMessage', 'Email changed. Now Log In!')

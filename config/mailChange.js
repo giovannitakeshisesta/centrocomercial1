@@ -175,7 +175,7 @@ module.exports.generateEmail = (token,newEmail) => {
                   
       <div
          style="font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:justify;color:#000000;"
-      ><p><span style="color: rgb(57, 63, 76);">Click on the following button to change your email</span></p></div>
+      ><p><span style="color: rgb(57, 63, 76);">We received an email change request, if it was you asking for it click on the following button</span></p></div>
     
                 </td>
               </tr>
