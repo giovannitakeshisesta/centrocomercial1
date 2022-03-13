@@ -19,6 +19,7 @@ router.post('/register', myMw.isNotAuth, auth.doRegister)
 router.get ('/login',    myMw.isNotAuth, auth.login)
 router.post('/login',    myMw.isNotAuth, auth.doLogin)
 router.get ('/logout',   myMw.isAuth, auth.logout)
+router.get('/activate/:token',        auth.activate)
 
 
 // ------- LOGIN GOOGLE -------
