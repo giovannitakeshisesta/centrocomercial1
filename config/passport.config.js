@@ -31,12 +31,12 @@ passport.use('local-strategy', new LocalStrategy(
     User.findOne({ email })
       .then((user) => {
         if (!user) {
-          next(null, false, { error: 'Email or password are incorrect, es la mail! shhhhh' })
+          next(null, false, { error: 'Email or password are incorrect' })
         } else {
           return user.checkPassword(password)
             .then((match) => {
               if (!match) {
-                next(null, false, { error: 'Email or password are incorrect es la password shhhh!' })
+                next(null, false, { error: 'Email or password are incorrect' })
               } 
               else {
                 if (user.active) {

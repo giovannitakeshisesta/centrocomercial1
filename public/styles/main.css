@@ -544,7 +544,9 @@ footer .container {
     /* border: 1px solid #acff00; */
     border-radius: 100px;
 }
-
+.ovScroll{
+    overflow-x: scroll;
+}
 
 /* ------------------------------- */
 /* section TIENDAS */
