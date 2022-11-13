@@ -8,7 +8,7 @@ const templChangeMail = require('./mailChange');
  const transporter = nodemailer.createTransport({
   host: "smtp.mail.yahoo.com",
   port: 465,
-  // secure: false, 
+  secure: false, 
   auth: {
     user: process.env.NM_USER,
     pass: process.env.NM_PASSWORD
@@ -30,7 +30,8 @@ module.exports.sendActivationEmail = (email,token) => {
     to: email,
     subject: "Activation Email",
     html: templActivation.generateEmail(token)
-  })
+  }),
+  console.log("Message sent: ", email);
 }
 
 
