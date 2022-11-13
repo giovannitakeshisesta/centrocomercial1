@@ -5,22 +5,22 @@ const templChangeMail = require('./mailChange');
 /**
  * create reusable transporter object using the default SMTP transport 
  */
- const transporter = nodemailer.createTransport({
-  host: "smtp.mail.yahoo.com",
-  port: 465,
-  secure: false, 
-  auth: {
-    user: process.env.NM_USER,
-    pass: process.env.NM_PASSWORD
-  }
-})
-// const transporter = nodemailer.createTransport({
-//   service: "Gmail",
+//  const transporter = nodemailer.createTransport({
+//   host: "smtp.mail.yahoo.com",
+//   port: 587,
+//   secure: false, 
 //   auth: {
 //     user: process.env.NM_USER,
 //     pass: process.env.NM_PASSWORD
 //   }
 // })
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.NM_USER,
+    pass: process.env.NM_PASSWORD
+  }
+})
 
 
 //-----------------//   ACTIVATE ACCOUNT  //----------------//
@@ -30,8 +30,7 @@ module.exports.sendActivationEmail = (email,token) => {
     to: email,
     subject: "Activation Email",
     html: templActivation.generateEmail(token)
-  }),
-  console.log("Message sent: ", email);
+  })
 }
 
 

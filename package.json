@@ -34,6 +34,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "strapi-provider-email-nodemailer": "^3.6.10",
     "swiper": "^8.0.6"
   }
 }
