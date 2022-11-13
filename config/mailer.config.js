@@ -5,15 +5,6 @@ const templChangeMail = require('./mailChange');
 /**
  * create reusable transporter object using the default SMTP transport 
  */
-//  const transporter = nodemailer.createTransport({
-//   host: "smtp.mail.yahoo.com",
-//   port: 587,
-//   secure: false, 
-//   auth: {
-//     user: process.env.NM_USER,
-//     pass: process.env.NM_PASSWORD
-//   }
-// })
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
