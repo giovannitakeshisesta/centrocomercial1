@@ -564,6 +564,8 @@ footer .container {
 .swiper {
   width: 100%;
   height: 100%;
+  overflow-x: scroll;
+  /* overflow: initial; */
 }
 
 .swiper-slide {
@@ -626,9 +628,6 @@ footer .container {
 
 }
 
-.swiper {
-    overflow: initial;
-}
 
 .officialWeb {
     display: block;
