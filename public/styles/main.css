@@ -544,9 +544,6 @@ footer .container {
     /* border: 1px solid #acff00; */
     border-radius: 100px;
 }
-.ovScroll{
-    overflow-x: scroll;
-}
 
 /* ------------------------------- */
 /* section TIENDAS */
@@ -612,11 +609,6 @@ footer .container {
     background-repeat: no-repeat !important;
     background-position: center !important;
 }
-
-.tiendalink-home_alltiendas {
-
-}
-
 
 .tiendalink-home.noFullHeight {
     height: 100%;
